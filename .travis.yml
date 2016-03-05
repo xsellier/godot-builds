@@ -1,0 +1,166 @@
+language: cpp
+
+sudo: required
+dist: trusty
+
+compiler:
+  - gcc
+  - clang
+
+os:
+  - linux
+  - osx
+
+env:
+  global:
+    - BUILD_REVISION=official
+  matrix:
+    - PLATFORM=iphone TARGET=release
+    - PLATFORM=iphone TARGET=release_debug
+    - PLATFORM=javascript
+    - PLATFORM=osx BITS=32 TOOLS=yes
+    - PLATFORM=osx BITS=32 TOOLS=no
+    - PLATFORM=osx BITS=64 TOOLS=no
+    - PLATFORM=server BITS=64 TOOLS=yes
+    - PLATFORM=x11 BITS=32 TOOLS=yes
+    - PLATFORM=x11 BITS=32 TOOLS=no
+    - PLATFORM=x11 BITS=64 TOOLS=yes
+    - PLATFORM=x11 BITS=64 TOOLS=no
+    - PLATFORM=android TARGET=release
+    - PLATFORM=android TARGET=release_debug
+    - PLATFORM=windows BITS=32 TOOLS=yes
+    - PLATFORM=windows BITS=32 TOOLS=no
+    - PLATFORM=windows BITS=64 TOOLS=yes
+    - PLATFORM=windows BITS=64 TOOLS=no
+
+matrix:
+  exclude:
+    - os: linux
+      env: PLATFORM=android TARGET=release
+    - os: linux
+      env: PLATFORM=android TARGET=release_debug
+    - os: linux
+      env: PLATFORM=iphone TARGET=release
+    - os: linux
+      env: PLATFORM=iphone TARGET=release_debug
+    - os: linux
+      env: PLATFORM=javascript
+    - os: linux
+      env: PLATFORM=osx BITS=32 TOOLS=yes
+    - os: linux
+      env: PLATFORM=osx BITS=32 TOOLS=no
+    - os: linux
+      env: PLATFORM=osx BITS=64 TOOLS=no
+    - os: osx
+      env: PLATFORM=server BITS=64 TOOLS=yes
+    - os: osx
+      env: PLATFORM=windows BITS=32 TOOLS=yes
+    - os: osx
+      env: PLATFORM=windows BITS=32 TOOLS=no
+    - os: osx
+      env: PLATFORM=windows BITS=64 TOOLS=yes
+    - os: osx
+      env: PLATFORM=windows BITS=64 TOOLS=no
+    - os: osx
+      env: PLATFORM=x11 BITS=32 TOOLS=yes
+    - os: osx
+      env: PLATFORM=x11 BITS=32 TOOLS=no
+    - os: osx
+      env: PLATFORM=x11 BITS=64 TOOLS=yes
+    - os: osx
+      env: PLATFORM=x11 BITS=64 TOOLS=no
+    - compiler: gcc
+      env: PLATFORM=iphone TARGET=release
+    - compiler: gcc
+      env: PLATFORM=iphone TARGET=release_debug
+    - compiler: gcc
+      env: PLATFORM=javascript
+    - compiler: gcc
+      env: PLATFORM=osx BITS=32 TOOLS=yes
+    - compiler: gcc
+      env: PLATFORM=osx BITS=32 TOOLS=no
+    - compiler: gcc
+      env: PLATFORM=osx BITS=64 TOOLS=no
+    - compiler: clang
+      env: PLATFORM=android TARGET=release
+    - compiler: clang
+      env: PLATFORM=android TARGET=release_debug
+    - compiler: clang
+      env: PLATFORM=server BITS=64 TOOLS=yes
+    - compiler: clang
+      env: PLATFORM=windows BITS=32 TOOLS=yes
+    - compiler: clang
+      env: PLATFORM=windows BITS=32 TOOLS=no
+    - compiler: clang
+      env: PLATFORM=windows BITS=64 TOOLS=yes
+    - compiler: clang
+      env: PLATFORM=windows BITS=64 TOOLS=no
+    - compiler: clang
+      env: PLATFORM=x11 BITS=32 TOOLS=yes
+    - compiler: clang
+      env: PLATFORM=x11 BITS=32 TOOLS=no
+    - compiler: clang
+      env: PLATFORM=x11 BITS=64 TOOLS=yes
+    - compiler: clang
+      env: PLATFORM=x11 BITS=64 TOOLS=no
+
+
+before_script:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; sudo apt-get install -y scons pkg-config build-essential upx-ucl; fi;
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; brew install scons upx; fi;
+  - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$PLATFORM" = "android" ]; then brew install android-sdk android-ndk; export ANDROID_HOME=/usr/local/opt/android-sdk; export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk; fi;
+  - if [ "$PLATFORM" = "windows" ]; then sudo apt-get install -y mingw32 mingw-w64; fi;
+  - if [ "$PLATFORM" = "x11" ]; then
+      sudo apt-get install -y libx11-dev libxcursor-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libssl-dev libxinerama-dev libudev-dev;
+      if [ "$BITS" = "32" ]; then
+          sudo dpkg --add-architecture i386; sudo apt-get update -qq; sudo apt-get install -y --only-upgrade g++ gcc libstdc++6;
+          sudo apt-get install -y gcc-multilib g++-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libssl-dev:i386 libxinerama-dev:i386 libudev-dev:i386;
+      fi;
+    fi;
+  - if [ "$PLATFORM" = "javascript" ]; then
+      brew update; brew install -v scons emscripten;
+      emcc; sed -i "" s/^LLVM_ROOT.*/LLVM_ROOT='"\/usr\/local\/opt\/emscripten\/libexec\/llvm\/bin\/"'/ "$HOME/.emscripten";
+      export EMSCRIPTEN_ROOT=`em-config EMSCRIPTEN_ROOT`;
+    fi;
+
+
+script:
+  - cd godot
+  - if [ "$PLATFORM" = "windows" -o "$PLATFORM" = "osx" ]; then
+      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX tools=yes bits=$BITS target=release_debug;
+      else scons -j2 platform=$PLATFORM CXX=$CXX tools=no bits=$BITS target=release;
+           scons -j2 platform=$PLATFORM CXX=$CXX tools=no bits=$BITS target=release_debug > /dev/null;
+      fi;
+    fi;
+  - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
+      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX tools=yes openssl=builtin use_static_cpp=yes bits=$BITS target=release_debug;
+      else scons -j2 platform=$PLATFORM CXX=$CXX tools=no openssl=builtin use_static_cpp=yes bits=$BITS target=release;
+           scons -j2 platform=$PLATFORM CXX=$CXX tools=no openssl=builtin use_static_cpp=yes bits=$BITS target=release_debug > /dev/null;
+      fi;
+    fi;
+  - if [ "$PLATFORM" = "android" ]; then
+      scons -j2 platform=$PLATFORM CXX=$CXX target=$TARGET;
+      scons -j2 platform=$PLATFORM CXX=$CXX target=$TARGET android_arch=x86 > /dev/null;
+    fi;
+  - if [ "$PLATFORM" = "iphone" ]; then
+      scons -j2 platform=$PLATFORM CXX=$CXX bits=32 target=$TARGET;
+      scons -j2 platform=$PLATFORM CXX=$CXX bits=64 target=$TARGET > /dev/null;
+    fi;
+  - if [ "$PLATFORM" = "javascript" ]; then
+      scons -j2 platform=$PLATFORM CXX=$CXX target=release;
+      scons -j2 platform=$PLATFORM CXX=$CXX target=release_debug > /dev/null;
+    fi;
+
+
+before_deploy:
+  - cd godot
+  - if [ "$PLATFORM" != "android" -a "$PLATFORM" != "iphone" -a "$PLATFORM" != "javascript" ]; then upx bin/godot*.$PLATFORM.opt.*; fi;
+  - if [ "$PLATFORM" = "iphone" ]; then
+      if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
+      lipo -create -arch armv7 bin/godot.iphone.$target_tag.32 -arch arm64 bin/godot.iphone.$target_tag.64 -output bin/godot.iphone.$target_tag.universal;
+      rm -rf bin/godot.iphone.$target_tag.32*;
+      rm -rf bin/godot.iphone.$target_tag.64*;
+    fi;
+  - if [ "$PLATFORM" = "javascript" ]; then rm -f bin/godot.javascript.*.html; fi;
+
+
