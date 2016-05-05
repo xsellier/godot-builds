@@ -1,0 +1,37 @@
+os: Visual Studio 2015
+
+artifacts:
+  - path: godot\bin\*.exe
+
+environment:
+  PYTHON: "C:\\Python27"
+  BUILD_REVISION: official
+  matrix:
+    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
+      TOOLS: yes
+      ARCH: amd64
+    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
+      TOOLS: yes
+      ARCH: x86
+    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
+      TOOLS: no
+      ARCH: amd64
+    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
+      TOOLS: no
+      ARCH: x86
+
+install:
+  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - pip install --egg scons  # it will fail on AppVeyor without --egg flag
+  - if defined VS call "%VS%" %ARCH%  # if defined - so we can also use mingw
+  - git submodule update --init --recursive # download submodules
+
+before_build:
+  - echo %BUILD_REVISION%
+  - python --version
+  - scons --version
+  - cl.exe
+
+build_script:
+  - cd godot
+  - scons platform=windows target=release_debug tools=%TOOLS%
