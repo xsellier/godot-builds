@@ -14,7 +14,7 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="openssl=no"
+    - OPTIONS="openssl=builtin"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
