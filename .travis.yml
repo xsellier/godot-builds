@@ -14,6 +14,7 @@ os:
 env:
   global:
     - BUILD_REVISION=official
+    - OPTIONS="openssl=builtin"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
@@ -127,28 +128,28 @@ before_script:
 script:
   - cd godot
   - if [ "$PLATFORM" = "windows" -o "$PLATFORM" = "osx" ]; then
-      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX tools=yes bits=$BITS target=release_debug;
-      else scons -j2 platform=$PLATFORM CXX=$CXX tools=no bits=$BITS target=release;
-           scons -j2 platform=$PLATFORM CXX=$CXX tools=no bits=$BITS target=release_debug > /dev/null;
+      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes bits=$BITS target=release_debug;
+      else scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no bits=$BITS target=release;
+           scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no bits=$BITS target=release_debug > /dev/null;
       fi;
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
-      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX tools=yes openssl=builtin use_static_cpp=yes bits=$BITS target=release_debug;
-      else scons -j2 platform=$PLATFORM CXX=$CXX tools=no openssl=builtin use_static_cpp=yes bits=$BITS target=release;
-           scons -j2 platform=$PLATFORM CXX=$CXX tools=no openssl=builtin use_static_cpp=yes bits=$BITS target=release_debug > /dev/null;
+      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
+      else scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
+           scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug > /dev/null;
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX target=$TARGET;
-      scons -j2 platform=$PLATFORM CXX=$CXX target=$TARGET android_arch=x86 > /dev/null;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=x86 > /dev/null;
     fi;
   - if [ "$PLATFORM" = "iphone" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX bits=32 target=$TARGET;
-      scons -j2 platform=$PLATFORM CXX=$CXX bits=64 target=$TARGET > /dev/null;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS bits=32 target=$TARGET;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS bits=64 target=$TARGET > /dev/null;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX target=release;
-      scons -j2 platform=$PLATFORM CXX=$CXX target=release_debug > /dev/null;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=release;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=release_debug > /dev/null;
     fi;
 
 
