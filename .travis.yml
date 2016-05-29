@@ -92,8 +92,8 @@ matrix:
 
 
 before_script:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; sudo apt-get install -y scons pkg-config build-essential upx-ucl; fi;
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; brew install scons upx; fi;
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; sudo apt-get install -y scons pkg-config build-essential; fi;
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; brew install scons; fi;
   - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$PLATFORM" = "android" ]; then
       brew install -v android-sdk; brew install -v android-ndk | grep -v "inflating:" | grep -v "creating:";
       export ANDROID_HOME=/usr/local/opt/android-sdk; export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk;
@@ -141,7 +141,6 @@ script:
 
 
 before_deploy:
-  - if [ "$PLATFORM" != "android" -a "$PLATFORM" != "iphone" -a "$PLATFORM" != "javascript" ]; then upx bin/godot*.$PLATFORM.opt.*; fi;
   - if [ "$PLATFORM" = "iphone" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
       lipo -create -arch armv7 bin/godot.iphone.$target_tag.32 -arch arm64 bin/godot.iphone.$target_tag.64 -output bin/godot.iphone.$target_tag.universal;
