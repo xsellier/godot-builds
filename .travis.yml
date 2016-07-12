@@ -147,6 +147,12 @@ before_deploy:
         rm -f bin/godot.javascript.$target_tag.html*;
       done;
     fi;
+  - if [ "$PLATFORM" = "android" ]; then
+      if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
+      for android_arch in armeabi-v7a x86; do
+        cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
+      done;
+    fi;
 
 
 deploy:
