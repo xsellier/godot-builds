@@ -3,6 +3,14 @@ language: cpp
 sudo: required
 dist: trusty
 
+# Disable builds on normal pushes, we only want to build tags
+branches:
+  except:
+  - master
+  - 2.0
+  - 2.1
+
+
 compiler:
   - gcc
   - clang
