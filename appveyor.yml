@@ -1,5 +1,8 @@
 os: Visual Studio 2015
 
+# Skip build on normal pushes
+skip_non_tags: true
+
 artifacts:
   - path: godot\bin\*.exe
     name: GodotBinary
