@@ -26,7 +26,8 @@ env:
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
-    - PLATFORM=javascript
+    - PLATFORM=javascript TARGET=release
+    - PLATFORM=javascript TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=yes
     - PLATFORM=osx BITS=fat TOOLS=no
     - PLATFORM=server BITS=64 TOOLS=yes
@@ -48,7 +49,9 @@ matrix:
     - os: linux
       env: PLATFORM=iphone TARGET=release_debug
     - os: linux
-      env: PLATFORM=javascript
+      env: PLATFORM=javascript TARGET=release
+    - os: linux
+      env: PLATFORM=javascript TARGET=release_debug
     - os: linux
       env: PLATFORM=osx BITS=fat TOOLS=yes
     - os: linux
@@ -68,7 +71,9 @@ matrix:
     - compiler: gcc
       env: PLATFORM=iphone TARGET=release_debug
     - compiler: gcc
-      env: PLATFORM=javascript
+      env: PLATFORM=javascript TARGET=release
+    - compiler: gcc
+      env: PLATFORM=javascript TARGET=release_debug
     - compiler: gcc
       env: PLATFORM=osx BITS=fat TOOLS=yes
     - compiler: gcc
@@ -133,8 +138,7 @@ script:
       scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET > /dev/null;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=release;
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=release_debug > /dev/null;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
     fi;
 
 
@@ -145,15 +149,14 @@ before_deploy:
       rm -rf bin/godot.iphone.$target_tag.arm*;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
+      if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
       cp tools/html_fs/godot.html .;
       cp tools/html_fs/godotfs.js .;
-      for target_tag in opt opt.debug; do
-        cp -f bin/godot.javascript.$target_tag.js godot.js;
-        cp -f bin/godot.javascript.$target_tag.html.mem godot.mem;
-        zip bin/godot.javascript.$target_tag.zip godot.js godot.mem godotfs.js godot.html;
-        rm -f bin/godot.javascript.$target_tag.js;
-        rm -f bin/godot.javascript.$target_tag.html*;
-      done;
+      cp -f bin/godot.javascript.$target_tag.js godot.js;
+      cp -f bin/godot.javascript.$target_tag.html.mem godot.mem;
+      zip bin/godot.javascript.$target_tag.zip godot.js godot.mem godotfs.js godot.html;
+      rm -f bin/godot.javascript.$target_tag.js;
+      rm -f bin/godot.javascript.$target_tag.html*;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
