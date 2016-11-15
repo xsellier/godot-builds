@@ -9,6 +9,7 @@ branches:
   - master
   - 2.0
   - 2.1
+  - 2.1.1-build-again
 
 
 compiler:
@@ -22,40 +23,25 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="openssl=builtin"
+    - OPTIONS="builtin_openssl=yes"
   matrix:
-    - PLATFORM=iphone TARGET=release
-    - PLATFORM=iphone TARGET=release_debug
     - PLATFORM=javascript TARGET=release
     - PLATFORM=javascript TARGET=release_debug
-    - PLATFORM=osx BITS=fat TOOLS=yes
-    - PLATFORM=osx BITS=fat TOOLS=no
     - PLATFORM=server BITS=64 TOOLS=yes
     - PLATFORM=x11 BITS=32 TOOLS=yes
     - PLATFORM=x11 BITS=32 TOOLS=no
     - PLATFORM=x11 BITS=64 TOOLS=yes
     - PLATFORM=x11 BITS=64 TOOLS=no
-    - PLATFORM=android TARGET=release
     - PLATFORM=android TARGET=release_debug
 
 matrix:
   exclude:
     - os: linux
-      env: PLATFORM=android TARGET=release
-    - os: linux
       env: PLATFORM=android TARGET=release_debug
-    - os: linux
-      env: PLATFORM=iphone TARGET=release
-    - os: linux
-      env: PLATFORM=iphone TARGET=release_debug
     - os: linux
       env: PLATFORM=javascript TARGET=release
     - os: linux
       env: PLATFORM=javascript TARGET=release_debug
-    - os: linux
-      env: PLATFORM=osx BITS=fat TOOLS=yes
-    - os: linux
-      env: PLATFORM=osx BITS=fat TOOLS=no
     - os: osx
       env: PLATFORM=server BITS=64 TOOLS=yes
     - os: osx
@@ -67,19 +53,9 @@ matrix:
     - os: osx
       env: PLATFORM=x11 BITS=64 TOOLS=no
     - compiler: gcc
-      env: PLATFORM=iphone TARGET=release
-    - compiler: gcc
-      env: PLATFORM=iphone TARGET=release_debug
-    - compiler: gcc
       env: PLATFORM=javascript TARGET=release
     - compiler: gcc
       env: PLATFORM=javascript TARGET=release_debug
-    - compiler: gcc
-      env: PLATFORM=osx BITS=fat TOOLS=yes
-    - compiler: gcc
-      env: PLATFORM=osx BITS=fat TOOLS=no
-    - compiler: gcc
-      env: PLATFORM=android TARGET=release
     - compiler: clang
       env: PLATFORM=android TARGET=release_debug
     - compiler: clang
@@ -102,7 +78,7 @@ before_script:
       export ANDROID_HOME=/usr/local/opt/android-sdk; export ANDROID_NDK_ROOT=/usr/local/opt/android-ndk;
     fi;
   - if [ "$PLATFORM" = "x11" ]; then
-      sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libssl-dev libxinerama-dev libudev-dev;
+      sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxinerama-dev libudev-dev;
       if [ "$BITS" = "32" ]; then
           sudo dpkg --add-architecture i386; sudo apt-get update -qq; sudo apt-get install -y --only-upgrade g++ gcc libstdc++6;
           sudo apt-get install -y gcc-multilib g++-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libssl-dev:i386 libxinerama-dev:i386 libudev-dev:i386;
