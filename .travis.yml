@@ -22,7 +22,7 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="openssl=builtin"
+    - OPTIONS="builtin_openssl=yes"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
@@ -78,7 +78,7 @@ matrix:
       env: PLATFORM=osx BITS=fat TOOLS=yes
     - compiler: gcc
       env: PLATFORM=osx BITS=fat TOOLS=no
-    - compiler: gcc
+    - compiler: clang
       env: PLATFORM=android TARGET=release
     - compiler: clang
       env: PLATFORM=android TARGET=release_debug
