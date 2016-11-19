@@ -22,7 +22,7 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="builtin_openssl=yes"
+    - OPTIONS="builtin_libpng=yes builtin_openssl=yes"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
