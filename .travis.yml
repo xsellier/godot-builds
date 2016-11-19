@@ -23,9 +23,8 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="builtin_openssl=yes"
+    - OPTIONS="builtin_libpng=yes builtin_openssl=yes"
   matrix:
-    - PLATFORM=server BITS=64 TOOLS=yes
     - PLATFORM=x11 BITS=32 TOOLS=yes
     - PLATFORM=x11 BITS=32 TOOLS=no
     - PLATFORM=x11 BITS=64 TOOLS=yes
