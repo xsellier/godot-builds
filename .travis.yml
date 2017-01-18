@@ -24,19 +24,14 @@ env:
     - BUILD_REVISION=official
     - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
   matrix:
-    - PLATFORM=iphone TARGET=release
-    - PLATFORM=iphone TARGET=release_debug
-    - PLATFORM=javascript TARGET=release
-    - PLATFORM=javascript TARGET=release_debug
-    - PLATFORM=osx BITS=fat TOOLS=yes
-    - PLATFORM=osx BITS=fat TOOLS=no
-    - PLATFORM=server BITS=64 TOOLS=yes
-    - PLATFORM=x11 BITS=32 TOOLS=yes
-    - PLATFORM=x11 BITS=32 TOOLS=no
-    - PLATFORM=x11 BITS=64 TOOLS=yes
-    - PLATFORM=x11 BITS=64 TOOLS=no
-    - PLATFORM=android TARGET=release
-    - PLATFORM=android TARGET=release_debug
+    - PLATFORM=android TARGET=release JOB=1
+    - PLATFORM=android TARGET=release_debug JOB=1
+    - PLATFORM=android TARGET=release JOB=2
+    - PLATFORM=android TARGET=release_debug JOB=2
+    - PLATFORM=android TARGET=release JOB=3
+    - PLATFORM=android TARGET=release_debug JOB=3
+    - PLATFORM=android TARGET=release JOB=4
+    - PLATFORM=android TARGET=release_debug JOB=4
 
 matrix:
   exclude:
