@@ -130,7 +130,7 @@ script:
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET > /dev/null;
       scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=x86 > /dev/null;
     fi;
   - if [ "$PLATFORM" = "iphone" ]; then
