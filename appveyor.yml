@@ -50,7 +50,7 @@ before_build:
 
 build_script:
   - cd godot
-  - scons platform=windows target=%TARGET% tools=%TOOLS%
+  - scons platform=windows target=%TARGET% tools=%TOOLS% warnings=no
 
 deploy:
   description: 'Godot binaries deployed by Travis CI and AppVeyor'

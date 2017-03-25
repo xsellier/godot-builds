@@ -1,0 +1,223 @@
+From 953c367d6628a1ef2bb721071a8831103e8ca563 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?R=C3=A9mi=20Verschelde?= <rverschelde@gmail.com>
+Date: Sat, 25 Mar 2017 08:36:00 +0100
+Subject: [PATCH] SCons: Add option to toggle warnings (on by default)
+
+All the warnings are factored out of the platform-specific files and moved to
+SConstruct. Will have to check that it does not introduce regressions on some
+platforms/compilers.
+---
+ SConstruct                    | 14 +++++++++++++-
+ modules/freetype/SCsub        |  1 -
+ platform/android/detect.py    |  4 +---
+ platform/haiku/detect.py      |  2 +-
+ platform/iphone/detect.py     | 12 ++++++------
+ platform/javascript/detect.py |  3 +--
+ platform/osx/detect.py        |  2 +-
+ platform/server/detect.py     |  2 +-
+ platform/windows/detect.py    |  2 +-
+ platform/x11/detect.py        |  4 ++--
+ 10 files changed, 27 insertions(+), 19 deletions(-)
+
+diff --git a/SConstruct b/SConstruct
+index 90007c8..ecd46a0 100644
+--- a/SConstruct
++++ b/SConstruct
+@@ -144,6 +144,7 @@ opts.Add('disable_advanced_gui', "Disable advance 3D gui nodes and behaviors (ye
+ opts.Add('extra_suffix', "Custom extra suffix added to the base filename of all generated binary files", '')
+ opts.Add('unix_global_settings_path', "UNIX-specific path to system-wide settings. Currently only used for templates", '')
+ opts.Add('verbose', "Enable verbose output for the compilation (yes/no)", 'yes')
++opts.Add('warnings', "Enable showing warnings during the compilation (yes/no)", 'yes')
+ opts.Add('vsproj', "Generate Visual Studio Project. (yes/no)", 'no')
+ 
+ # Thirdparty libraries
+@@ -275,6 +276,18 @@ if selected_platform in platform_list:
+     # must happen after the flags, so when flags are used by configure, stuff happens (ie, ssl on x11)
+     detect.configure(env)
+ 
++    # TODO: Add support to specify different levels of warning, e.g. only critical/significant, instead of on/off
++    if (env["warnings"] == "yes"):
++        if (os.name == "nt" and os.getenv("VSINSTALLDIR")): # MSVC, needs to stand out of course
++            env.Append(CCFLAGS=['/W4'])
++        else: # Rest of the world
++            env.Append(CCFLAGS=['-Wall'])
++    else:
++        if (os.name == "nt" and os.getenv("VSINSTALLDIR")): # MSVC
++            env.Append(CCFLAGS=['/w'])
++        else: # Rest of the world
++            env.Append(CCFLAGS=['-w'])
++
+     #env['platform_libsuffix'] = env['LIBSUFFIX']
+ 
+     suffix = "." + selected_platform
+@@ -284,7 +297,6 @@ if selected_platform in platform_list:
+             print("Tools can only be built with targets 'debug' and 'release_debug'.")
+             sys.exit(255)
+         suffix += ".opt"
+-
+         env.Append(CCFLAGS=['-DNDEBUG'])
+ 
+     elif (env["target"] == "release_debug"):
+diff --git a/modules/freetype/SCsub b/modules/freetype/SCsub
+index d3e4fbf..b8a69e1 100644
+--- a/modules/freetype/SCsub
++++ b/modules/freetype/SCsub
+@@ -70,7 +70,6 @@ if (env['builtin_freetype'] != 'no'):
+     # LIBS contains first SCons Library objects ("SCons.Node.FS.File object")
+     # and then plain strings for system library. We insert between the two.
+     inserted = False
+-    print(env["LIBS"])
+     for idx, linklib in enumerate(env["LIBS"]):
+         if isinstance(linklib, basestring): # first system lib such as "X11", otherwise SCons lib object
+             env["LIBS"].insert(idx, lib)
+diff --git a/platform/android/detect.py b/platform/android/detect.py
+index d1073e0..2522a55 100644
+--- a/platform/android/detect.py
++++ b/platform/android/detect.py
+@@ -168,9 +168,7 @@ def configure(env):
+ 
+     env.Append(CPPFLAGS=["-isystem", sysroot + "/usr/include"])
+     env.Append(CPPFLAGS=string.split(
+-        '-Wno-invalid-command-line-argument -Wno-unused-command-line-argument'))
+-    env.Append(CPPFLAGS=string.split(
+-        '-fpic -ffunction-sections -funwind-tables -fstack-protector-strong -fvisibility=hidden -fno-strict-aliasing -Wa,--noexecstack'))
++        '-fpic -ffunction-sections -funwind-tables -fstack-protector-strong -fvisibility=hidden -fno-strict-aliasing'))
+     env.Append(CPPFLAGS=string.split('-DANDROID -DNO_STATVFS -DGLES2_ENABLED'))
+ 
+     env['neon_enabled'] = False
+diff --git a/platform/haiku/detect.py b/platform/haiku/detect.py
+index 71202a9..54e227c 100644
+--- a/platform/haiku/detect.py
++++ b/platform/haiku/detect.py
+@@ -53,7 +53,7 @@ def configure(env):
+     elif (env["target"] == "release_debug"):
+         env.Append(CCFLAGS=['-O2', '-ffast-math', '-DDEBUG_ENABLED'])
+     elif (env["target"] == "debug"):
+-        env.Append(CCFLAGS=['-g2', '-Wall', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
++        env.Append(CCFLAGS=['-g2', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
+ 
+     # env.Append(CCFLAGS=['-DFREETYPE_ENABLED'])
+     env.Append(CPPFLAGS=['-DPTHREAD_NO_RENAME'])  # TODO: enable when we have pthread_setname_np
+diff --git a/platform/iphone/detect.py b/platform/iphone/detect.py
+index c58c7c7..37c5a36 100644
+--- a/platform/iphone/detect.py
++++ b/platform/iphone/detect.py
+@@ -58,16 +58,16 @@ def configure(env):
+     if (env["ios_sim"] == "yes" or env["arch"] == "x86"):  # i386, simulator
+         env["arch"] = "x86"
+         env["bits"] = "32"
+-        env['CCFLAGS'] = string.split('-arch i386 -fobjc-abi-version=2 -fobjc-legacy-dispatch -fmessage-length=0 -fpascal-strings -fasm-blocks  -Wall -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -isysroot $IPHONESDK -mios-simulator-version-min=4.3 -DCUSTOM_MATRIX_TRANSFORM_H=\\\"build/iphone/matrix4_iphone.h\\\" -DCUSTOM_VECTOR3_TRANSFORM_H=\\\"build/iphone/vector3_iphone.h\\\"')
++        env['CCFLAGS'] = string.split('-arch i386 -fobjc-abi-version=2 -fobjc-legacy-dispatch -fmessage-length=0 -fpascal-strings -fasm-blocks -D__IPHONE_OS_VERSION_MIN_REQUIRED=40100 -isysroot $IPHONESDK -mios-simulator-version-min=4.3 -DCUSTOM_MATRIX_TRANSFORM_H=\\\"build/iphone/matrix4_iphone.h\\\" -DCUSTOM_VECTOR3_TRANSFORM_H=\\\"build/iphone/vector3_iphone.h\\\"')
+     elif (env["arch"] == "arm64"):  # arm64
+         env["bits"] = "64"
+-        env['CCFLAGS'] = string.split('-fno-objc-arc -arch arm64 -fmessage-length=0 -fno-strict-aliasing -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -Wno-trigraphs -fpascal-strings -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -fvisibility=hidden -Wno-sign-conversion -MMD -MT dependencies -miphoneos-version-min=7.0 -isysroot $IPHONESDK')
++        env['CCFLAGS'] = string.split('-fno-objc-arc -arch arm64 -fmessage-length=0 -fno-strict-aliasing -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -fpascal-strings -fvisibility=hidden -MMD -MT dependencies -miphoneos-version-min=7.0 -isysroot $IPHONESDK')
+         env.Append(CPPFLAGS=['-DNEED_LONG_INT'])
+         env.Append(CPPFLAGS=['-DLIBYUV_DISABLE_NEON'])
+     else:  # armv7
+         env["arch"] = "arm"
+         env["bits"] = "32"
+-        env['CCFLAGS'] = string.split('-fno-objc-arc -arch armv7 -fmessage-length=0 -fno-strict-aliasing -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -Wno-trigraphs -fpascal-strings -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -fvisibility=hidden -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=7.0 -MMD -MT dependencies -isysroot $IPHONESDK')
++        env['CCFLAGS'] = string.split('-fno-objc-arc -arch armv7 -fmessage-length=0 -fno-strict-aliasing -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -fpascal-strings -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -fvisibility=hidden -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=7.0 -MMD -MT dependencies -isysroot $IPHONESDK')
+ 
+     if (env["arch"] == "x86"):
+         env['IPHONEPLATFORM'] = 'iPhoneSimulator'
+@@ -145,17 +145,17 @@ def configure(env):
+ 
+     if (env["target"] == "release"):
+ 
+-        env.Append(CCFLAGS=['-O3', '-DNS_BLOCK_ASSERTIONS=1', '-Wall', '-gdwarf-2'])  # removed -ffast-math
++        env.Append(CCFLAGS=['-O3', '-DNS_BLOCK_ASSERTIONS=1', '-gdwarf-2'])  # removed -ffast-math
+         env.Append(LINKFLAGS=['-O3'])
+ 
+     elif env["target"] == "release_debug":
+-        env.Append(CCFLAGS=['-Os', '-DNS_BLOCK_ASSERTIONS=1', '-Wall', '-DDEBUG_ENABLED'])
++        env.Append(CCFLAGS=['-Os', '-DNS_BLOCK_ASSERTIONS=1', '-DDEBUG_ENABLED'])
+         env.Append(LINKFLAGS=['-Os'])
+         env.Append(CPPFLAGS=['-DDEBUG_MEMORY_ENABLED'])
+ 
+     elif (env["target"] == "debug"):
+ 
+-        env.Append(CCFLAGS=['-D_DEBUG', '-DDEBUG=1', '-gdwarf-2', '-Wall', '-O0', '-DDEBUG_ENABLED'])
++        env.Append(CCFLAGS=['-D_DEBUG', '-DDEBUG=1', '-gdwarf-2', '-O0', '-DDEBUG_ENABLED'])
+         env.Append(CPPFLAGS=['-DDEBUG_MEMORY_ENABLED'])
+ 
+     elif (env["target"] == "profile"):
+diff --git a/platform/javascript/detect.py b/platform/javascript/detect.py
+index 5390e9b..89f3fe0 100644
+--- a/platform/javascript/detect.py
++++ b/platform/javascript/detect.py
+@@ -69,8 +69,7 @@ def configure(env):
+     elif (env["target"] == "release_debug"):
+         env.Append(CCFLAGS=['-O2', '-DDEBUG_ENABLED'])
+     elif (env["target"] == "debug"):
+-        env.Append(CCFLAGS=['-D_DEBUG', '-Wall', '-O2', '-DDEBUG_ENABLED'])
+-        #env.Append(CCFLAGS=['-D_DEBUG', '-Wall', '-g4', '-DDEBUG_ENABLED'])
++        env.Append(CCFLAGS=['-D_DEBUG', '-O2', '-DDEBUG_ENABLED'])
+         env.Append(CPPFLAGS=['-DDEBUG_MEMORY_ALLOC'])
+ 
+     # TODO: Move that to opus module's config
+diff --git a/platform/osx/detect.py b/platform/osx/detect.py
+index ccd8617..2eebb1d 100644
+--- a/platform/osx/detect.py
++++ b/platform/osx/detect.py
+@@ -51,7 +51,7 @@ def configure(env):
+ 
+     elif (env["target"] == "debug"):
+ 
+-        env.Append(CCFLAGS=['-g3', '-Wall', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
++        env.Append(CCFLAGS=['-g3', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
+ 
+     if (not os.environ.has_key("OSXCROSS_ROOT")):
+         # regular native build
+diff --git a/platform/server/detect.py b/platform/server/detect.py
+index d77e693..28f0956 100644
+--- a/platform/server/detect.py
++++ b/platform/server/detect.py
+@@ -64,7 +64,7 @@ def configure(env):
+ 
+     elif (env["target"] == "debug"):
+ 
+-        env.Append(CCFLAGS=['-g2', '-Wall', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
++        env.Append(CCFLAGS=['-g2', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
+ 
+ 
+     # Shared libraries, when requested
+diff --git a/platform/windows/detect.py b/platform/windows/detect.py
+index 6972d1e..4b9066f 100644
+--- a/platform/windows/detect.py
++++ b/platform/windows/detect.py
+@@ -348,7 +348,7 @@ def configure(env):
+ 
+         elif (env["target"] == "debug"):
+ 
+-            env.Append(CCFLAGS=['-g', '-Wall', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
++            env.Append(CCFLAGS=['-g', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
+ 
+         env["CC"] = mingw_prefix + "gcc"
+         env['AS'] = mingw_prefix + "as"
+diff --git a/platform/x11/detect.py b/platform/x11/detect.py
+index bd61c95..61121bd 100644
+--- a/platform/x11/detect.py
++++ b/platform/x11/detect.py
+@@ -133,7 +133,7 @@ def configure(env):
+ 
+     elif (env["target"] == "debug"):
+ 
+-        env.Prepend(CCFLAGS=['-g2', '-Wall', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
++        env.Prepend(CCFLAGS=['-g2', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ENABLED'])
+ 
+     env.ParseConfig('pkg-config x11 --cflags --libs')
+     env.ParseConfig('pkg-config xinerama --cflags --libs')
+@@ -224,7 +224,7 @@ def configure(env):
+         env.Append(LIBS=['dl'])
+     # env.Append(CPPFLAGS=['-DMPC_FIXED_POINT'])
+ 
+-# host compiler is default..
++    # host compiler is default..
+ 
+     if (is64 and env["bits"] == "32"):
+         env.Append(CPPFLAGS=['-m32'])
+-- 
+2.10.2
+

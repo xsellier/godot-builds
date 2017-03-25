@@ -22,7 +22,7 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
+    - OPTIONS="warnings=no builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
@@ -123,6 +123,7 @@ before_script:
       emcc; sed -i "" s/^LLVM_ROOT.*/LLVM_ROOT='"\/usr\/local\/opt\/emscripten\/libexec\/llvm\/bin\/"'/ "$HOME/.emscripten";
       export EMSCRIPTEN_ROOT=`em-config EMSCRIPTEN_ROOT`;
     fi;
+  - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
 
 
 script:
