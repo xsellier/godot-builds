@@ -35,8 +35,10 @@ env:
     - PLATFORM=x11 BITS=32 TOOLS=no
     - PLATFORM=x11 BITS=64 TOOLS=yes
     - PLATFORM=x11 BITS=64 TOOLS=no
-    - PLATFORM=android TARGET=release
-    - PLATFORM=android TARGET=release_debug
+    - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
+    - PLATFORM=android TARGET=release ANDROID_ARCH=x86
+    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
 
 matrix:
   exclude:
@@ -130,8 +132,7 @@ script:
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET > /dev/null;
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=x86 > /dev/null;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
     fi;
   - if [ "$PLATFORM" = "iphone" ]; then
       scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm target=$TARGET;
