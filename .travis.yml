@@ -43,9 +43,13 @@ env:
 matrix:
   exclude:
     - os: linux
-      env: PLATFORM=android TARGET=release
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - os: linux
-      env: PLATFORM=android TARGET=release_debug
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=x86
+    - os: linux
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - os: linux
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - os: linux
       env: PLATFORM=iphone TARGET=release
     - os: linux
@@ -81,9 +85,13 @@ matrix:
     - compiler: gcc
       env: PLATFORM=osx BITS=fat TOOLS=no
     - compiler: clang
-      env: PLATFORM=android TARGET=release
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - compiler: clang
-      env: PLATFORM=android TARGET=release_debug
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=x86
+    - compiler: clang
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - compiler: clang
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - compiler: clang
       env: PLATFORM=server BITS=64 TOOLS=yes
     - compiler: clang
@@ -163,9 +171,8 @@ before_deploy:
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
-      for android_arch in armeabi-v7a x86; do
-        cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
-      done;
+      if [ "$ANDROID_ARCH" = "armv7" ]; then android_arch="armeabi-v7a"; else android_arch="x86"; fi
+      cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
     fi;
 
 
