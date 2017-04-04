@@ -22,28 +22,35 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
+    - OPTIONS="warnings=no builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
     - PLATFORM=javascript TARGET=release
     - PLATFORM=javascript TARGET=release_debug
-    - PLATFORM=osx BITS=fat TOOLS=yes
-    - PLATFORM=osx BITS=fat TOOLS=no
+    - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
+    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
+    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
     - PLATFORM=server BITS=64 TOOLS=yes
     - PLATFORM=x11 BITS=32 TOOLS=yes
     - PLATFORM=x11 BITS=32 TOOLS=no
     - PLATFORM=x11 BITS=64 TOOLS=yes
     - PLATFORM=x11 BITS=64 TOOLS=no
-    - PLATFORM=android TARGET=release
-    - PLATFORM=android TARGET=release_debug
+    - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
+    - PLATFORM=android TARGET=release ANDROID_ARCH=x86
+    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
 
 matrix:
   exclude:
     - os: linux
-      env: PLATFORM=android TARGET=release
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - os: linux
-      env: PLATFORM=android TARGET=release_debug
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=x86
+    - os: linux
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - os: linux
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - os: linux
       env: PLATFORM=iphone TARGET=release
     - os: linux
@@ -53,9 +60,11 @@ matrix:
     - os: linux
       env: PLATFORM=javascript TARGET=release_debug
     - os: linux
-      env: PLATFORM=osx BITS=fat TOOLS=yes
+      env: PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - os: linux
-      env: PLATFORM=osx BITS=fat TOOLS=no
+      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release
+    - os: linux
+      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
     - os: osx
       env: PLATFORM=server BITS=64 TOOLS=yes
     - os: osx
@@ -75,13 +84,19 @@ matrix:
     - compiler: gcc
       env: PLATFORM=javascript TARGET=release_debug
     - compiler: gcc
-      env: PLATFORM=osx BITS=fat TOOLS=yes
+      env: PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - compiler: gcc
-      env: PLATFORM=osx BITS=fat TOOLS=no
+      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release
+    - compiler: gcc
+      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
     - compiler: clang
-      env: PLATFORM=android TARGET=release
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - compiler: clang
-      env: PLATFORM=android TARGET=release_debug
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=x86
+    - compiler: clang
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - compiler: clang
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - compiler: clang
       env: PLATFORM=server BITS=64 TOOLS=yes
     - compiler: clang
@@ -116,12 +131,9 @@ before_script:
 
 
 script:
-  - cd godot
+  - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
   - if [ "$PLATFORM" = "osx" ]; then
-      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes bits=$BITS target=release_debug;
-      else scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no bits=$BITS target=release;
-           scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no bits=$BITS target=release_debug > /dev/null;
-      fi;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
       if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
@@ -130,8 +142,7 @@ script:
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=x86 > /dev/null;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
     fi;
   - if [ "$PLATFORM" = "iphone" ]; then
       scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm target=$TARGET;
@@ -150,10 +161,10 @@ before_deploy:
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
-      cp tools/dist/html_fs/godotfs.js .;
+      cp misc/dist/html_fs/godot.html .;
+      cp misc/dist/html_fs/godotfs.js .;
       cp -f bin/godot.javascript.$target_tag.asm.js godot.asm.js;
       cp -f bin/godot.javascript.$target_tag.js godot.js;
-      cp -f bin/godot.javascript.$target_tag.html godot.html;
       cp -f bin/godot.javascript.$target_tag.html.mem godot.mem;
       zip bin/godot.javascript.$target_tag.zip godot.asm.js godot.js godot.mem godotfs.js godot.html;
       rm -f bin/godot.javascript.$target_tag.asm.js;
@@ -162,9 +173,8 @@ before_deploy:
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
-      for android_arch in armeabi-v7a x86; do
-        cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
-      done;
+      if [ "$ANDROID_ARCH" = "armv7" ]; then android_arch="armeabi-v7a"; else android_arch="x86"; fi;
+      cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
     fi;
 
 
