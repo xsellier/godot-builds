@@ -124,7 +124,7 @@ before_script:
       fi;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      brew update; brew install -v scons emscripten;
+      brew tap caskroom/cask; brew update; brew install -v scons emscripten;
       emcc; sed -i "" s/^LLVM_ROOT.*/LLVM_ROOT='"\/usr\/local\/opt\/emscripten\/libexec\/llvm\/bin\/"'/ "$HOME/.emscripten";
       export EMSCRIPTEN_ROOT=`em-config EMSCRIPTEN_ROOT`;
     fi;
@@ -138,7 +138,7 @@ script:
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
       if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
       else scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
-           scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug > /dev/null;
+           scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
@@ -146,7 +146,7 @@ script:
     fi;
   - if [ "$PLATFORM" = "iphone" ]; then
       scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm target=$TARGET;
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET > /dev/null;
+      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
       scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
