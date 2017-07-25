@@ -11,7 +11,8 @@ artifacts:
 
 environment:
   PYTHON: C:\Python27
-  BUILD_REVISION: official
+#  BUILD_REVISION: official
+  BUILD_REVISION: build1
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
   matrix:
     - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
