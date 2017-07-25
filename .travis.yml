@@ -120,6 +120,7 @@ before_script:
       export ANDROID_NDK_ROOT="$HOME/android-ndk-r14b";
     fi;
   - if [ "$PLATFORM" = "x11" ]; then
+      sudo rm -f /etc/apt/sources.list.d/*.list;
       if [ "$BITS" = "64" ]; then
           sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxinerama-dev;
       else
