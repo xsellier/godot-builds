@@ -120,10 +120,11 @@ before_script:
       export ANDROID_NDK_ROOT="$HOME/android-ndk-r14b";
     fi;
   - if [ "$PLATFORM" = "x11" ]; then
-      sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxinerama-dev;
-      if [ "$BITS" = "32" ]; then
-          sudo dpkg --add-architecture i386; sudo apt-get update -qq; sudo apt-get install -y --only-upgrade g++ gcc libstdc++6;
-          sudo apt-get install -y gcc-multilib g++-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxinerama-dev:i386;
+      if [ "$BITS" = "64" ]; then
+          sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxinerama-dev;
+      else
+          sudo dpkg --add-architecture i386; sudo apt-get update -qq;
+          sudo apt-get install -y gcc-multilib g++-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxinerama-dev:i386;
       fi;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
