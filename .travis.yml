@@ -129,6 +129,7 @@ before_script:
   - if [ "$PLATFORM" = "javascript" ]; then
       brew update; brew install -v scons emscripten;
       emcc; sed -i "" s/^LLVM_ROOT.*/LLVM_ROOT='"\/usr\/local\/opt\/emscripten\/libexec\/llvm\/bin\/"'/ "$HOME/.emscripten";
+      sed -i "" "/^BINARYEN_ROOT.*/d" "$HOME/.emscripten";
       export EMSCRIPTEN_ROOT=`em-config EMSCRIPTEN_ROOT`;
     fi;
 
