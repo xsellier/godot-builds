@@ -24,6 +24,7 @@ env:
 #    - BUILD_REVISION=official
     - BUILD_REVISION=build1
     - OPTIONS="warnings=no builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
+    - SCONS="scons -j2 verbose=yes warnings=no progress=no"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
@@ -153,23 +154,23 @@ before_script:
 script:
   - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
   - if [ "$PLATFORM" = "osx" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
-      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
-      else scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
-           scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
+      if [ "$TOOLS" = "yes" ]; then $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
+      else $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
+           $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
     fi;
   - if [ "$PLATFORM" = "iphone" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm target=$TARGET;
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      scons -j2 platform=$PLATFORM wasm=$WASM CXX=$CXX $OPTIONS target=$TARGET;
+      $SCONS platform=$PLATFORM wasm=$WASM CXX=$CXX $OPTIONS target=$TARGET;
     fi;
 
 
@@ -181,11 +182,11 @@ before_deploy:
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
-      if [ "$WASM" = "yes" ]; then target_tag=target_tag+".webassembly"; fi;
+      if [ "$WASM" = "yes" ]; then target_tag=$target_tag+".webassembly"; fi;
       rm -f bin/godot.javascript.$target_tag.wasm;
       rm -f bin/godot.javascript.$target_tag.asm.js;
       rm -f bin/godot.javascript.$target_tag.js;
-      rm -f bin/godot.javascript.$target_tag.html*;
+      rm -f bin/godot.javascript.$target_tag*.html;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
