@@ -1,0 +1,40 @@
+From 3a8550675f63b94554ddb967de66f379cf7a2ab3 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?R=C3=A9mi=20Verschelde?= <rverschelde@gmail.com>
+Date: Mon, 31 Jul 2017 00:14:04 +0200
+Subject: [PATCH] X11: Do not force require system OpenSSL to build
+
+---
+ platform/x11/detect.py | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/platform/x11/detect.py b/platform/x11/detect.py
+index a2171901e..b80819f0f 100644
+--- a/platform/x11/detect.py
++++ b/platform/x11/detect.py
+@@ -20,9 +20,8 @@ def can_build():
+     if sys.platform == "darwin":
+         return False  # no x11 on mac for now
+ 
+-    errorval = os.system("pkg-config --version > /dev/null")
+-
+-    if (errorval):
++    x11_error = os.system("pkg-config --version > /dev/null")
++    if (x11_error):
+         print("pkg-config not found.. x11 disabled.")
+         return False
+ 
+@@ -31,11 +30,6 @@ def can_build():
+         print("X11 not found.. x11 disabled.")
+         return False
+ 
+-    ssl_error = os.system("pkg-config openssl --modversion > /dev/null ")
+-    if (ssl_error):
+-        print("OpenSSL not found.. x11 disabled.")
+-        return False
+-
+     x11_error = os.system("pkg-config xcursor --modversion > /dev/null ")
+     if (x11_error):
+         print("xcursor not found.. x11 disabled.")
+-- 
+2.13.3
+
