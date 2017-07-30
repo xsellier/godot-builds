@@ -22,7 +22,8 @@ os:
 env:
   global:
     - BUILD_REVISION=official
-    - OPTIONS="warnings=no builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
+    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
+    - SCONS="scons -j2 verbose=yes warnings=no progress=no"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
@@ -120,15 +121,21 @@ before_script:
       export ANDROID_NDK_ROOT="$HOME/android-ndk-r14b";
     fi;
   - if [ "$PLATFORM" = "x11" ]; then
-      sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libssl-dev libxinerama-dev libudev-dev;
-      if [ "$BITS" = "32" ]; then
-          sudo dpkg --add-architecture i386; sudo apt-get update -qq; sudo apt-get install -y --only-upgrade g++ gcc libstdc++6;
-          sudo apt-get install -y gcc-multilib g++-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libssl-dev:i386 libxinerama-dev:i386 libudev-dev:i386;
+      sudo rm -f /etc/apt/sources.list.d/*.list;
+      if [ "$BITS" = "64" ]; then
+          sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxinerama-dev;
+      else
+          sudo dpkg --add-architecture i386; sudo apt-get update -qq;
+          sudo apt-get install -y gcc-multilib g++-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxinerama-dev:i386;
       fi;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      brew update; brew install -v scons emscripten;
-      emcc; sed -i "" s/^LLVM_ROOT.*/LLVM_ROOT='"\/usr\/local\/opt\/emscripten\/libexec\/llvm\/bin\/"'/ "$HOME/.emscripten";
+      cd $HOME;
+      wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz;
+      tar -xzf emsdk-portable.tar.gz;
+      cd emsdk-portable; ./emsdk update; ./emsdk install latest; ./emsdk activate latest;
+      source ./emsdk_env.sh;
+      cd $TRAVIS_BUILD_DIR;
       export EMSCRIPTEN_ROOT=`em-config EMSCRIPTEN_ROOT`;
     fi;
 
@@ -136,23 +143,23 @@ before_script:
 script:
   - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
   - if [ "$PLATFORM" = "osx" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
-      if [ "$TOOLS" = "yes" ]; then scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
-      else scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
-           scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
+      if [ "$TOOLS" = "yes" ]; then $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
+      else $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
+           $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
     fi;
   - if [ "$PLATFORM" = "iphone" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm target=$TARGET;
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      scons -j2 platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
     fi;
 
 
