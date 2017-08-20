@@ -93,6 +93,7 @@ before_build:
 
 build_script:
   - cd godot
+  - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
   - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS%
 
 deploy:
