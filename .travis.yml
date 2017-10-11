@@ -160,9 +160,9 @@ script:
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
       export CC=gcc-7; export CXX=g++-7;
-      if [ "$TOOLS" = "yes" ]; then $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=yes use_lto=yes use_static_cpp=yes bits=$BITS target=release_debug;
-      else $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=no use_lto=yes use_static_cpp=yes bits=$BITS target=release;
-           $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=no use_lto=yes use_static_cpp=yes bits=$BITS target=release_debug;
+      if [ "$TOOLS" = "yes" ]; then $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
+      else $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
+           $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
       fi;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
