@@ -12,7 +12,7 @@ artifacts:
 environment:
   PYTHON: C:\Python27
 #  BUILD_REVISION: official
-  BUILD_REVISION: build1
+  BUILD_REVISION: build2
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
   matrix:
     - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
@@ -89,12 +89,15 @@ before_build:
   - echo %GD_PLATFORM%
   - python --version
   - scons --version
+  - mono --version
   - cl.exe
 
 build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
-  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS%
+  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/%APPVEYOR_REPO_TAG_NAME%/mono_glue.gen.cpp
+  - mv mono_glue.gen.cpp modules/mono/glue/
+  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% module_mono_enabled=yes
 
 deploy:
   description: 'Godot binaries deployed by Travis CI and AppVeyor'
