@@ -12,7 +12,7 @@ artifacts:
 environment:
   PYTHON: C:\Python27
 #  BUILD_REVISION: official
-  BUILD_REVISION: build1
+  BUILD_REVISION: build2
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
   matrix:
     - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
@@ -83,6 +83,14 @@ install:
   - git submodule update --init --recursive # download submodules
   - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/_tools/angle.7z
   - 7z x angle.7z
+  - ps: >-
+      If ($env:Platform -Match "x86") {
+        Start-FileDownload https://download.mono-project.com/archive/5.4.0/windows-installer/mono-5.4.0.201-gtksharp-2.12.45-win32-0.msi
+        msiexec /passive /norestart /i mono-5.4.0.201-gtksharp-2.12.45-win32-0.msi
+      } Else { # 64-bit
+        Start-FileDownload https://download.mono-project.com/archive/5.4.0/windows-installer/mono-5.4.0.201-x64-0.msi
+        msiexec /passive /norestart /i mono-5.4.0.201-x64-0.msi
+      }
 
 before_build:
   - echo %BUILD_REVISION%
@@ -94,7 +102,9 @@ before_build:
 build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
-  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS%
+  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/%APPVEYOR_REPO_TAG_NAME%/mono_glue.gen.cpp
+  - mv mono_glue.gen.cpp modules/mono/glue/
+  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% module_mono_enabled=yes
 
 deploy:
   description: 'Godot binaries deployed by Travis CI and AppVeyor'
