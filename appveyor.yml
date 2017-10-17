@@ -12,8 +12,10 @@ artifacts:
 environment:
   PYTHON: C:\Python27
 #  BUILD_REVISION: official
-  BUILD_REVISION: build1
+  BUILD_REVISION: build2
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
+  MONO32_PREFIX: "C:\\Program Files (x86)\\Mono"
+  MONO64_PREFIX: "C:\\Program Files\\Mono"
   matrix:
     - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
       GD_PLATFORM: windows
@@ -77,12 +79,20 @@ environment:
       ARCH: amd64_arm
 
 install:
-  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - set "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - pip install --egg scons  # it will fail on AppVeyor without --egg flag
   - if defined VS call "%VS%" %ARCH%  # if defined - so we can also use mingw
   - git submodule update --init --recursive # download submodules
   - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/_tools/angle.7z
   - 7z x angle.7z
+  - ps: >-
+      If ($env:ARCH -Match "x86") {
+        Start-FileDownload https://download.mono-project.com/archive/5.4.0/windows-installer/mono-5.4.0.201-gtksharp-2.12.45-win32-0.msi
+        Start-Process msiexec.exe -Wait -ArgumentList '/qn /i C:\projects\godot-builds\mono-5.4.0.201-gtksharp-2.12.45-win32-0.msi'
+      } Else { # 64-bit
+        Start-FileDownload https://download.mono-project.com/archive/5.4.0/windows-installer/mono-5.4.0.201-x64-0.msi
+        Start-Process msiexec.exe -Wait -ArgumentList '/qn /i C:\projects\godot-builds\mono-5.4.0.201-x64-0.msi'
+      }
 
 before_build:
   - echo %BUILD_REVISION%
@@ -90,11 +100,18 @@ before_build:
   - python --version
   - scons --version
   - cl.exe
+  - if "%ARCH%" == "x86" (
+      call "%MONO32_PREFIX%\bin\mono.exe" --version
+    ) else (
+      call "%MONO64_PREFIX%\bin\mono.exe" --version
+    )
 
 build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
-  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS%
+  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/$($env:APPVEYOR_REPO_TAG_NAME)/mono_glue.gen.cpp
+  - ps: Move-Item C:\projects\godot-builds\godot\mono_glue.gen.cpp C:\projects\godot-builds\godot\modules\mono\glue\ -force
+  - scons progress=no platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% module_mono_enabled=yes
 
 deploy:
   description: 'Godot binaries deployed by Travis CI and AppVeyor'
