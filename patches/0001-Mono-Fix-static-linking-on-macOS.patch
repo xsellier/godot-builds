@@ -1,0 +1,38 @@
+From fed39a5ce1bb161e1c0d5e8d19600ea0056dc816 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?R=C3=A9mi=20Verschelde?= <rverschelde@gmail.com>
+Date: Fri, 20 Oct 2017 18:40:41 +0200
+Subject: [PATCH] Mono: Fix static linking on macOS
+
+---
+ modules/mono/config.py | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/modules/mono/config.py b/modules/mono/config.py
+index 13b9a4b1e..c14053259 100644
+--- a/modules/mono/config.py
++++ b/modules/mono/config.py
+@@ -100,6 +100,8 @@ def configure(env):
+             if os.getenv('MONO64_PREFIX'):
+                 mono_root = os.getenv('MONO64_PREFIX')
+ 
++        print('pkg-config monosgen-2 --cflags --libs')
++
+         if mono_root is not None:
+             mono_lib_path = os.path.join(mono_root, 'lib')
+ 
+@@ -125,7 +127,11 @@ def configure(env):
+             else:
+                 env.Append(LIBS=[mono_lib])
+ 
+-            env.Append(LIBS=['m', 'rt', 'dl', 'pthread'])
++            if sys.platform == "darwin":
++                env.Append(LIBS=['iconv', 'pthread'])
++            elif sys.platform == "linux" or sys.platform == "linux2":
++                env.Append(LIBS=['m', 'rt', 'dl', 'pthread'])
++
+         else:
+             if mono_static:
+                 raise RuntimeError('mono-static: Not supported with pkg-config. Specify a mono prefix manually')
+-- 
+2.13.5
+
