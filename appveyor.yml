@@ -98,13 +98,13 @@ before_build:
   - python --version
   - scons --version
   - cl.exe
-  - C:\Program Files\Mono\bin\mono.exe --version
+  - '"C:\Program Files\Mono\bin\mono.exe" --version'
 
 build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
-  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/$(%APPVEYOR_REPO_TAG_NAME%)/mono_glue.gen.cpp
-  - mv mono_glue.gen.cpp modules\mono\glue\
+  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/_tools/mono_glue.gen.cpp
+  - ps: Move-Item C:\projects\godot-builds\godot\mono_glue.gen.cpp C:\projects\godot-builds\godot\modules\mono\glue\ -force
   - scons progress=no platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% module_mono_enabled=yes
 
 deploy:
