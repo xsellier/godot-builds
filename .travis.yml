@@ -178,6 +178,7 @@ script:
       wget -P modules/mono/glue/ https://github.com/GodotBuilder/godot-builds/releases/download/$TRAVIS_TAG/mono_glue.gen.cpp;
     fi;
   - mono --version;
+  - git rev-parse HEAD;
   - if [ "$PLATFORM" = "osx" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;
