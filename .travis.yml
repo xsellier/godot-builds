@@ -7,6 +7,7 @@ dist: trusty
 branches:
   except:
   - master
+  - mono
   - 2.0
   - 2.1
   - 3.0
@@ -26,27 +27,27 @@ services:
 env:
   global:
     - BUILD_NAME=official
-    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes gdnative_wrapper=yes debug_symbols=no"
+    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes module_mono_enabled=yes mono_static=yes gdnative_wrapper=yes separate_debug_symbols=yes debug_symbols=no"
     - SCONS="scons -j2 verbose=no warnings=no progress=no"
   matrix:
-    - PLATFORM=iphone TARGET=release
-    - PLATFORM=iphone TARGET=release_debug
-    - PLATFORM=javascript TARGET=release
-    - PLATFORM=javascript TARGET=release_debug
-    - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
-    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
-    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
-    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
+#    - PLATFORM=iphone TARGET=release
+#    - PLATFORM=iphone TARGET=release_debug
+#    - PLATFORM=javascript TARGET=release
+#    - PLATFORM=javascript TARGET=release_debug
+    - PLATFORM=osx BITS=64 TOOLS=yes TARGET=release_debug
+#    - PLATFORM=osx BITS=64 TOOLS=no TARGET=release
+#    - PLATFORM=osx BITS=64 TOOLS=no TARGET=release_debug
+#    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
     - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
-    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
+#    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
+#    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
     - PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
-    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
-    - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
-    - PLATFORM=android TARGET=release ANDROID_ARCH=x86
-    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
-    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
+#    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+#    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
+#    - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
+#    - PLATFORM=android TARGET=release ANDROID_ARCH=x86
+#    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+#    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
 
 matrix:
   exclude:
@@ -63,11 +64,11 @@ matrix:
     - os: linux
       env: PLATFORM=iphone TARGET=release_debug
     - os: linux
-      env: PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
+      env: PLATFORM=osx BITS=64 TOOLS=yes TARGET=release_debug
     - os: linux
-      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release
+      env: PLATFORM=osx BITS=64 TOOLS=no TARGET=release
     - os: linux
-      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
+      env: PLATFORM=osx BITS=64 TOOLS=no TARGET=release_debug
     - os: osx
       env: PLATFORM=javascript TARGET=release
     - os: osx
@@ -95,11 +96,11 @@ matrix:
     - compiler: gcc
       env: PLATFORM=javascript TARGET=release_debug
     - compiler: gcc
-      env: PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
+      env: PLATFORM=osx BITS=64 TOOLS=yes TARGET=release_debug
     - compiler: gcc
-      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release
+      env: PLATFORM=osx BITS=64 TOOLS=no TARGET=release
     - compiler: gcc
-      env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
+      env: PLATFORM=osx BITS=64 TOOLS=no TARGET=release_debug
     - compiler: clang
       env: PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - compiler: clang
@@ -126,9 +127,18 @@ matrix:
 
 before_script:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; sudo apt-get install -y scons pkg-config build-essential; fi;
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; brew install scons; fi;
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      brew update;
+      brew install scons;
+      wget https://download.mono-project.com/archive/5.4.0/macos-10-universal/MonoFramework-MDK-5.4.0.201.macos10.xamarin.universal.pkg;
+      sudo installer -verboseR -pkg MonoFramework-MDK-5.4.0.201.macos10.xamarin.universal.pkg -target /;
+      export PATH=$PATH:/Library/Frameworks/Mono.framework/Versions/5.4.0/bin;
+      export PKG_CONFIG_PATH=/Library/Frameworks/Mono.framework/External/pkgconfig:/Library/Frameworks/Mono.framework/Versions/5.4.0/lib/pkgconfig:/Library/Frameworks/Mono.framework/Versions/5.4.0/share/pkgconfig:$PKG_CONFIG_PATH;
+      export MONO64_PREFIX=/Library/Frameworks/Mono.framework/Versions/5.4.0;
+    fi;
   - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$PLATFORM" = "android" ]; then
-      brew tap caskroom/cask; brew cask install android-sdk;
+      brew tap caskroom/cask;
+      brew cask install android-sdk;
       export ANDROID_HOME=/usr/local/share/android-sdk;
       wget https://dl.google.com/android/repository/android-ndk-r14b-darwin-x86_64.zip;
       unzip -d $HOME android-ndk-r14b-darwin-x86_64.zip | grep -v "inflating:" | grep -v "creating:";
@@ -136,13 +146,21 @@ before_script:
     fi;
   - if [ "$PLATFORM" = "x11" ] || [ "$PLATFORM" = "server" ]; then
       sudo rm -f /etc/apt/sources.list.d/*.list;
-      sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; sudo apt-get update -qq;
+      sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF;
+      echo "deb [arch=amd64,i386] http://download.mono-project.com/repo/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/mono-official.list;
+      sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;
+      sudo apt-get update -qq;
       sudo apt-get install -y gcc-7 g++-7;
+      sudo apt-get install -y mono-devel;
       if [ "$BITS" = "64" ]; then
           sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxi-dev libxinerama-dev;
+          export MONO64_PREFIX=/usr;
       else
           sudo dpkg --add-architecture i386; sudo apt-get update -qq;
-          sudo apt-get install -y gcc-7-multilib g++-7-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxi-dev:i386 libxinerama-dev:i386;
+          sudo apt-get install -y gcc-7-multilib g++-7-multilib pkg-config:i386;
+          sudo apt-get install -y libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxi-dev:i386 libxinerama-dev:i386;
+          sudo apt-get install -y libmono-2.0-dev:i386;
+          export MONO32_PREFIX=/usr;
       fi;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
@@ -154,6 +172,8 @@ before_script:
 
 script:
   - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
+  - cp ../mono/mono_glue.gen.cpp modules/mono/glue/;
+  - mono --version;
   - git rev-parse HEAD;
   - if [ "$PLATFORM" = "osx" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
