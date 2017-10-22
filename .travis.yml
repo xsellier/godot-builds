@@ -35,11 +35,13 @@ env:
     - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
-    - PLATFORM=server BITS=64 TOOLS=yes
-    - PLATFORM=x11 BITS=32 TOOLS=yes
-    - PLATFORM=x11 BITS=32 TOOLS=no
-    - PLATFORM=x11 BITS=64 TOOLS=yes
-    - PLATFORM=x11 BITS=64 TOOLS=no
+#    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
+    - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
+    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
+    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
+    - PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
+    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
     - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - PLATFORM=android TARGET=release ANDROID_ARCH=x86
     - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
@@ -74,15 +76,19 @@ matrix:
     - os: linux
       env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
     - os: osx
-      env: PLATFORM=server BITS=64 TOOLS=yes
+      env: PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
     - os: osx
-      env: PLATFORM=x11 BITS=32 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
     - os: osx
-      env: PLATFORM=x11 BITS=32 TOOLS=no
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
     - os: osx
-      env: PLATFORM=x11 BITS=64 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
     - os: osx
-      env: PLATFORM=x11 BITS=64 TOOLS=no
+      env: PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
+    - os: osx
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+    - os: osx
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
     - compiler: gcc
       env: PLATFORM=iphone TARGET=release
     - compiler: gcc
@@ -110,15 +116,19 @@ matrix:
     - compiler: clang
       env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - compiler: clang
-      env: PLATFORM=server BITS=64 TOOLS=yes
+      env: PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
     - compiler: clang
-      env: PLATFORM=x11 BITS=32 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
     - compiler: clang
-      env: PLATFORM=x11 BITS=32 TOOLS=no
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
     - compiler: clang
-      env: PLATFORM=x11 BITS=64 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
     - compiler: clang
-      env: PLATFORM=x11 BITS=64 TOOLS=no
+      env: PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
+    - compiler: clang
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+    - compiler: clang
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
 
 
 before_script:
@@ -163,10 +173,7 @@ script:
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
       export CC=gcc-7; export CXX=g++-7;
-      if [ "$TOOLS" = "yes" ]; then $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
-      else $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
-           $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
-      fi;
+      $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS use_static_cpp=yes bits=$BITS target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
