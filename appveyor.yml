@@ -1,4 +1,4 @@
-os: Visual Studio 2015
+image: Visual Studio 2017
 
 # Skip build on normal pushes
 skip_non_tags: true
@@ -12,7 +12,7 @@ artifacts:
 environment:
 #  BUILD_REVISION: official
   BUILD_REVISION: build2
-  VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
+  VS: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
   PYTHON: C:\Python27
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
   matrix:
