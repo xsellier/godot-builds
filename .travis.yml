@@ -172,8 +172,10 @@ script:
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
-      export CC=gcc-7; export CXX=g++-7;
-      $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS use_static_cpp=yes bits=$BITS target=$TARGET;
+      export CC="gcc-7"; export CXX="g++-7";
+      while true; do echo "Still building, don't timeout!"; sleep 60; done & export TIMEOUT_HACK_PID=$!;
+      $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET use_lto=yes use_static_cpp=yes;
+      kill -9 $TIMEOUT_HACK_PID;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
