@@ -22,8 +22,8 @@ os:
 env:
   global:
 #    - BUILD_REVISION=official
-    - BUILD_REVISION=build1
-    - OPTIONS="warnings=no builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
+    - BUILD_REVISION=build2
+    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
     - SCONS="scons -j2 verbose=yes warnings=no progress=no"
   matrix:
     - PLATFORM=iphone TARGET=release
@@ -157,6 +157,7 @@ before_script:
 
 script:
   - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
+  - git rev-parse HEAD;
   - if [ "$PLATFORM" = "osx" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;

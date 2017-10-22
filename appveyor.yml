@@ -10,79 +10,71 @@ artifacts:
     name: GodotLib
 
 environment:
-  PYTHON: C:\Python27
 #  BUILD_REVISION: official
-  BUILD_REVISION: build1
+  BUILD_REVISION: build2
+  VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
+  PYTHON: C:\Python27
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
   matrix:
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: windows
+    - GD_PLATFORM: windows
       TOOLS: yes
       TARGET: release_debug
       ARCH: amd64
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: windows
+    - GD_PLATFORM: windows
       TOOLS: yes
       TARGET: release_debug
       ARCH: x86
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: windows
+    - GD_PLATFORM: windows
       TOOLS: no
       TARGET: release
       ARCH: amd64
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: windows
+    - GD_PLATFORM: windows
       TOOLS: no
       TARGET: release_debug
       ARCH: amd64
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: windows
+    - GD_PLATFORM: windows
       TOOLS: no
       TARGET: release
       ARCH: x86
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: windows
+    - GD_PLATFORM: windows
       TOOLS: no
       TARGET: release_debug
       ARCH: x86
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: uwp
+    - GD_PLATFORM: uwp
       TOOLS: no
       TARGET: release
       ARCH: amd64
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: uwp
+    - GD_PLATFORM: uwp
       TOOLS: no
       TARGET: release_debug
       ARCH: amd64
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: uwp
+    - GD_PLATFORM: uwp
       TOOLS: no
       TARGET: release
       ARCH: x86
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: uwp
+    - GD_PLATFORM: uwp
       TOOLS: no
       TARGET: release_debug
       ARCH: x86
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: uwp
+    - GD_PLATFORM: uwp
       TOOLS: no
       TARGET: release
       ARCH: amd64_arm
-    - VS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-      GD_PLATFORM: uwp
+    - GD_PLATFORM: uwp
       TOOLS: no
       TARGET: release_debug
       ARCH: amd64_arm
 
 install:
-  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - set "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - pip install --egg scons  # it will fail on AppVeyor without --egg flag
   - if defined VS call "%VS%" %ARCH%  # if defined - so we can also use mingw
   - git submodule update --init --recursive # download submodules
-  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/_tools/angle.7z
-  - 7z x angle.7z
+  - ps: >-
+      If ($env:GD_PLATFORM -Match "uwp") {
+        Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/_tools/angle.7z
+        7z.exe x angle.7z
+      }
 
 before_build:
   - echo %BUILD_REVISION%
@@ -94,7 +86,8 @@ before_build:
 build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
-  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS%
+  - git rev-parse HEAD
+  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% progress=no
 
 deploy:
   description: 'Godot binaries deployed by Travis CI and AppVeyor'
