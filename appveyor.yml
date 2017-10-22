@@ -8,6 +8,8 @@ artifacts:
     name: GodotBinary
   - path: godot\bin\*.lib
     name: GodotLib
+  - path: godot\bin\*.dll
+    name: GodotDLLs
 
 environment:
 #  BUILD_REVISION: official
@@ -15,6 +17,8 @@ environment:
   VS: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
   PYTHON: C:\Python27
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
+  MONO32_PREFIX: "C:\\Program Files (x86)\\Mono"
+  MONO64_PREFIX: "C:\\Program Files\\Mono"
   matrix:
     - GD_PLATFORM: windows
       TOOLS: yes
@@ -75,6 +79,14 @@ install:
         Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/_tools/angle.7z
         7z.exe x angle.7z
       }
+  - ps: >-
+      If ($env:ARCH -Match "x86") {
+        Start-FileDownload https://download.mono-project.com/archive/5.4.0/windows-installer/mono-5.4.0.201-gtksharp-2.12.45-win32-0.msi
+        Start-Process msiexec.exe -Wait -ArgumentList '/qn /i C:\projects\godot-builds\mono-5.4.0.201-gtksharp-2.12.45-win32-0.msi'
+      } Else { # 64-bit
+        Start-FileDownload https://download.mono-project.com/archive/5.4.0/windows-installer/mono-5.4.0.201-x64-0.msi
+        Start-Process msiexec.exe -Wait -ArgumentList '/qn /i C:\projects\godot-builds\mono-5.4.0.201-x64-0.msi'
+      }
 
 before_build:
   - echo %BUILD_REVISION%
@@ -82,18 +94,28 @@ before_build:
   - python --version
   - scons --version
   - cl.exe
+  - if "%ARCH%" == "x86" (
+      call "%MONO32_PREFIX%\bin\mono.exe" --version
+    ) else (
+      call "%MONO64_PREFIX%\bin\mono.exe" --version
+    )
 
 build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
   - git rev-parse HEAD
-  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% progress=no
+  - ps: Start-FileDownload https://github.com/GodotBuilder/godot-builds/releases/download/$($env:APPVEYOR_REPO_TAG_NAME)/mono_glue.gen.cpp
+  - ps: Move-Item C:\projects\godot-builds\godot\mono_glue.gen.cpp C:\projects\godot-builds\godot\modules\mono\glue\ -force
+  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% progress=no module_mono_enabled=yes
+
+after_build:
+  - mv bin\mono-2.0-sgen.dll bin\mono-2.0-sgen_%ARCH%.dll
 
 deploy:
   description: 'Godot binaries deployed by Travis CI and AppVeyor'
   provider: GitHub
   auth_token:
     secure: DYTTAkQFPIDq2YL6hPMOttlHdJ9ZL6dYdOtGFIEneO8BTYx6keJRvewsdzgP2QGA
-  artifact: GodotBinary, GodotLib
+  artifact: GodotBinary, GodotLib, GodotDLLs
   on:
     appveyor_repo_tag: true
