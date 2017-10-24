@@ -197,6 +197,8 @@ script:
       export CC="gcc-7"; export CXX="g++-7";
       while true; do echo "Still building, don't timeout!"; sleep 60; done & export TIMEOUT_HACK_PID=$!;
       $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET use_lto=yes use_static_cpp=yes;
+    fi;
+  - if [ ! -z "$TIMEOUT_HACK_PID" ]; then
       kill -9 $TIMEOUT_HACK_PID;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
