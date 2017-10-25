@@ -185,9 +185,7 @@ before_script:
 
 script:
   - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
-  - if [ ! -z "$TRAVIS_TAG" ]; then
-      wget -P modules/mono/glue/ https://github.com/GodotBuilder/godot-builds/releases/download/$TRAVIS_TAG/mono_glue.gen.cpp;
-    fi;
+  - cp ../mono/mono_glue.gen.cpp modules/mono/glue/;
   - mono --version;
   - git rev-parse HEAD;
   - if [ "$PLATFORM" = "osx" ]; then
