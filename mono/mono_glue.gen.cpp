@@ -7856,9 +7856,9 @@ Object* godot_icall_Thread_Ctor(MonoObject* obj) {
 
 namespace GodotSharpBindings
 {
-uint64_t get_core_api_hash() { return 2734259438892198247; }
+uint64_t get_core_api_hash() { return -3732405484578677793; }
 #ifdef TOOLS_ENABLED
-uint64_t get_editor_api_hash() { return 7792262552848144667; }
+uint64_t get_editor_api_hash() { return -1407432914214189421; }
 #endif // TOOLS_ENABLED
 void register_generated_icalls() {
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_ClassDB_get_method", (void*)godot_icall_ClassDB_get_method);
