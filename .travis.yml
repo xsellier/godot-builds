@@ -26,26 +26,26 @@ env:
     - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
     - SCONS="scons -j2 verbose=yes warnings=no progress=no"
   matrix:
-    - PLATFORM=iphone TARGET=release
-    - PLATFORM=iphone TARGET=release_debug
-    - PLATFORM=javascript WASM=no TARGET=release
-    - PLATFORM=javascript WASM=no TARGET=release_debug
-    - PLATFORM=javascript WASM=yes TARGET=release
-    - PLATFORM=javascript WASM=yes TARGET=release_debug
-    - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
-    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
-    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
+#    - PLATFORM=iphone TARGET=release
+#    - PLATFORM=iphone TARGET=release_debug
+#    - PLATFORM=javascript WASM=no TARGET=release
+#    - PLATFORM=javascript WASM=no TARGET=release_debug
+#    - PLATFORM=javascript WASM=yes TARGET=release
+#    - PLATFORM=javascript WASM=yes TARGET=release_debug
+#    - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
+#    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
+#    - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
 #    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
+#    - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
     - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
-    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
-    - PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
-    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
-    - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
-    - PLATFORM=android TARGET=release ANDROID_ARCH=x86
-    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
-    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
+#    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
+#    - PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
+#    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+#    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
+#    - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
+#    - PLATFORM=android TARGET=release ANDROID_ARCH=x86
+#    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+#    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
 
 matrix:
   exclude:
