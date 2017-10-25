@@ -15,22 +15,6 @@ environment:
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
   matrix:
     - GD_PLATFORM: windows
-      TOOLS: yes
-      TARGET: release_debug
-      ARCH: amd64
-    - GD_PLATFORM: windows
-      TOOLS: yes
-      TARGET: release_debug
-      ARCH: x86
-    - GD_PLATFORM: windows
-      TOOLS: no
-      TARGET: release
-      ARCH: amd64
-    - GD_PLATFORM: windows
-      TOOLS: no
-      TARGET: release_debug
-      ARCH: amd64
-    - GD_PLATFORM: windows
       TOOLS: no
       TARGET: release
       ARCH: x86
