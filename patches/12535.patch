@@ -1,0 +1,27 @@
+From 32ee3ecce4cbc1e8f2680d5e3262312733d6c483 Mon Sep 17 00:00:00 2001
+From: Ignacio Etcheverry <ignalfonsore@gmail.com>
+Date: Tue, 31 Oct 2017 15:15:42 +0100
+Subject: [PATCH] Fix msbuild hint paths returning only the directory
+
+---
+ modules/mono/editor/godotsharp_builds.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/modules/mono/editor/godotsharp_builds.cpp b/modules/mono/editor/godotsharp_builds.cpp
+index 83d2bb1471..dbe0cc294c 100644
+--- a/modules/mono/editor/godotsharp_builds.cpp
++++ b/modules/mono/editor/godotsharp_builds.cpp
+@@ -61,10 +61,10 @@ String _find_build_engine_on_unix(const String &p_name) {
+ 	};
+ 
+ 	for (int i = 0; i < sizeof(locations) / sizeof(const char *); i++) {
+-		String location = locations[i];
++		String hint_path = locations[i] + p_name;
+ 
+-		if (FileAccess::exists(location + p_name)) {
+-			return location;
++		if (FileAccess::exists(hint_path)) {
++			return hint_path;
+ 		}
+ 	}
+ 
