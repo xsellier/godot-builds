@@ -1,0 +1,27 @@
+From 23740c8a913c4a40618903707fe74a00fe44ad94 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?R=C3=A9mi=20Verschelde?= <rverschelde@gmail.com>
+Date: Sun, 29 Oct 2017 17:28:53 +0100
+Subject: [PATCH] Mono: Fix Windows build
+
+---
+ modules/mono/SCsub | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/modules/mono/SCsub b/modules/mono/SCsub
+index 13212636e..9f90a7b70 100644
+--- a/modules/mono/SCsub
++++ b/modules/mono/SCsub
+@@ -135,8 +135,8 @@ def mono_build_solution(source, target, env):
+         msbuild_info = find_msbuild_windows()
+         if msbuild_info is None:
+             raise RuntimeError('Cannot find MSBuild executable')
+-        msbuild_path = msbuild_windows[0]
+-        framework_path_override = msbuild_windows[1]
++        msbuild_path = msbuild_info[0]
++        framework_path_override = msbuild_info[1]
+     else:
+         msbuild_path = find_msbuild_unix('msbuild')
+         if msbuild_path is None:
+-- 
+2.13.5
+
