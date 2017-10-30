@@ -1,0 +1,173 @@
+From f99bce7e973758daf7676237453ac622b6f1ecae Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?R=C3=A9mi=20Verschelde?= <rverschelde@gmail.com>
+Date: Tue, 31 Oct 2017 19:12:37 +0100
+Subject: [PATCH] Revert "Sound support for Javascript (untested)."
+
+This reverts commit b8ac700046ee092e6b804c746ae41c3cd9df0b75.
+---
+ platform/javascript/audio_driver_javascript.cpp | 79 +------------------------
+ platform/javascript/audio_driver_javascript.h   | 16 -----
+ 2 files changed, 3 insertions(+), 92 deletions(-)
+
+diff --git a/platform/javascript/audio_driver_javascript.cpp b/platform/javascript/audio_driver_javascript.cpp
+index cd3974669..4c0e5fd96 100644
+--- a/platform/javascript/audio_driver_javascript.cpp
++++ b/platform/javascript/audio_driver_javascript.cpp
+@@ -29,7 +29,6 @@
+ /*************************************************************************/
+ #include "audio_driver_javascript.h"
+ 
+-#include <emscripten.h>
+ #include <string.h>
+ 
+ #define MAX_NUMBER_INTERFACES 3
+@@ -39,91 +38,22 @@
+ 
+ //AudioDriverJavaScript* AudioDriverJavaScript::s_ad=NULL;
+ 
+-AudioDriverJavaScript *AudioDriverJavaScript::singleton_js = NULL;
+ const char *AudioDriverJavaScript::get_name() const {
+ 
+ 	return "JavaScript";
+ }
+ 
+-extern "C" {
+-
+-void js_audio_driver_mix_function(int p_frames) {
+-
+-	//print_line("MIXI! "+itos(p_frames));
+-	AudioDriverJavaScript::singleton_js->mix_to_js(p_frames);
+-}
+-}
+-
+-void AudioDriverJavaScript::mix_to_js(int p_frames) {
+-
+-	int todo = p_frames;
+-	int offset = 0;
+-
+-	while (todo) {
+-
+-		int tomix = MIN(todo, INTERNAL_BUFFER_SIZE);
+-
+-		audio_server_process(p_frames, stream_buffer);
+-		for (int i = 0; i < tomix * internal_buffer_channels; i++) {
+-			internal_buffer[i] = float(stream_buffer[i] >> 16) * 32768.0;
+-		}
+-
+-		/* clang-format off */
+-		EM_ASM_({
+-			var data = HEAPF32.subarray($0 / 4, $0 / 4 + $2 * 2);
+-
+-			for (var channel = 0; channel < _as_output_buffer.numberOfChannels; channel++) {
+-				var outputData = _as_output_buffer.getChannelData(channel);
+-				// Loop through samples
+-				for (var sample = 0; sample < $2; sample++) {
+-					// make output equal to the same as the input
+-					outputData[sample + $1] = data[sample * 2 + channel];
+-				}
+-			}
+-		}, internal_buffer, offset, tomix);
+-		/* clang-format on */
+-
+-		todo -= tomix;
+-		offset += tomix;
+-	}
+-}
+-
+ Error AudioDriverJavaScript::init() {
+ 
+ 	return OK;
+ }
+ 
+ void AudioDriverJavaScript::start() {
+-
+-	internal_buffer_channels = 2;
+-	internal_buffer = memnew_arr(float, INTERNAL_BUFFER_SIZE *internal_buffer_channels);
+-	stream_buffer = memnew_arr(int32_t, INTERNAL_BUFFER_SIZE * 4); //max 4 channels
+-
+-	/* clang-format off */
+-	EM_ASM(
+-			_as_audioctx = new (window.AudioContext || window.webkitAudioContext)();
+-
+-			audio_server_mix_function = Module.cwrap('js_audio_driver_mix_function', 'void', ['number']);
+-		);
+-
+-	int buffer_latency = 16384;
+-	EM_ASM_( {
+-		_as_script_node = _as_audioctx.createScriptProcessor($0, 0, 2);
+-		_as_script_node.connect(_as_audioctx.destination);
+-		console.log(_as_script_node.bufferSize);
+-
+-		_as_script_node.onaudioprocess = function(audioProcessingEvent) {
+-		// The output buffer contains the samples that will be modified and played
+-			_as_output_buffer = audioProcessingEvent.outputBuffer;
+-			audio_server_mix_function(_as_output_buffer.getChannelData(0).length);
+-		}
+-	}, buffer_latency);
+-	/* clang-format on */
+ }
+ 
+ int AudioDriverJavaScript::get_mix_rate() const {
+ 
+-	return mix_rate;
++	return 44100;
+ }
+ 
+ AudioDriver::SpeakerMode AudioDriverJavaScript::get_speaker_mode() const {
+@@ -133,7 +63,7 @@ AudioDriver::SpeakerMode AudioDriverJavaScript::get_speaker_mode() const {
+ 
+ void AudioDriverJavaScript::lock() {
+ 
+-	/*no locking, as threads are not supported
++	/*
+ 	if (active && mutex)
+ 		mutex->lock();
+ 	*/
+@@ -141,7 +71,7 @@ void AudioDriverJavaScript::lock() {
+ 
+ void AudioDriverJavaScript::unlock() {
+ 
+-	/*no locking, as threads are not supported
++	/*
+ 	if (active && mutex)
+ 		mutex->unlock();
+ 	*/
+@@ -151,7 +81,4 @@ void AudioDriverJavaScript::finish() {
+ }
+ 
+ AudioDriverJavaScript::AudioDriverJavaScript() {
+-
+-	mix_rate = 44100;
+-	singleton_js = this;
+ }
+diff --git a/platform/javascript/audio_driver_javascript.h b/platform/javascript/audio_driver_javascript.h
+index c3adeca07..c5cebe800 100644
+--- a/platform/javascript/audio_driver_javascript.h
++++ b/platform/javascript/audio_driver_javascript.h
+@@ -35,23 +35,7 @@
+ #include "os/mutex.h"
+ 
+ class AudioDriverJavaScript : public AudioDriver {
+-
+-	enum {
+-		INTERNAL_BUFFER_SIZE = 4096,
+-		STREAM_SCALE_BITS = 12
+-
+-	};
+-
+-	int mix_rate;
+-	float *internal_buffer;
+-	int internal_buffer_channels;
+-	int internal_buffer_size;
+-	int32_t *stream_buffer;
+-
+ public:
+-	void mix_to_js(int p_frames);
+-	static AudioDriverJavaScript *singleton_js;
+-
+ 	virtual const char *get_name() const;
+ 
+ 	virtual Error init();
+-- 
+2.13.5
+
