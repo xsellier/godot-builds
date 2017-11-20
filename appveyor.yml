@@ -8,8 +8,8 @@ artifacts:
     name: GodotBinary
 
 environment:
-#  BUILD_REVISION: official
-  BUILD_REVISION: build2
+#  BUILD_NAME: official
+  BUILD_NAME: build1
   VS: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
   PYTHON: C:\Python27
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle
@@ -75,7 +75,7 @@ install:
       }
 
 before_build:
-  - echo %BUILD_REVISION%
+  - echo %BUILD_NAME%
   - echo %GD_PLATFORM%
   - python --version
   - scons --version

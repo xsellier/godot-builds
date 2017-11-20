@@ -21,8 +21,8 @@ os:
 
 env:
   global:
-#    - BUILD_REVISION=official
-    - BUILD_REVISION=build2
+#    - BUILD_NAME=official
+    - BUILD_NAME=build1
     - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
     - SCONS="scons -j2 verbose=yes warnings=no progress=no"
   matrix:
