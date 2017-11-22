@@ -23,7 +23,7 @@ env:
   global:
 #    - BUILD_NAME=official
     - BUILD_NAME=build1
-    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
+    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes gdnative_wrapper=yes"
     - SCONS="scons -j2 verbose=yes warnings=no progress=no"
   matrix:
     - PLATFORM=iphone TARGET=release
@@ -223,6 +223,7 @@ deploy:
   file_glob: true
   file:
     - bin/*godot*.$PLATFORM.opt.*
+    - bin/*gdnative_wrapper_code*.$PLATFORM.opt.*
   skip_cleanup: true
   on:
     repo: GodotBuilder/godot-builds
