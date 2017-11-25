@@ -6,7 +6,7 @@ skip_non_tags: true
 artifacts:
   - path: godot\bin\*.exe
     name: GodotBinary
-  - path: godot\bin\*.dll
+  - path: godot\bin\*gdnative_wrapper_code*.dll
     name: GodotGDNativeWrapper
 
 environment:
