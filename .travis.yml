@@ -24,7 +24,7 @@ env:
 #    - BUILD_NAME=official
     - BUILD_NAME=build1
     - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes gdnative_wrapper=yes"
-    - SCONS="scons -j2 verbose=yes warnings=no progress=no"
+    - SCONS="scons -j2 verbose=no warnings=no progress=no"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
