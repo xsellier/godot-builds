@@ -28,10 +28,8 @@ env:
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
-    - PLATFORM=javascript WASM=no TARGET=release
-    - PLATFORM=javascript WASM=no TARGET=release_debug
-    - PLATFORM=javascript WASM=yes TARGET=release
-    - PLATFORM=javascript WASM=yes TARGET=release_debug
+    - PLATFORM=javascript TARGET=release
+    - PLATFORM=javascript TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
@@ -62,13 +60,9 @@ matrix:
     - os: linux
       env: PLATFORM=iphone TARGET=release_debug
     - os: linux
-      env: PLATFORM=javascript WASM=no TARGET=release
+      env: PLATFORM=javascript TARGET=release
     - os: linux
-      env: PLATFORM=javascript WASM=no TARGET=release_debug
-    - os: linux
-      env: PLATFORM=javascript WASM=yes TARGET=release
-    - os: linux
-      env: PLATFORM=javascript WASM=yes TARGET=release_debug
+      env: PLATFORM=javascript TARGET=release_debug
     - os: linux
       env: PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - os: linux
@@ -94,13 +88,9 @@ matrix:
     - compiler: gcc
       env: PLATFORM=iphone TARGET=release_debug
     - compiler: gcc
-      env: PLATFORM=javascript WASM=no TARGET=release
+      env: PLATFORM=javascript TARGET=release
     - compiler: gcc
-      env: PLATFORM=javascript WASM=no TARGET=release_debug
-    - compiler: gcc
-      env: PLATFORM=javascript WASM=yes TARGET=release
-    - compiler: gcc
-      env: PLATFORM=javascript WASM=yes TARGET=release_debug
+      env: PLATFORM=javascript TARGET=release_debug
     - compiler: gcc
       env: PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - compiler: gcc
@@ -191,7 +181,7 @@ script:
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      $SCONS platform=$PLATFORM wasm=$WASM CXX=$CXX $OPTIONS target=$TARGET;
+      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
     fi;
 
 
@@ -202,17 +192,15 @@ before_deploy:
       rm -rf bin/libgodot.iphone.$target_tag.arm*;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
-      if [ "$WASM" = "yes" ]; then target_tag=$target_tag+".webassembly"; fi;
-      rm -f bin/godot.javascript.$target_tag.wasm;
-      rm -f bin/godot.javascript.$target_tag.asm.js;
-      rm -f bin/godot.javascript.$target_tag.js;
-      rm -f bin/godot.javascript.$target_tag*.html;
+      rm -f bin/godot.javascript.*;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
       if [ "$ANDROID_ARCH" = "armv7" ]; then android_arch="armeabi-v7a"; else android_arch="x86"; fi;
       cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
+    fi;
+  - if [ "$PLATFORM" = "osx" ]; then
+      rm -rf bin/godot.osx.*.fat.dSYM;
     fi;
 
 
