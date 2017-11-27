@@ -1,0 +1,29 @@
+From 4754689e8b5db8889cad94f864dd2bece3fc282c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?R=C3=A9mi=20Verschelde?= <rverschelde@gmail.com>
+Date: Mon, 27 Nov 2017 07:41:00 +0100
+Subject: [PATCH] Fix javascript build after bc2e8d99
+
+---
+ core/io/file_access_buffered_fa.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/core/io/file_access_buffered_fa.h b/core/io/file_access_buffered_fa.h
+index 309fc16d0..67751e840 100644
+--- a/core/io/file_access_buffered_fa.h
++++ b/core/io/file_access_buffered_fa.h
+@@ -55,10 +55,10 @@ class FileAccessBufferedFA : public FileAccessBuffered {
+ 
+ 			// on dvector
+ 			//PoolVector<uint8_t>::Write write = cache.buffer.write();
+-			//f.get_buffer(write.ptr(), p_size);
++			//f.get_buffer(write.ptrw(), p_size);
+ 
+ 			// on vector
+-			f.get_buffer(cache.buffer.ptr(), p_size);
++			f.get_buffer(cache.buffer.ptrw(), p_size);
+ 
+ 			return p_size;
+ 		};
+-- 
+2.13.6
+
