@@ -192,7 +192,7 @@ before_deploy:
       rm -rf bin/libgodot.iphone.$target_tag.arm*;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      rm -f bin/godot.javascript.*;
+      rm -f bin/godot.javascript.*.{js,wasm};
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
@@ -200,7 +200,7 @@ before_deploy:
       cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
     fi;
   - if [ "$PLATFORM" = "osx" ]; then
-      rm -rf bin/godot.osx.*.fat.dSYM;
+      rm -rf bin/godot.osx.*.dSYM;
     fi;
 
 
