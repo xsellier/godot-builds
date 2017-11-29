@@ -188,7 +188,7 @@ script:
 before_deploy:
   - if [ "$PLATFORM" = "iphone" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
-      lipo -create -arch armv7 bin/libgodot.iphone.$target_tag.arm -arch arm64 bin/libgodot.iphone.$target_tag.arm64 -output bin/libgodot.iphone.$target_tag.fat;
+      lipo -create bin/libgodot.iphone.$target_tag.arm.a bin/libgodot.iphone.$target_tag.arm64.a -output bin/libgodot.iphone.$target_tag.fat;
       rm -rf bin/libgodot.iphone.$target_tag.arm*;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
