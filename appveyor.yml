@@ -11,7 +11,7 @@ artifacts:
 
 environment:
 #  BUILD_NAME: official
-  BUILD_NAME: build1
+  BUILD_NAME: build2
   VS: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
   PYTHON: C:\Python27
   ANGLE_SRC_PATH: C:\projects\godot-builds\angle

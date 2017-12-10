@@ -22,7 +22,7 @@ os:
 env:
   global:
 #    - BUILD_NAME=official
-    - BUILD_NAME=build1
+    - BUILD_NAME=build2
     - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes gdnative_wrapper=yes"
     - SCONS="scons -j2 verbose=no warnings=no progress=no"
   matrix:
