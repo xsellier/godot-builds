@@ -674,19 +674,19 @@ NodePath* godot_icall_0_71(MethodBind* method, Object* ptr) {
 	return memnew(NodePath(ret));
 }
 
-void godot_icall_2_72(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
-	ERR_FAIL_NULL(ptr);
-	double arg1_in = (double)arg1;
-	const void* call_args[2] = { &arg1_in, &arg2 };
-	method->ptrcall(ptr, call_args, NULL);
-}
-
-MonoString* godot_icall_1_73(MethodBind* method, Object* ptr, Object* arg1) {
+MonoString* godot_icall_1_72(MethodBind* method, Object* ptr, Object* arg1) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
 	method->ptrcall(ptr, call_args, &ret);
 	return GDMonoMarshal::mono_string_from_godot(ret);
+}
+
+void godot_icall_2_73(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
+	ERR_FAIL_NULL(ptr);
+	double arg1_in = (double)arg1;
+	const void* call_args[2] = { &arg1_in, &arg2 };
+	method->ptrcall(ptr, call_args, NULL);
 }
 
 Object* godot_icall_AnimationPlayer_Ctor(MonoObject* obj) {
@@ -1208,21 +1208,71 @@ MonoObject* godot_icall_0_108(MethodBind* method, Object* ptr) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_0_109(MethodBind* method, Object* ptr) {
+int godot_icall_2_109(MethodBind* method, Object* ptr, Object* arg1, bool arg2) {
+	int64_t ret;
+	ERR_FAIL_NULL_V(ptr, int());
+	const void* call_args[2] = { arg1, &arg2 };
+	method->ptrcall(ptr, call_args, &ret);
+	return (int)ret;
+}
+
+Object* godot_icall_BakedLightmap_Ctor(MonoObject* obj) {
+	GODOTSHARP_INSTANCE_OBJECT(instance, "BakedLightmap");
+	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
+	return instance;
+}
+
+void godot_icall_1_110(MethodBind* method, Object* ptr, real_t* arg1) {
+	ERR_FAIL_NULL(ptr);
+	MARSHALLED_IN(Transform, arg1, arg1_in);
+	const void* call_args[1] = { &arg1_in };
+	method->ptrcall(ptr, call_args, NULL);
+}
+
+void godot_icall_3_111(MethodBind* method, Object* ptr, NodePath* arg1, Object* arg2, int arg3) {
+	ERR_FAIL_NULL(ptr);
+	int64_t arg3_in = (int64_t)arg3;
+	const void* call_args[3] = { arg1, arg2, &arg3_in };
+	method->ptrcall(ptr, call_args, NULL);
+}
+
+MonoObject* godot_icall_1_112(MethodBind* method, Object* ptr, int arg1) {
+	Ref<Reference> ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	int64_t arg1_in = (int64_t)arg1;
+	const void* call_args[1] = { &arg1_in };
+	method->ptrcall(ptr, call_args, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
+}
+
+Object* godot_icall_BakedLightmapData_Ctor(MonoObject* obj) {
+	GODOTSHARP_INSTANCE_OBJECT(instance, "BakedLightmapData");
+	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
+	return instance;
+}
+
+MonoObject* godot_icall_0_113(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_2_110(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
+MonoObject* godot_icall_0_114(MethodBind* method, Object* ptr) {
+	Ref<Reference> ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	method->ptrcall(ptr, NULL, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
+}
+
+void godot_icall_2_115(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	const void* call_args[2] = { &arg1_in, &arg2 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_1_111(MethodBind* method, Object* ptr, real_t* arg1) {
+bool godot_icall_1_116(MethodBind* method, Object* ptr, real_t* arg1) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -1231,7 +1281,7 @@ bool godot_icall_1_111(MethodBind* method, Object* ptr, real_t* arg1) {
 	return ret;
 }
 
-void godot_icall_2_112(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
+void godot_icall_2_117(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg1, arg1_in);
 	const void* call_args[2] = { &arg1_in, &arg2 };
@@ -1244,7 +1294,7 @@ Object* godot_icall_BitMap_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_5_113(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3, real_t* arg4, real_t arg5) {
+void godot_icall_5_118(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3, real_t* arg4, real_t arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -1255,16 +1305,7 @@ void godot_icall_5_113(MethodBind* method, Object* ptr, int arg1, int arg2, real
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_114(MethodBind* method, Object* ptr, int arg1) {
-	Ref<Reference> ret;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	int64_t arg1_in = (int64_t)arg1;
-	const void* call_args[1] = { &arg1_in };
-	method->ptrcall(ptr, call_args, &ret);
-	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
-}
-
-MonoObject* godot_icall_2_115(MethodBind* method, Object* ptr, int arg1, int arg2) {
+MonoObject* godot_icall_2_119(MethodBind* method, Object* ptr, int arg1, int arg2) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -1275,7 +1316,7 @@ MonoObject* godot_icall_2_115(MethodBind* method, Object* ptr, int arg1, int arg
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-MonoObject* godot_icall_0_116(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_120(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1306,7 +1347,7 @@ Object* godot_icall_Button_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_117(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_121(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1319,7 +1360,7 @@ Object* godot_icall_ButtonGroup_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_118(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoObject* godot_icall_1_122(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Vector<Variant> varargs;
@@ -1344,7 +1385,7 @@ Object* godot_icall_CSharpScript_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_119(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_123(MethodBind* method, Object* ptr, real_t* arg1) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -1354,7 +1395,7 @@ MonoObject* godot_icall_1_119(MethodBind* method, Object* ptr, real_t* arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-MonoObject* godot_icall_1_120(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_124(MethodBind* method, Object* ptr, real_t* arg1) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -1364,7 +1405,7 @@ MonoObject* godot_icall_1_120(MethodBind* method, Object* ptr, real_t* arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-bool godot_icall_1_121(MethodBind* method, Object* ptr, real_t* arg1) {
+bool godot_icall_1_125(MethodBind* method, Object* ptr, real_t* arg1) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -1373,7 +1414,7 @@ bool godot_icall_1_121(MethodBind* method, Object* ptr, real_t* arg1) {
 	return ret;
 }
 
-void godot_icall_3_122(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, real_t arg3) {
+void godot_icall_3_126(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, real_t arg3) {
 	ERR_FAIL_NULL(ptr);
 	double arg1_in = (double)arg1;
 	double arg2_in = (double)arg2;
@@ -1382,7 +1423,7 @@ void godot_icall_3_122(MethodBind* method, Object* ptr, real_t arg1, real_t arg2
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_123(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_127(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1395,7 +1436,7 @@ Object* godot_icall_Camera_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_124(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_128(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1408,21 +1449,21 @@ Object* godot_icall_Camera2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-RID* godot_icall_0_125(MethodBind* method, Object* ptr) {
+RID* godot_icall_0_129(MethodBind* method, Object* ptr) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return memnew(RID(ret));
 }
 
-void godot_icall_1_126(MethodBind* method, Object* ptr, real_t* arg1) {
+void godot_icall_1_130(MethodBind* method, Object* ptr, real_t* arg1) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Color, arg1, arg1_in);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_127(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_131(MethodBind* method, Object* ptr) {
 	Color ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1430,7 +1471,7 @@ MonoObject* godot_icall_0_127(MethodBind* method, Object* ptr) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Color), ret_out);
 }
 
-void godot_icall_5_128(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t arg4, bool arg5) {
+void godot_icall_5_132(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t arg4, bool arg5) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
@@ -1440,7 +1481,7 @@ void godot_icall_5_128(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_129(MethodBind* method, Object* ptr, MonoArray* arg1, real_t* arg2, real_t arg3, bool arg4) {
+void godot_icall_4_133(MethodBind* method, Object* ptr, MonoArray* arg1, real_t* arg2, real_t arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	MARSHALLED_IN(Color, arg2, arg2_in);
@@ -1449,7 +1490,7 @@ void godot_icall_4_129(MethodBind* method, Object* ptr, MonoArray* arg1, real_t*
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_130(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, real_t arg3, bool arg4) {
+void godot_icall_4_134(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, real_t arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	PoolColorArray arg2_in = GDMonoMarshal::mono_array_to_PoolColorArray(arg2);
@@ -1458,7 +1499,7 @@ void godot_icall_4_130(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArr
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_131(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
+void godot_icall_3_135(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg1, arg1_in);
 	MARSHALLED_IN(Color, arg2, arg2_in);
@@ -1466,7 +1507,7 @@ void godot_icall_3_131(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_132(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, real_t* arg3) {
+void godot_icall_3_136(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	double arg2_in = (double)arg2;
@@ -1475,7 +1516,7 @@ void godot_icall_3_132(MethodBind* method, Object* ptr, real_t* arg1, real_t arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_133(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, real_t* arg3, Object* arg4) {
+void godot_icall_4_137(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, real_t* arg3, Object* arg4) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	MARSHALLED_IN(Color, arg3, arg3_in);
@@ -1483,7 +1524,7 @@ void godot_icall_4_133(MethodBind* method, Object* ptr, Object* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_6_134(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, bool arg3, real_t* arg4, bool arg5, Object* arg6) {
+void godot_icall_6_138(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, bool arg3, real_t* arg4, bool arg5, Object* arg6) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Color, arg4, arg4_in);
@@ -1491,7 +1532,7 @@ void godot_icall_6_134(MethodBind* method, Object* ptr, Object* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_7_135(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, real_t* arg3, real_t* arg4, bool arg5, Object* arg6, bool arg7) {
+void godot_icall_7_139(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, real_t* arg3, real_t* arg4, bool arg5, Object* arg6, bool arg7) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Rect2, arg3, arg3_in);
@@ -1500,14 +1541,14 @@ void godot_icall_7_135(MethodBind* method, Object* ptr, Object* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_136(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
+void godot_icall_2_140(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_6_137(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, MonoArray* arg3, Object* arg4, real_t arg5, Object* arg6) {
+void godot_icall_6_141(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, MonoArray* arg3, Object* arg4, real_t arg5, Object* arg6) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	PoolColorArray arg2_in = GDMonoMarshal::mono_array_to_PoolColorArray(arg2);
@@ -1517,7 +1558,7 @@ void godot_icall_6_137(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArr
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_6_138(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, MonoArray* arg3, Object* arg4, Object* arg5, bool arg6) {
+void godot_icall_6_142(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, MonoArray* arg3, Object* arg4, Object* arg5, bool arg6) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	PoolColorArray arg2_in = GDMonoMarshal::mono_array_to_PoolColorArray(arg2);
@@ -1526,7 +1567,7 @@ void godot_icall_6_138(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArr
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_6_139(MethodBind* method, Object* ptr, MonoArray* arg1, real_t* arg2, MonoArray* arg3, Object* arg4, Object* arg5, bool arg6) {
+void godot_icall_6_143(MethodBind* method, Object* ptr, MonoArray* arg1, real_t* arg2, MonoArray* arg3, Object* arg4, Object* arg5, bool arg6) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	MARSHALLED_IN(Color, arg2, arg2_in);
@@ -1535,7 +1576,7 @@ void godot_icall_6_139(MethodBind* method, Object* ptr, MonoArray* arg1, real_t*
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_5_140(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, MonoString* arg3, real_t* arg4, int arg5) {
+void godot_icall_5_144(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, MonoString* arg3, real_t* arg4, int arg5) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
@@ -1545,7 +1586,7 @@ void godot_icall_5_140(MethodBind* method, Object* ptr, Object* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-real_t godot_icall_5_141(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, MonoString* arg3, MonoString* arg4, real_t* arg5) {
+real_t godot_icall_5_145(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, MonoString* arg3, MonoString* arg4, real_t* arg5) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
@@ -1557,7 +1598,7 @@ real_t godot_icall_5_141(MethodBind* method, Object* ptr, Object* arg1, real_t* 
 	return (real_t)ret;
 }
 
-void godot_icall_3_142(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, real_t* arg3) {
+void godot_icall_3_146(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	double arg2_in = (double)arg2;
@@ -1566,14 +1607,14 @@ void godot_icall_3_142(MethodBind* method, Object* ptr, real_t* arg1, real_t arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_1_143(MethodBind* method, Object* ptr, real_t* arg1) {
+void godot_icall_1_147(MethodBind* method, Object* ptr, real_t* arg1) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Transform2D, arg1, arg1_in);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_144(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_148(MethodBind* method, Object* ptr) {
 	Transform2D ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1581,21 +1622,21 @@ MonoObject* godot_icall_0_144(MethodBind* method, Object* ptr) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform2D), ret_out);
 }
 
-MonoObject* godot_icall_0_145(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_149(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_0_146(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_150(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_1_147(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_151(MethodBind* method, Object* ptr, real_t* arg1) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -1605,7 +1646,7 @@ MonoObject* godot_icall_1_147(MethodBind* method, Object* ptr, real_t* arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-MonoObject* godot_icall_1_148(MethodBind* method, Object* ptr, Object* arg1) {
+MonoObject* godot_icall_1_152(MethodBind* method, Object* ptr, Object* arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -1673,7 +1714,7 @@ Object* godot_icall_CircleShape2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_1_149(MethodBind* method, Object* ptr, Object* arg1) {
+int godot_icall_1_153(MethodBind* method, Object* ptr, Object* arg1) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	const void* call_args[1] = { arg1 };
@@ -1681,7 +1722,7 @@ int godot_icall_1_149(MethodBind* method, Object* ptr, Object* arg1) {
 	return (int)ret;
 }
 
-void godot_icall_2_150(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
+void godot_icall_2_154(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Transform, arg2, arg2_in);
@@ -1689,7 +1730,7 @@ void godot_icall_2_150(MethodBind* method, Object* ptr, int arg1, real_t* arg2) 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_151(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_155(MethodBind* method, Object* ptr, int arg1) {
 	Transform ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -1699,7 +1740,7 @@ MonoObject* godot_icall_1_151(MethodBind* method, Object* ptr, int arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform), ret_out);
 }
 
-MonoObject* godot_icall_1_152(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_156(MethodBind* method, Object* ptr, int arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -1708,7 +1749,7 @@ MonoObject* godot_icall_1_152(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_2_153(MethodBind* method, Object* ptr, int arg1, int arg2) {
+MonoObject* godot_icall_2_157(MethodBind* method, Object* ptr, int arg1, int arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -1718,7 +1759,7 @@ MonoObject* godot_icall_2_153(MethodBind* method, Object* ptr, int arg1, int arg
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_2_154(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
+void godot_icall_2_158(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Transform2D, arg2, arg2_in);
@@ -1726,7 +1767,7 @@ void godot_icall_2_154(MethodBind* method, Object* ptr, int arg1, real_t* arg2) 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_155(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_159(MethodBind* method, Object* ptr, int arg1) {
 	Transform2D ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -1736,7 +1777,7 @@ MonoObject* godot_icall_1_155(MethodBind* method, Object* ptr, int arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform2D), ret_out);
 }
 
-MonoObject* godot_icall_2_156(MethodBind* method, Object* ptr, int arg1, int arg2) {
+MonoObject* godot_icall_2_160(MethodBind* method, Object* ptr, int arg1, int arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -1746,14 +1787,14 @@ MonoObject* godot_icall_2_156(MethodBind* method, Object* ptr, int arg1, int arg
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_1_157(MethodBind* method, Object* ptr, MonoArray* arg1) {
+void godot_icall_1_161(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_0_158(MethodBind* method, Object* ptr) {
+MonoArray* godot_icall_0_162(MethodBind* method, Object* ptr) {
 	PoolVector2Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1772,7 +1813,7 @@ Object* godot_icall_CollisionPolygon2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_159(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_163(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1785,7 +1826,7 @@ Object* godot_icall_CollisionShape_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_160(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_164(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1804,14 +1845,14 @@ Object* godot_icall_ColorPicker_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_161(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_165(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_0_162(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_166(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1830,14 +1871,14 @@ Object* godot_icall_ColorRect_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_1_163(MethodBind* method, Object* ptr, MonoArray* arg1) {
+void godot_icall_1_167(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector3Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector3Array(arg1);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_0_164(MethodBind* method, Object* ptr) {
+MonoArray* godot_icall_0_168(MethodBind* method, Object* ptr) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -1862,7 +1903,7 @@ Object* godot_icall_ConeTwistJoint_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_165(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoObject* arg3) {
+void godot_icall_3_169(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoObject* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -1871,7 +1912,7 @@ void godot_icall_3_165(MethodBind* method, Object* ptr, MonoString* arg1, MonoSt
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_3_166(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoObject* arg3) {
+MonoObject* godot_icall_3_170(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoObject* arg3) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -1882,7 +1923,7 @@ MonoObject* godot_icall_3_166(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-bool godot_icall_2_167(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
+bool godot_icall_2_171(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -1892,7 +1933,7 @@ bool godot_icall_2_167(MethodBind* method, Object* ptr, MonoString* arg1, MonoSt
 	return ret;
 }
 
-MonoArray* godot_icall_1_168(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoArray* godot_icall_1_172(MethodBind* method, Object* ptr, MonoString* arg1) {
 	PoolStringArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -1913,7 +1954,7 @@ Object* godot_icall_ConfirmationDialog_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_169(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
+void godot_icall_2_173(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
@@ -1926,7 +1967,7 @@ Object* godot_icall_Container_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_4_170(MethodBind* method, Object* ptr, int arg1, real_t arg2, bool arg3, bool arg4) {
+void godot_icall_4_174(MethodBind* method, Object* ptr, int arg1, real_t arg2, bool arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	double arg2_in = (double)arg2;
@@ -1934,7 +1975,7 @@ void godot_icall_4_170(MethodBind* method, Object* ptr, int arg1, real_t arg2, b
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_171(MethodBind* method, Object* ptr, int arg1, real_t arg2, real_t arg3, bool arg4) {
+void godot_icall_4_175(MethodBind* method, Object* ptr, int arg1, real_t arg2, real_t arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	double arg2_in = (double)arg2;
@@ -1943,21 +1984,21 @@ void godot_icall_4_171(MethodBind* method, Object* ptr, int arg1, real_t arg2, r
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_172(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_176(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_0_173(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_177(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_2_174(MethodBind* method, Object* ptr, MonoString* arg1, real_t* arg2) {
+void godot_icall_2_178(MethodBind* method, Object* ptr, MonoString* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	MARSHALLED_IN(Color, arg2, arg2_in);
@@ -1965,7 +2006,7 @@ void godot_icall_2_174(MethodBind* method, Object* ptr, MonoString* arg1, real_t
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_175(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_179(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -1975,7 +2016,7 @@ MonoObject* godot_icall_2_175(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_2_176(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_180(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -1985,7 +2026,7 @@ MonoObject* godot_icall_2_176(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_2_177(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_181(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -1995,7 +2036,7 @@ MonoObject* godot_icall_2_177(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_2_178(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_182(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
 	Color ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2006,7 +2047,7 @@ MonoObject* godot_icall_2_178(MethodBind* method, Object* ptr, MonoString* arg1,
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Color), ret_out);
 }
 
-MonoString* godot_icall_1_179(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoString* godot_icall_1_183(MethodBind* method, Object* ptr, real_t* arg1) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -2015,7 +2056,7 @@ MonoString* godot_icall_1_179(MethodBind* method, Object* ptr, real_t* arg1) {
 	return GDMonoMarshal::mono_string_from_godot(ret);
 }
 
-int godot_icall_1_180(MethodBind* method, Object* ptr, real_t* arg1) {
+int godot_icall_1_184(MethodBind* method, Object* ptr, real_t* arg1) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -2024,7 +2065,7 @@ int godot_icall_1_180(MethodBind* method, Object* ptr, real_t* arg1) {
 	return (int)ret;
 }
 
-void godot_icall_2_181(MethodBind* method, Object* ptr, MonoObject* arg1, Object* arg2) {
+void godot_icall_2_185(MethodBind* method, Object* ptr, MonoObject* arg1, Object* arg2) {
 	ERR_FAIL_NULL(ptr);
 	Variant arg1_in = GDMonoMarshal::mono_object_to_variant(arg1);
 	const void* call_args[2] = { &arg1_in, arg2 };
@@ -2049,7 +2090,7 @@ Object* godot_icall_ConvexPolygonShape2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_182(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_186(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2070,7 +2111,7 @@ Object* godot_icall_CubeMesh_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_5_183(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, real_t arg3, int arg4, int arg5) {
+int godot_icall_5_187(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, real_t arg3, int arg4, int arg5) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -2083,7 +2124,7 @@ int godot_icall_5_183(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2
 	return (int)ret;
 }
 
-MonoObject* godot_icall_1_184(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_188(MethodBind* method, Object* ptr, int arg1) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2093,7 +2134,7 @@ MonoObject* godot_icall_1_184(MethodBind* method, Object* ptr, int arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-int godot_icall_2_185(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
+int godot_icall_2_189(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -2103,7 +2144,7 @@ int godot_icall_2_185(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
 	return (int)ret;
 }
 
-real_t godot_icall_1_186(MethodBind* method, Object* ptr, real_t arg1) {
+real_t godot_icall_1_190(MethodBind* method, Object* ptr, real_t arg1) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	double arg1_in = (double)arg1;
@@ -2118,7 +2159,7 @@ Object* godot_icall_Curve_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_4_187(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, int arg4) {
+void godot_icall_4_191(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
@@ -2128,7 +2169,7 @@ void godot_icall_4_187(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_188(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
+void godot_icall_2_192(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
@@ -2136,7 +2177,7 @@ void godot_icall_2_188(MethodBind* method, Object* ptr, int arg1, real_t* arg2) 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_189(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
+MonoObject* godot_icall_2_193(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2147,7 +2188,7 @@ MonoObject* godot_icall_2_189(MethodBind* method, Object* ptr, int arg1, real_t 
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-MonoObject* godot_icall_1_190(MethodBind* method, Object* ptr, real_t arg1) {
+MonoObject* godot_icall_1_194(MethodBind* method, Object* ptr, real_t arg1) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -2157,7 +2198,7 @@ MonoObject* godot_icall_1_190(MethodBind* method, Object* ptr, real_t arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-MonoObject* godot_icall_2_191(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
+MonoObject* godot_icall_2_195(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -2167,7 +2208,7 @@ MonoObject* godot_icall_2_191(MethodBind* method, Object* ptr, real_t arg1, bool
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-MonoArray* godot_icall_2_192(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
+MonoArray* godot_icall_2_196(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
 	PoolVector2Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2183,7 +2224,7 @@ Object* godot_icall_Curve2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_4_193(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, int arg4) {
+void godot_icall_4_197(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
 	MARSHALLED_IN(Vector3, arg2, arg2_in);
@@ -2193,7 +2234,7 @@ void godot_icall_4_193(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_194(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
+MonoObject* godot_icall_2_198(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2204,7 +2245,7 @@ MonoObject* godot_icall_2_194(MethodBind* method, Object* ptr, int arg1, real_t 
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-MonoObject* godot_icall_1_195(MethodBind* method, Object* ptr, real_t arg1) {
+MonoObject* godot_icall_1_199(MethodBind* method, Object* ptr, real_t arg1) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -2214,7 +2255,7 @@ MonoObject* godot_icall_1_195(MethodBind* method, Object* ptr, real_t arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-MonoObject* godot_icall_2_196(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
+MonoObject* godot_icall_2_200(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -2224,14 +2265,14 @@ MonoObject* godot_icall_2_196(MethodBind* method, Object* ptr, real_t arg1, bool
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-MonoArray* godot_icall_0_197(MethodBind* method, Object* ptr) {
+MonoArray* godot_icall_0_201(MethodBind* method, Object* ptr) {
 	PoolRealArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoMarshal::PoolRealArray_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_2_198(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
+MonoArray* godot_icall_2_202(MethodBind* method, Object* ptr, int arg1, real_t arg2) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2247,7 +2288,7 @@ Object* godot_icall_Curve3D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_199(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_203(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2278,14 +2319,14 @@ Object* godot_icall_DirectionalLight_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_200(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_204(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_1_201(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_205(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2307,7 +2348,7 @@ Object* godot_icall_DynamicFontData_Ctor(MonoObject* obj) {
 }
 
 #ifdef TOOLS_ENABLED
-void godot_icall_2_202(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
+void godot_icall_2_206(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	PoolStringArray arg2_in = GDMonoMarshal::mono_array_to_PoolStringArray(arg2);
@@ -2317,7 +2358,7 @@ void godot_icall_2_202(MethodBind* method, Object* ptr, MonoString* arg1, MonoAr
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_3_203(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3) {
+void godot_icall_3_207(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	PoolByteArray arg2_in = GDMonoMarshal::mono_array_to_PoolByteArray(arg2);
@@ -2332,7 +2373,7 @@ Object* godot_icall_EditorExportPlugin_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_204(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_208(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2346,7 +2387,7 @@ Object* godot_icall_EditorFileDialog_Ctor(MonoObject* obj) {
 }
 
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_205(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_209(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2355,7 +2396,7 @@ MonoObject* godot_icall_0_205(MethodBind* method, Object* ptr) {
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_1_206(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoObject* godot_icall_1_210(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2366,7 +2407,7 @@ MonoObject* godot_icall_1_206(MethodBind* method, Object* ptr, MonoString* arg1)
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_1_207(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_211(MethodBind* method, Object* ptr, int arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2389,47 +2430,11 @@ Object* godot_icall_EditorImportPlugin_Ctor(MonoObject* obj) {
 }
 
 #ifdef TOOLS_ENABLED
-void godot_icall_2_208(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
+void godot_icall_2_212(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
-}
-
-#endif // TOOLS_ENABLED
-#ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_209(MethodBind* method, Object* ptr) {
-	Object* ret = NULL;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	method->ptrcall(ptr, NULL, &ret);
-	return GDMonoUtils::unmanaged_get_managed(ret);
-}
-
-#endif // TOOLS_ENABLED
-#ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_210(MethodBind* method, Object* ptr) {
-	Ref<Reference> ret;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	method->ptrcall(ptr, NULL, &ret);
-	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
-}
-
-#endif // TOOLS_ENABLED
-#ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_211(MethodBind* method, Object* ptr) {
-	Object* ret = NULL;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	method->ptrcall(ptr, NULL, &ret);
-	return GDMonoUtils::unmanaged_get_managed(ret);
-}
-
-#endif // TOOLS_ENABLED
-#ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_212(MethodBind* method, Object* ptr) {
-	Object* ret = NULL;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	method->ptrcall(ptr, NULL, &ret);
-	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
 #endif // TOOLS_ENABLED
@@ -2443,7 +2448,43 @@ MonoObject* godot_icall_0_213(MethodBind* method, Object* ptr) {
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-MonoArray* godot_icall_2_214(MethodBind* method, Object* ptr, MonoArray* arg1, int arg2) {
+MonoObject* godot_icall_0_214(MethodBind* method, Object* ptr) {
+	Ref<Reference> ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	method->ptrcall(ptr, NULL, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
+}
+
+#endif // TOOLS_ENABLED
+#ifdef TOOLS_ENABLED
+MonoObject* godot_icall_0_215(MethodBind* method, Object* ptr) {
+	Object* ret = NULL;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	method->ptrcall(ptr, NULL, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret);
+}
+
+#endif // TOOLS_ENABLED
+#ifdef TOOLS_ENABLED
+MonoObject* godot_icall_0_216(MethodBind* method, Object* ptr) {
+	Object* ret = NULL;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	method->ptrcall(ptr, NULL, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret);
+}
+
+#endif // TOOLS_ENABLED
+#ifdef TOOLS_ENABLED
+MonoObject* godot_icall_0_217(MethodBind* method, Object* ptr) {
+	Object* ret = NULL;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	method->ptrcall(ptr, NULL, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret);
+}
+
+#endif // TOOLS_ENABLED
+#ifdef TOOLS_ENABLED
+MonoArray* godot_icall_2_218(MethodBind* method, Object* ptr, MonoArray* arg1, int arg2) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Array arg1_in = GDMonoMarshal::mono_array_to_Array(arg1);
@@ -2454,7 +2495,7 @@ MonoArray* godot_icall_2_214(MethodBind* method, Object* ptr, MonoArray* arg1, i
 }
 
 #endif // TOOLS_ENABLED
-void godot_icall_2_215(MethodBind* method, Object* ptr, int arg1, Object* arg2) {
+void godot_icall_2_219(MethodBind* method, Object* ptr, int arg1, Object* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	const void* call_args[2] = { &arg1_in, arg2 };
@@ -2462,7 +2503,7 @@ void godot_icall_2_215(MethodBind* method, Object* ptr, int arg1, Object* arg2) 
 }
 
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_2_216(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_220(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -2473,7 +2514,7 @@ MonoObject* godot_icall_2_216(MethodBind* method, Object* ptr, Object* arg1, Mon
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_2_217(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2) {
+void godot_icall_2_221(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	const void* call_args[2] = { &arg1_in, arg2 };
@@ -2482,7 +2523,7 @@ void godot_icall_2_217(MethodBind* method, Object* ptr, MonoString* arg1, Object
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_4_218(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, Object* arg3, Object* arg4) {
+void godot_icall_4_222(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, Object* arg3, Object* arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -2492,7 +2533,7 @@ void godot_icall_4_218(MethodBind* method, Object* ptr, MonoString* arg1, MonoSt
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_219(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_223(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2501,7 +2542,7 @@ MonoObject* godot_icall_0_219(MethodBind* method, Object* ptr) {
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_220(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_224(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2522,7 +2563,7 @@ Object* godot_icall_EditorResourceConversionPlugin_Ctor(MonoObject* obj) {
 }
 
 #ifdef TOOLS_ENABLED
-void godot_icall_4_221(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3, MonoObject* arg4) {
+void godot_icall_4_225(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3, MonoObject* arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
@@ -2533,7 +2574,7 @@ void godot_icall_4_221(MethodBind* method, Object* ptr, MonoString* arg1, Object
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_4_222(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, MonoString* arg3, MonoObject* arg4) {
+void godot_icall_4_226(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, MonoString* arg3, MonoObject* arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
 	Variant arg4_in = GDMonoMarshal::mono_object_to_variant(arg4);
@@ -2549,7 +2590,7 @@ Object* godot_icall_EditorResourcePreviewGenerator_Ctor(MonoObject* obj) {
 }
 
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_3_223(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
+MonoObject* godot_icall_3_227(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2562,7 +2603,7 @@ MonoObject* godot_icall_3_223(MethodBind* method, Object* ptr, MonoString* arg1,
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_3_224(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
+MonoObject* godot_icall_3_228(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2598,7 +2639,7 @@ Object* godot_icall_EditorSelection_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_225(MethodBind* method, Object* ptr, MonoString* arg1, MonoObject* arg2) {
+void godot_icall_2_229(MethodBind* method, Object* ptr, MonoString* arg1, MonoObject* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	Variant arg2_in = GDMonoMarshal::mono_object_to_variant(arg2);
@@ -2606,7 +2647,7 @@ void godot_icall_2_225(MethodBind* method, Object* ptr, MonoString* arg1, MonoOb
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_226(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoObject* godot_icall_1_230(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2615,14 +2656,14 @@ MonoObject* godot_icall_1_226(MethodBind* method, Object* ptr, MonoString* arg1)
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-void godot_icall_1_227(MethodBind* method, Object* ptr, MonoObject* arg1) {
+void godot_icall_1_231(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	ERR_FAIL_NULL(ptr);
 	Dictionary arg1_in = GDMonoMarshal::mono_object_to_Dictionary(arg1);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_1_228(MethodBind* method, Object* ptr, MonoArray* arg1) {
+void godot_icall_1_232(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	ERR_FAIL_NULL(ptr);
 	PoolStringArray arg1_in = GDMonoMarshal::mono_array_to_PoolStringArray(arg1);
 	const void* call_args[1] = { &arg1_in };
@@ -2630,7 +2671,7 @@ void godot_icall_1_228(MethodBind* method, Object* ptr, MonoArray* arg1) {
 }
 
 #ifdef TOOLS_ENABLED
-void godot_icall_3_229(MethodBind* method, Object* ptr, MonoArray* arg1, Object* arg2, bool arg3) {
+void godot_icall_3_233(MethodBind* method, Object* ptr, MonoArray* arg1, Object* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector3Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector3Array(arg1);
 	const void* call_args[3] = { &arg1_in, arg2, &arg3 };
@@ -2639,7 +2680,7 @@ void godot_icall_3_229(MethodBind* method, Object* ptr, MonoArray* arg1, Object*
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_3_230(MethodBind* method, Object* ptr, Object* arg1, bool arg2, RID* arg3) {
+void godot_icall_3_234(MethodBind* method, Object* ptr, Object* arg1, bool arg2, RID* arg3) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[3] = { arg1, &arg2, arg3 };
 	method->ptrcall(ptr, call_args, NULL);
@@ -2647,7 +2688,7 @@ void godot_icall_3_230(MethodBind* method, Object* ptr, Object* arg1, bool arg2,
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_2_231(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
+void godot_icall_2_235(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(AABB, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
@@ -2656,7 +2697,7 @@ void godot_icall_2_231(MethodBind* method, Object* ptr, Object* arg1, real_t* ar
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_2_232(MethodBind* method, Object* ptr, Object* arg1, real_t arg2) {
+void godot_icall_2_236(MethodBind* method, Object* ptr, Object* arg1, real_t arg2) {
 	ERR_FAIL_NULL(ptr);
 	double arg2_in = (double)arg2;
 	const void* call_args[2] = { arg1, &arg2_in };
@@ -2665,7 +2706,7 @@ void godot_icall_2_232(MethodBind* method, Object* ptr, Object* arg1, real_t arg
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_3_233(MethodBind* method, Object* ptr, MonoArray* arg1, bool arg2, bool arg3) {
+void godot_icall_3_237(MethodBind* method, Object* ptr, MonoArray* arg1, bool arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector3Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector3Array(arg1);
 	const void* call_args[3] = { &arg1_in, &arg2, &arg3 };
@@ -2685,7 +2726,7 @@ Object* godot_icall_EncodedObjectAsID_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_234(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_238(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2704,7 +2745,7 @@ Object* godot_icall_FileDialog_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_5_235(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, MonoString* arg3, real_t* arg4, int arg5) {
+void godot_icall_5_239(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, MonoString* arg3, real_t* arg4, int arg5) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
@@ -2714,7 +2755,7 @@ void godot_icall_5_235(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-real_t godot_icall_5_236(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, int arg3, int arg4, real_t* arg5) {
+real_t godot_icall_5_240(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, int arg3, int arg4, real_t* arg5) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
@@ -2726,7 +2767,7 @@ real_t godot_icall_5_236(MethodBind* method, Object* ptr, RID* arg1, real_t* arg
 	return (real_t)ret;
 }
 
-MonoObject* godot_icall_1_237(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoObject* godot_icall_1_241(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Vector<Variant> varargs;
@@ -2751,14 +2792,14 @@ Object* godot_icall_FuncRef_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_238(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_242(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_3_239(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoArray* arg3) {
+MonoObject* godot_icall_3_243(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoArray* arg3) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2775,7 +2816,7 @@ Object* godot_icall_GDNative_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_240(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_244(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2794,7 +2835,7 @@ Object* godot_icall_GDScript_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_241(MethodBind* method, Object* ptr, MonoObject* arg1) {
+MonoObject* godot_icall_1_245(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Variant arg1_in = GDMonoMarshal::mono_object_to_variant(arg1);
@@ -2803,7 +2844,7 @@ MonoObject* godot_icall_1_241(MethodBind* method, Object* ptr, MonoObject* arg1)
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-bool godot_icall_1_242(MethodBind* method, Object* ptr, bool arg1) {
+bool godot_icall_1_246(MethodBind* method, Object* ptr, bool arg1) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	const void* call_args[1] = { &arg1 };
@@ -2811,14 +2852,14 @@ bool godot_icall_1_242(MethodBind* method, Object* ptr, bool arg1) {
 	return ret;
 }
 
-MonoObject* godot_icall_0_243(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_247(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_2_244(MethodBind* method, Object* ptr, Object* arg1, bool arg2) {
+void godot_icall_2_248(MethodBind* method, Object* ptr, Object* arg1, bool arg2) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[2] = { arg1, &arg2 };
 	method->ptrcall(ptr, call_args, NULL);
@@ -2830,21 +2871,14 @@ Object* godot_icall_GIProbe_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_1_245(MethodBind* method, Object* ptr, real_t* arg1) {
-	ERR_FAIL_NULL(ptr);
-	MARSHALLED_IN(Transform, arg1, arg1_in);
-	const void* call_args[1] = { &arg1_in };
-	method->ptrcall(ptr, call_args, NULL);
-}
-
-void godot_icall_1_246(MethodBind* method, Object* ptr, MonoArray* arg1) {
+void godot_icall_1_249(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	ERR_FAIL_NULL(ptr);
 	PoolIntArray arg1_in = GDMonoMarshal::mono_array_to_PoolIntArray(arg1);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_0_247(MethodBind* method, Object* ptr) {
+MonoArray* godot_icall_0_250(MethodBind* method, Object* ptr) {
 	PoolIntArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2863,7 +2897,7 @@ Object* godot_icall_Generic6DOFJoint_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_248(MethodBind* method, Object* ptr, real_t arg1, real_t* arg2) {
+void godot_icall_2_251(MethodBind* method, Object* ptr, real_t arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	double arg1_in = (double)arg1;
 	MARSHALLED_IN(Color, arg2, arg2_in);
@@ -2871,7 +2905,7 @@ void godot_icall_2_248(MethodBind* method, Object* ptr, real_t arg1, real_t* arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_249(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
+void godot_icall_2_252(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Color, arg2, arg2_in);
@@ -2879,7 +2913,7 @@ void godot_icall_2_249(MethodBind* method, Object* ptr, int arg1, real_t* arg2) 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_250(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_253(MethodBind* method, Object* ptr, int arg1) {
 	Color ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -2889,7 +2923,7 @@ MonoObject* godot_icall_1_250(MethodBind* method, Object* ptr, int arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Color), ret_out);
 }
 
-MonoObject* godot_icall_1_251(MethodBind* method, Object* ptr, real_t arg1) {
+MonoObject* godot_icall_1_254(MethodBind* method, Object* ptr, real_t arg1) {
 	Color ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -2899,21 +2933,21 @@ MonoObject* godot_icall_1_251(MethodBind* method, Object* ptr, real_t arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Color), ret_out);
 }
 
-void godot_icall_1_252(MethodBind* method, Object* ptr, MonoArray* arg1) {
+void godot_icall_1_255(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	ERR_FAIL_NULL(ptr);
 	PoolRealArray arg1_in = GDMonoMarshal::mono_array_to_PoolRealArray(arg1);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_1_253(MethodBind* method, Object* ptr, MonoArray* arg1) {
+void godot_icall_1_256(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	ERR_FAIL_NULL(ptr);
 	PoolColorArray arg1_in = GDMonoMarshal::mono_array_to_PoolColorArray(arg1);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_0_254(MethodBind* method, Object* ptr) {
+MonoArray* godot_icall_0_257(MethodBind* method, Object* ptr) {
 	PoolColorArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2926,7 +2960,7 @@ Object* godot_icall_Gradient_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_255(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_258(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -2939,7 +2973,7 @@ Object* godot_icall_GradientTexture_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_4_256(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3, int arg4) {
+int godot_icall_4_259(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3, int arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2951,7 +2985,7 @@ int godot_icall_4_256(MethodBind* method, Object* ptr, MonoString* arg1, int arg
 	return (int)ret;
 }
 
-bool godot_icall_4_257(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3, int arg4) {
+bool godot_icall_4_260(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3, int arg4) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -2963,7 +2997,7 @@ bool godot_icall_4_257(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	return ret;
 }
 
-void godot_icall_4_258(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3, int arg4) {
+void godot_icall_4_261(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -2979,7 +3013,7 @@ Object* godot_icall_GraphEdit_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_9_259(MethodBind* method, Object* ptr, int arg1, bool arg2, int arg3, real_t* arg4, bool arg5, int arg6, real_t* arg7, Object* arg8, Object* arg9) {
+void godot_icall_9_262(MethodBind* method, Object* ptr, int arg1, bool arg2, int arg3, real_t* arg4, bool arg5, int arg6, real_t* arg7, Object* arg8, Object* arg9) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg3_in = (int64_t)arg3;
@@ -3002,14 +3036,14 @@ Object* godot_icall_GridContainer_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_260(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_263(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_5_261(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, int arg4, int arg5) {
+void godot_icall_5_264(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, int arg4, int arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -3020,7 +3054,7 @@ void godot_icall_5_261(MethodBind* method, Object* ptr, int arg1, int arg2, int 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-int godot_icall_3_262(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3) {
+int godot_icall_3_265(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -3031,7 +3065,7 @@ int godot_icall_3_262(MethodBind* method, Object* ptr, int arg1, int arg2, int a
 	return (int)ret;
 }
 
-MonoObject* godot_icall_3_263(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3) {
+MonoObject* godot_icall_3_266(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3043,11 +3077,27 @@ MonoObject* godot_icall_3_263(MethodBind* method, Object* ptr, int arg1, int arg
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-void godot_icall_4_264(MethodBind* method, Object* ptr, bool arg1, bool arg2, int arg3, int arg4) {
+void godot_icall_4_267(MethodBind* method, Object* ptr, bool arg1, bool arg2, int arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg3_in = (int64_t)arg3;
 	int64_t arg4_in = (int64_t)arg4;
 	const void* call_args[4] = { &arg1, &arg2, &arg3_in, &arg4_in };
+	method->ptrcall(ptr, call_args, NULL);
+}
+
+RID* godot_icall_1_268(MethodBind* method, Object* ptr, int arg1) {
+	RID ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	int64_t arg1_in = (int64_t)arg1;
+	const void* call_args[1] = { &arg1_in };
+	method->ptrcall(ptr, call_args, &ret);
+	return memnew(RID(ret));
+}
+
+void godot_icall_2_269(MethodBind* method, Object* ptr, bool arg1, real_t arg2) {
+	ERR_FAIL_NULL(ptr);
+	double arg2_in = (double)arg2;
+	const void* call_args[2] = { &arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
@@ -3093,7 +3143,7 @@ Object* godot_icall_HSplitContainer_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_4_265(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, bool arg3, bool arg4) {
+int godot_icall_4_270(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, bool arg3, bool arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -3103,14 +3153,14 @@ int godot_icall_4_265(MethodBind* method, Object* ptr, MonoString* arg1, int arg
 	return (int)ret;
 }
 
-MonoObject* godot_icall_0_266(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_271(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-int godot_icall_4_267(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoArray* arg3, MonoArray* arg4) {
+int godot_icall_4_272(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoArray* arg3, MonoArray* arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -3122,7 +3172,7 @@ int godot_icall_4_267(MethodBind* method, Object* ptr, int arg1, MonoString* arg
 	return (int)ret;
 }
 
-int godot_icall_4_268(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoArray* arg3, MonoString* arg4) {
+int godot_icall_4_273(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoArray* arg3, MonoString* arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -3134,14 +3184,14 @@ int godot_icall_4_268(MethodBind* method, Object* ptr, int arg1, MonoString* arg
 	return (int)ret;
 }
 
-MonoObject* godot_icall_0_269(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_274(MethodBind* method, Object* ptr) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoMarshal::Dictionary_to_mono_object(ret);
 }
 
-MonoString* godot_icall_1_270(MethodBind* method, Object* ptr, MonoObject* arg1) {
+MonoString* godot_icall_1_275(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Dictionary arg1_in = GDMonoMarshal::mono_object_to_Dictionary(arg1);
@@ -3156,7 +3206,7 @@ Object* godot_icall_HTTPClient_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_5_271(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3, int arg4, MonoString* arg5) {
+int godot_icall_5_276(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3, int arg4, MonoString* arg5) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -3180,7 +3230,7 @@ Object* godot_icall_HingeJoint_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_2_272(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
+int godot_icall_2_277(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -3194,7 +3244,7 @@ Object* godot_icall_IP_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("IP");
 }
 
-void godot_icall_4_273(MethodBind* method, Object* ptr, int arg1, int arg2, bool arg3, int arg4) {
+void godot_icall_4_278(MethodBind* method, Object* ptr, int arg1, int arg2, bool arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -3203,7 +3253,7 @@ void godot_icall_4_273(MethodBind* method, Object* ptr, int arg1, int arg2, bool
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_5_274(MethodBind* method, Object* ptr, int arg1, int arg2, bool arg3, int arg4, MonoArray* arg5) {
+void godot_icall_5_279(MethodBind* method, Object* ptr, int arg1, int arg2, bool arg3, int arg4, MonoArray* arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -3213,7 +3263,7 @@ void godot_icall_5_274(MethodBind* method, Object* ptr, int arg1, int arg2, bool
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-int godot_icall_3_275(MethodBind* method, Object* ptr, int arg1, int arg2, real_t arg3) {
+int godot_icall_3_280(MethodBind* method, Object* ptr, int arg1, int arg2, real_t arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -3224,7 +3274,7 @@ int godot_icall_3_275(MethodBind* method, Object* ptr, int arg1, int arg2, real_
 	return (int)ret;
 }
 
-void godot_icall_3_276(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, real_t* arg3) {
+void godot_icall_3_281(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Vector2, arg3, arg3_in);
@@ -3232,7 +3282,7 @@ void godot_icall_3_276(MethodBind* method, Object* ptr, Object* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_277(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, real_t* arg3, real_t* arg4) {
+void godot_icall_4_282(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, real_t* arg3, real_t* arg4) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg3, arg3_in);
 	MARSHALLED_IN(Vector2, arg4, arg4_in);
@@ -3240,7 +3290,7 @@ void godot_icall_4_277(MethodBind* method, Object* ptr, Object* arg1, Object* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_278(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_283(MethodBind* method, Object* ptr, real_t* arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Rect2, arg1, arg1_in);
@@ -3249,7 +3299,7 @@ MonoObject* godot_icall_1_278(MethodBind* method, Object* ptr, real_t* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_3_279(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3) {
+void godot_icall_3_284(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -3258,7 +3308,7 @@ void godot_icall_3_279(MethodBind* method, Object* ptr, int arg1, int arg2, real
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_280(MethodBind* method, Object* ptr, int arg1, int arg2) {
+MonoObject* godot_icall_2_285(MethodBind* method, Object* ptr, int arg1, int arg2) {
 	Color ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3269,13 +3319,22 @@ MonoObject* godot_icall_2_280(MethodBind* method, Object* ptr, int arg1, int arg
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Color), ret_out);
 }
 
+int godot_icall_1_286(MethodBind* method, Object* ptr, MonoArray* arg1) {
+	int64_t ret;
+	ERR_FAIL_NULL_V(ptr, int());
+	PoolByteArray arg1_in = GDMonoMarshal::mono_array_to_PoolByteArray(arg1);
+	const void* call_args[1] = { &arg1_in };
+	method->ptrcall(ptr, call_args, &ret);
+	return (int)ret;
+}
+
 Object* godot_icall_Image_Ctor(MonoObject* obj) {
 	GODOTSHARP_INSTANCE_OBJECT(instance, "Image");
 	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
 	return instance;
 }
 
-void godot_icall_4_281(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, int arg4) {
+void godot_icall_4_287(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -3285,7 +3344,7 @@ void godot_icall_4_281(MethodBind* method, Object* ptr, int arg1, int arg2, int 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_282(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
+void godot_icall_2_288(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	const void* call_args[2] = { arg1, &arg2_in };
@@ -3298,14 +3357,14 @@ Object* godot_icall_ImageTexture_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_1_283(MethodBind* method, Object* ptr, real_t* arg1) {
+void godot_icall_1_289(MethodBind* method, Object* ptr, real_t* arg1) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Plane, arg1, arg1_in);
 	const void* call_args[1] = { &arg1_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_284(MethodBind* method, Object* ptr, int arg1, int arg2, real_t arg3, bool arg4) {
+void godot_icall_4_290(MethodBind* method, Object* ptr, int arg1, int arg2, real_t arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -3320,7 +3379,7 @@ Object* godot_icall_ImmediateGeometry_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_4_285(MethodBind* method, Object* ptr, int arg1, bool arg2, MonoString* arg3, MonoString* arg4) {
+void godot_icall_4_291(MethodBind* method, Object* ptr, int arg1, bool arg2, MonoString* arg3, MonoString* arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
@@ -3329,7 +3388,7 @@ void godot_icall_4_285(MethodBind* method, Object* ptr, int arg1, bool arg2, Mon
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_286(MethodBind* method, Object* ptr, int arg1, real_t arg2, real_t arg3, real_t arg4) {
+void godot_icall_4_292(MethodBind* method, Object* ptr, int arg1, real_t arg2, real_t arg3, real_t arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	double arg2_in = (double)arg2;
@@ -3339,7 +3398,7 @@ void godot_icall_4_286(MethodBind* method, Object* ptr, int arg1, real_t arg2, r
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_287(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
+void godot_icall_2_293(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
@@ -3350,7 +3409,7 @@ Object* godot_icall_Input_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("Input");
 }
 
-bool godot_icall_1_288(MethodBind* method, Object* ptr, Object* arg1) {
+bool godot_icall_1_294(MethodBind* method, Object* ptr, Object* arg1) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	const void* call_args[1] = { arg1 };
@@ -3358,7 +3417,7 @@ bool godot_icall_1_288(MethodBind* method, Object* ptr, Object* arg1) {
 	return ret;
 }
 
-MonoObject* godot_icall_2_289(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
+MonoObject* godot_icall_2_295(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Transform2D, arg1, arg1_in);
@@ -3428,7 +3487,7 @@ Object* godot_icall_InputEventScreenTouch_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-bool godot_icall_2_290(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2) {
+bool godot_icall_2_296(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -3437,7 +3496,7 @@ bool godot_icall_2_290(MethodBind* method, Object* ptr, MonoString* arg1, Object
 	return ret;
 }
 
-MonoArray* godot_icall_1_291(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoArray* godot_icall_1_297(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -3446,7 +3505,7 @@ MonoArray* godot_icall_1_291(MethodBind* method, Object* ptr, MonoString* arg1) 
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-bool godot_icall_2_292(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
+bool godot_icall_2_298(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -3459,7 +3518,7 @@ Object* godot_icall_InputMap_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("InputMap");
 }
 
-MonoObject* godot_icall_1_293(MethodBind* method, Object* ptr, bool arg1) {
+MonoObject* godot_icall_1_299(MethodBind* method, Object* ptr, bool arg1) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { &arg1 };
@@ -3473,20 +3532,20 @@ Object* godot_icall_InterpolatedCamera_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_294(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, bool arg3) {
+void godot_icall_3_300(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	const void* call_args[3] = { &arg1_in, arg2, &arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_295(MethodBind* method, Object* ptr, Object* arg1, bool arg2) {
+void godot_icall_2_301(MethodBind* method, Object* ptr, Object* arg1, bool arg2) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[2] = { arg1, &arg2 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_296(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
+void godot_icall_2_302(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
@@ -3494,7 +3553,7 @@ void godot_icall_2_296(MethodBind* method, Object* ptr, int arg1, real_t* arg2) 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_297(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_303(MethodBind* method, Object* ptr, int arg1) {
 	Rect2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3504,7 +3563,7 @@ MonoObject* godot_icall_1_297(MethodBind* method, Object* ptr, int arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Rect2), ret_out);
 }
 
-void godot_icall_2_298(MethodBind* method, Object* ptr, int arg1, MonoObject* arg2) {
+void godot_icall_2_304(MethodBind* method, Object* ptr, int arg1, MonoObject* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	Variant arg2_in = GDMonoMarshal::mono_object_to_variant(arg2);
@@ -3512,7 +3571,7 @@ void godot_icall_2_298(MethodBind* method, Object* ptr, int arg1, MonoObject* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_299(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_305(MethodBind* method, Object* ptr, int arg1) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3521,7 +3580,7 @@ MonoObject* godot_icall_1_299(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-int godot_icall_2_300(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
+int godot_icall_2_306(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -3530,7 +3589,7 @@ int godot_icall_2_300(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) 
 	return (int)ret;
 }
 
-MonoObject* godot_icall_0_301(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_307(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -3543,14 +3602,14 @@ Object* godot_icall_ItemList_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_302(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_308(MethodBind* method, Object* ptr) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-void godot_icall_1_303(MethodBind* method, Object* ptr, MonoObject* arg1) {
+void godot_icall_1_309(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	ERR_FAIL_NULL(ptr);
 	Variant arg1_in = GDMonoMarshal::mono_object_to_variant(arg1);
 	const void* call_args[1] = { &arg1_in };
@@ -3563,7 +3622,7 @@ Object* godot_icall_JSONParseResult_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_2_304(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2) {
+MonoObject* godot_icall_2_310(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -3576,7 +3635,7 @@ Object* godot_icall_JavaScript_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("JavaScript");
 }
 
-MonoObject* godot_icall_1_305(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_311(MethodBind* method, Object* ptr, real_t* arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -3585,7 +3644,7 @@ MonoObject* godot_icall_1_305(MethodBind* method, Object* ptr, real_t* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_5_306(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t arg3, int arg4, real_t arg5) {
+MonoObject* godot_icall_5_312(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t arg3, int arg4, real_t arg5) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -3599,7 +3658,7 @@ MonoObject* godot_icall_5_306(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-bool godot_icall_2_307(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
+bool godot_icall_2_313(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Transform, arg1, arg1_in);
@@ -3609,7 +3668,7 @@ bool godot_icall_2_307(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	return ret;
 }
 
-MonoObject* godot_icall_1_308(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_314(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3624,7 +3683,7 @@ Object* godot_icall_KinematicBody_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_309(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_315(MethodBind* method, Object* ptr, real_t* arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -3633,7 +3692,7 @@ MonoObject* godot_icall_1_309(MethodBind* method, Object* ptr, real_t* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_5_310(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t arg3, int arg4, real_t arg5) {
+MonoObject* godot_icall_5_316(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t arg3, int arg4, real_t arg5) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -3647,7 +3706,7 @@ MonoObject* godot_icall_5_310(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-bool godot_icall_2_311(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
+bool godot_icall_2_317(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Transform2D, arg1, arg1_in);
@@ -3657,7 +3716,7 @@ bool godot_icall_2_311(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	return ret;
 }
 
-MonoObject* godot_icall_1_312(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_318(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3672,7 +3731,7 @@ Object* godot_icall_KinematicBody2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_313(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_319(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -3697,7 +3756,7 @@ Object* godot_icall_Label_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_2_314(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2) {
+int godot_icall_2_320(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -3718,7 +3777,7 @@ Object* godot_icall_Light2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_315(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_321(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -3737,7 +3796,7 @@ Object* godot_icall_Line2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_316(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_322(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -3768,7 +3827,7 @@ Object* godot_icall_Listener_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-bool godot_icall_1_317(MethodBind* method, Object* ptr, real_t arg1) {
+bool godot_icall_1_323(MethodBind* method, Object* ptr, real_t arg1) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	double arg1_in = (double)arg1;
@@ -3795,7 +3854,7 @@ Object* godot_icall_MenuButton_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_318(MethodBind* method, Object* ptr, real_t arg1) {
+MonoObject* godot_icall_1_324(MethodBind* method, Object* ptr, real_t arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -3804,14 +3863,14 @@ MonoObject* godot_icall_1_318(MethodBind* method, Object* ptr, real_t arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_0_319(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_325(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-int godot_icall_2_320(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
+int godot_icall_2_326(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg2_in = (int64_t)arg2;
@@ -3820,7 +3879,7 @@ int godot_icall_2_320(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	return (int)ret;
 }
 
-int godot_icall_1_321(MethodBind* method, Object* ptr, Object* arg1) {
+int godot_icall_1_327(MethodBind* method, Object* ptr, Object* arg1) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	const void* call_args[1] = { arg1 };
@@ -3828,7 +3887,7 @@ int godot_icall_1_321(MethodBind* method, Object* ptr, Object* arg1) {
 	return (int)ret;
 }
 
-void godot_icall_2_322(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
+void godot_icall_2_328(MethodBind* method, Object* ptr, int arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Plane, arg2, arg2_in);
@@ -3836,7 +3895,7 @@ void godot_icall_2_322(MethodBind* method, Object* ptr, int arg1, real_t* arg2) 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_323(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_329(MethodBind* method, Object* ptr, int arg1) {
 	Plane ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3846,7 +3905,7 @@ MonoObject* godot_icall_1_323(MethodBind* method, Object* ptr, int arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Plane), ret_out);
 }
 
-void godot_icall_2_324(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
+void godot_icall_2_330(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	PoolIntArray arg2_in = GDMonoMarshal::mono_array_to_PoolIntArray(arg2);
@@ -3854,7 +3913,7 @@ void godot_icall_2_324(MethodBind* method, Object* ptr, int arg1, MonoArray* arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_325(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
+void godot_icall_2_331(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	PoolRealArray arg2_in = GDMonoMarshal::mono_array_to_PoolRealArray(arg2);
@@ -3862,7 +3921,7 @@ void godot_icall_2_325(MethodBind* method, Object* ptr, int arg1, MonoArray* arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_1_326(MethodBind* method, Object* ptr, int arg1) {
+MonoArray* godot_icall_1_332(MethodBind* method, Object* ptr, int arg1) {
 	PoolRealArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3877,7 +3936,7 @@ Object* godot_icall_MeshDataTool_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_327(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_333(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -3890,7 +3949,7 @@ Object* godot_icall_MeshInstance_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_328(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
+void godot_icall_2_334(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	Array arg2_in = GDMonoMarshal::mono_array_to_Array(arg2);
@@ -3898,7 +3957,7 @@ void godot_icall_2_328(MethodBind* method, Object* ptr, int arg1, MonoArray* arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_329(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_335(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3907,7 +3966,7 @@ MonoObject* godot_icall_1_329(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_1_330(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_336(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -3934,7 +3993,7 @@ Object* godot_icall_MultiMesh_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_331(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_337(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -3953,7 +4012,7 @@ Object* godot_icall_NativeScript_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_3_332(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, Object* arg3) {
+int godot_icall_3_338(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, Object* arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	MARSHALLED_IN(Transform, arg2, arg2_in);
@@ -3962,7 +4021,7 @@ int godot_icall_3_332(MethodBind* method, Object* ptr, Object* arg1, real_t* arg
 	return (int)ret;
 }
 
-MonoArray* godot_icall_3_333(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
+MonoArray* godot_icall_3_339(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -3972,7 +4031,7 @@ MonoArray* godot_icall_3_333(MethodBind* method, Object* ptr, real_t* arg1, real
 	return GDMonoMarshal::PoolVector3Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_3_334(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
+MonoObject* godot_icall_3_340(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -3983,7 +4042,7 @@ MonoObject* godot_icall_3_334(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-MonoObject* godot_icall_1_335(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_341(MethodBind* method, Object* ptr, real_t* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -3998,7 +4057,7 @@ Object* godot_icall_Navigation_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_3_336(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, Object* arg3) {
+int godot_icall_3_342(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, Object* arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	MARSHALLED_IN(Transform2D, arg2, arg2_in);
@@ -4007,7 +4066,7 @@ int godot_icall_3_336(MethodBind* method, Object* ptr, Object* arg1, real_t* arg
 	return (int)ret;
 }
 
-MonoArray* godot_icall_3_337(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
+MonoArray* godot_icall_3_343(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, bool arg3) {
 	PoolVector2Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4017,7 +4076,7 @@ MonoArray* godot_icall_3_337(MethodBind* method, Object* ptr, real_t* arg1, real
 	return GDMonoMarshal::PoolVector2Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_1_338(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_344(MethodBind* method, Object* ptr, real_t* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4038,7 +4097,7 @@ Object* godot_icall_NavigationMesh_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_339(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_345(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -4051,7 +4110,7 @@ Object* godot_icall_NavigationMeshInstance_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_340(MethodBind* method, Object* ptr, MonoArray* arg1, int arg2) {
+void godot_icall_2_346(MethodBind* method, Object* ptr, MonoArray* arg1, int arg2) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -4059,7 +4118,7 @@ void godot_icall_2_340(MethodBind* method, Object* ptr, MonoArray* arg1, int arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_341(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
+void godot_icall_2_347(MethodBind* method, Object* ptr, int arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	PoolVector2Array arg2_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg2);
@@ -4067,7 +4126,7 @@ void godot_icall_2_341(MethodBind* method, Object* ptr, int arg1, MonoArray* arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_1_342(MethodBind* method, Object* ptr, int arg1) {
+MonoArray* godot_icall_1_348(MethodBind* method, Object* ptr, int arg1) {
 	PoolVector2Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -4082,7 +4141,7 @@ Object* godot_icall_NavigationPolygon_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_343(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_349(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -4095,7 +4154,7 @@ Object* godot_icall_NavigationPolygonInstance_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_4_344(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, int arg4) {
+int godot_icall_4_350(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, int arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -4107,7 +4166,7 @@ int godot_icall_4_344(MethodBind* method, Object* ptr, int arg1, int arg2, int a
 	return (int)ret;
 }
 
-int godot_icall_4_345(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
+int godot_icall_4_351(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -4131,13 +4190,13 @@ Object* godot_icall_NinePatchRect_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_346(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, bool arg3) {
+void godot_icall_3_352(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[3] = { arg1, arg2, &arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_347(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_353(MethodBind* method, Object* ptr, int arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -4146,7 +4205,7 @@ MonoObject* godot_icall_1_347(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-bool godot_icall_1_348(MethodBind* method, Object* ptr, NodePath* arg1) {
+bool godot_icall_1_354(MethodBind* method, Object* ptr, NodePath* arg1) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	const void* call_args[1] = { arg1 };
@@ -4154,7 +4213,7 @@ bool godot_icall_1_348(MethodBind* method, Object* ptr, NodePath* arg1) {
 	return ret;
 }
 
-MonoObject* godot_icall_1_349(MethodBind* method, Object* ptr, NodePath* arg1) {
+MonoObject* godot_icall_1_355(MethodBind* method, Object* ptr, NodePath* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4162,7 +4221,7 @@ MonoObject* godot_icall_1_349(MethodBind* method, Object* ptr, NodePath* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_3_350(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2, bool arg3) {
+MonoObject* godot_icall_3_356(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2, bool arg3) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -4171,7 +4230,7 @@ MonoObject* godot_icall_3_350(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoArray* godot_icall_1_351(MethodBind* method, Object* ptr, NodePath* arg1) {
+MonoArray* godot_icall_1_357(MethodBind* method, Object* ptr, NodePath* arg1) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4179,7 +4238,7 @@ MonoArray* godot_icall_1_351(MethodBind* method, Object* ptr, NodePath* arg1) {
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-NodePath* godot_icall_1_352(MethodBind* method, Object* ptr, Object* arg1) {
+NodePath* godot_icall_1_358(MethodBind* method, Object* ptr, Object* arg1) {
 	NodePath ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4187,14 +4246,14 @@ NodePath* godot_icall_1_352(MethodBind* method, Object* ptr, Object* arg1) {
 	return memnew(NodePath(ret));
 }
 
-void godot_icall_2_353(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
+void godot_icall_2_359(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_354(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3) {
+void godot_icall_3_360(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	Array arg2_in = GDMonoMarshal::mono_array_to_Array(arg2);
@@ -4202,21 +4261,21 @@ void godot_icall_3_354(MethodBind* method, Object* ptr, MonoString* arg1, MonoAr
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_355(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_361(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_0_356(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_362(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_2_357(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
+MonoObject* godot_icall_2_363(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Vector<Variant> varargs;
@@ -4237,7 +4296,7 @@ MonoObject* godot_icall_2_357(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-MonoObject* godot_icall_3_358(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoArray* arg3) {
+MonoObject* godot_icall_3_364(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoArray* arg3) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Vector<Variant> varargs;
@@ -4260,7 +4319,7 @@ MonoObject* godot_icall_3_358(MethodBind* method, Object* ptr, int arg1, MonoStr
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-void godot_icall_3_359(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoObject* arg3) {
+void godot_icall_3_365(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoObject* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -4275,7 +4334,7 @@ Object* godot_icall_Node_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-real_t godot_icall_1_360(MethodBind* method, Object* ptr, real_t* arg1) {
+real_t godot_icall_1_366(MethodBind* method, Object* ptr, real_t* arg1) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4284,7 +4343,7 @@ real_t godot_icall_1_360(MethodBind* method, Object* ptr, real_t* arg1) {
 	return (real_t)ret;
 }
 
-MonoObject* godot_icall_1_361(MethodBind* method, Object* ptr, Object* arg1) {
+MonoObject* godot_icall_1_367(MethodBind* method, Object* ptr, Object* arg1) {
 	Transform2D ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4299,14 +4358,14 @@ Object* godot_icall_Node2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_362(MethodBind* method, Object* ptr, NodePath* arg1, MonoObject* arg2) {
+void godot_icall_2_368(MethodBind* method, Object* ptr, NodePath* arg1, MonoObject* arg2) {
 	ERR_FAIL_NULL(ptr);
 	Variant arg2_in = GDMonoMarshal::mono_object_to_variant(arg2);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_363(MethodBind* method, Object* ptr, NodePath* arg1) {
+MonoObject* godot_icall_1_369(MethodBind* method, Object* ptr, NodePath* arg1) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4314,14 +4373,14 @@ MonoObject* godot_icall_1_363(MethodBind* method, Object* ptr, NodePath* arg1) {
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-MonoObject* godot_icall_0_364(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_370(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_2_365(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
+void godot_icall_2_371(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	Array arg2_in = GDMonoMarshal::mono_array_to_Array(arg2);
@@ -4329,7 +4388,7 @@ void godot_icall_2_365(MethodBind* method, Object* ptr, MonoString* arg1, MonoAr
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_366(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
+MonoObject* godot_icall_2_372(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -4339,7 +4398,7 @@ MonoObject* godot_icall_2_366(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-int godot_icall_5_367(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3, MonoArray* arg4, int arg5) {
+int godot_icall_5_373(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3, MonoArray* arg4, int arg5) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -4351,7 +4410,7 @@ int godot_icall_5_367(MethodBind* method, Object* ptr, MonoString* arg1, Object*
 	return (int)ret;
 }
 
-void godot_icall_3_368(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3) {
+void godot_icall_3_374(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
@@ -4359,7 +4418,7 @@ void godot_icall_3_368(MethodBind* method, Object* ptr, MonoString* arg1, Object
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_3_369(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3) {
+bool godot_icall_3_375(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, MonoString* arg3) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -4387,7 +4446,7 @@ Object* godot_icall_OmniLight_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_370(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, int arg3) {
+void godot_icall_3_376(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	int64_t arg3_in = (int64_t)arg3;
@@ -4401,7 +4460,7 @@ Object* godot_icall_OptionButton_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_1_371(MethodBind* method, Object* ptr, bool arg1) {
+int godot_icall_1_377(MethodBind* method, Object* ptr, bool arg1) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	const void* call_args[1] = { &arg1 };
@@ -4421,7 +4480,7 @@ Object* godot_icall_PHashTranslation_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_1_372(MethodBind* method, Object* ptr, MonoObject* arg1) {
+int godot_icall_1_378(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	Variant arg1_in = GDMonoMarshal::mono_object_to_variant(arg1);
@@ -4436,7 +4495,7 @@ Object* godot_icall_PackedDataContainer_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_373(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_379(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -4449,22 +4508,13 @@ Object* godot_icall_PackedScene_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_1_374(MethodBind* method, Object* ptr, MonoArray* arg1) {
-	int64_t ret;
-	ERR_FAIL_NULL_V(ptr, int());
-	PoolByteArray arg1_in = GDMonoMarshal::mono_array_to_PoolByteArray(arg1);
-	const void* call_args[1] = { &arg1_in };
-	method->ptrcall(ptr, call_args, &ret);
-	return (int)ret;
-}
-
 Object* godot_icall_PacketPeerStream_Ctor(MonoObject* obj) {
 	GODOTSHARP_INSTANCE_OBJECT(instance, "PacketPeerStream");
 	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
 	return instance;
 }
 
-int godot_icall_3_375(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, int arg3) {
+int godot_icall_3_380(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, int arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -4523,14 +4573,14 @@ Object* godot_icall_Particles2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_376(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_381(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_0_377(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_382(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -4543,7 +4593,7 @@ Object* godot_icall_ParticlesMaterial_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_378(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_383(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -4556,7 +4606,7 @@ Object* godot_icall_Path_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_379(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_384(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -4585,23 +4635,14 @@ Object* godot_icall_Performance_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("Performance");
 }
 
-RID* godot_icall_1_380(MethodBind* method, Object* ptr, int arg1) {
-	RID ret;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	int64_t arg1_in = (int64_t)arg1;
-	const void* call_args[1] = { &arg1_in };
-	method->ptrcall(ptr, call_args, &ret);
-	return memnew(RID(ret));
-}
-
-MonoObject* godot_icall_0_381(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_385(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoArray* godot_icall_4_382(MethodBind* method, Object* ptr, real_t* arg1, int arg2, MonoArray* arg3, int arg4) {
+MonoArray* godot_icall_4_386(MethodBind* method, Object* ptr, real_t* arg1, int arg2, MonoArray* arg3, int arg4) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4613,7 +4654,7 @@ MonoArray* godot_icall_4_382(MethodBind* method, Object* ptr, real_t* arg1, int 
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_4_383(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, MonoArray* arg3, int arg4) {
+MonoObject* godot_icall_4_387(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, MonoArray* arg3, int arg4) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4625,7 +4666,7 @@ MonoObject* godot_icall_4_383(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return GDMonoMarshal::Dictionary_to_mono_object(ret);
 }
 
-MonoArray* godot_icall_2_384(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
+MonoArray* godot_icall_2_388(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -4634,7 +4675,7 @@ MonoArray* godot_icall_2_384(MethodBind* method, Object* ptr, Object* arg1, int 
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_1_385(MethodBind* method, Object* ptr, Object* arg1) {
+MonoArray* godot_icall_1_389(MethodBind* method, Object* ptr, Object* arg1) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4642,7 +4683,7 @@ MonoArray* godot_icall_1_385(MethodBind* method, Object* ptr, Object* arg1) {
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_1_386(MethodBind* method, Object* ptr, Object* arg1) {
+MonoObject* godot_icall_1_390(MethodBind* method, Object* ptr, Object* arg1) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4650,14 +4691,14 @@ MonoObject* godot_icall_1_386(MethodBind* method, Object* ptr, Object* arg1) {
 	return GDMonoMarshal::Dictionary_to_mono_object(ret);
 }
 
-void godot_icall_2_387(MethodBind* method, Object* ptr, RID* arg1, MonoObject* arg2) {
+void godot_icall_2_391(MethodBind* method, Object* ptr, RID* arg1, MonoObject* arg2) {
 	ERR_FAIL_NULL(ptr);
 	Variant arg2_in = GDMonoMarshal::mono_object_to_variant(arg2);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-int godot_icall_1_388(MethodBind* method, Object* ptr, RID* arg1) {
+int godot_icall_1_392(MethodBind* method, Object* ptr, RID* arg1) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	const void* call_args[1] = { arg1 };
@@ -4665,7 +4706,7 @@ int godot_icall_1_388(MethodBind* method, Object* ptr, RID* arg1) {
 	return (int)ret;
 }
 
-MonoObject* godot_icall_1_389(MethodBind* method, Object* ptr, RID* arg1) {
+MonoObject* godot_icall_1_393(MethodBind* method, Object* ptr, RID* arg1) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4673,13 +4714,13 @@ MonoObject* godot_icall_1_389(MethodBind* method, Object* ptr, RID* arg1) {
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-void godot_icall_2_390(MethodBind* method, Object* ptr, RID* arg1, bool arg2) {
+void godot_icall_2_394(MethodBind* method, Object* ptr, RID* arg1, bool arg2) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[2] = { arg1, &arg2 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_1_391(MethodBind* method, Object* ptr, RID* arg1) {
+bool godot_icall_1_395(MethodBind* method, Object* ptr, RID* arg1) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	const void* call_args[1] = { arg1 };
@@ -4687,7 +4728,7 @@ bool godot_icall_1_391(MethodBind* method, Object* ptr, RID* arg1) {
 	return ret;
 }
 
-void godot_icall_3_392(MethodBind* method, Object* ptr, RID* arg1, int arg2, real_t arg3) {
+void godot_icall_3_396(MethodBind* method, Object* ptr, RID* arg1, int arg2, real_t arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	double arg3_in = (double)arg3;
@@ -4695,7 +4736,7 @@ void godot_icall_3_392(MethodBind* method, Object* ptr, RID* arg1, int arg2, rea
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-real_t godot_icall_2_393(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+real_t godot_icall_2_397(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	int64_t arg2_in = (int64_t)arg2;
@@ -4704,7 +4745,7 @@ real_t godot_icall_2_393(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	return (real_t)ret;
 }
 
-MonoObject* godot_icall_1_394(MethodBind* method, Object* ptr, RID* arg1) {
+MonoObject* godot_icall_1_398(MethodBind* method, Object* ptr, RID* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4712,13 +4753,13 @@ MonoObject* godot_icall_1_394(MethodBind* method, Object* ptr, RID* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-void godot_icall_2_395(MethodBind* method, Object* ptr, RID* arg1, RID* arg2) {
+void godot_icall_2_399(MethodBind* method, Object* ptr, RID* arg1, RID* arg2) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[2] = { arg1, arg2 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-RID* godot_icall_1_396(MethodBind* method, Object* ptr, RID* arg1) {
+RID* godot_icall_1_400(MethodBind* method, Object* ptr, RID* arg1) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4726,28 +4767,28 @@ RID* godot_icall_1_396(MethodBind* method, Object* ptr, RID* arg1) {
 	return memnew(RID(ret));
 }
 
-void godot_icall_2_397(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+void godot_icall_2_401(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_398(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, real_t* arg3) {
+void godot_icall_3_402(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Transform2D, arg3, arg3_in);
 	const void* call_args[3] = { arg1, arg2, &arg3_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_399(MethodBind* method, Object* ptr, RID* arg1, int arg2, RID* arg3) {
+void godot_icall_3_403(MethodBind* method, Object* ptr, RID* arg1, int arg2, RID* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	const void* call_args[3] = { arg1, &arg2_in, arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_400(MethodBind* method, Object* ptr, RID* arg1, int arg2, real_t* arg3) {
+void godot_icall_3_404(MethodBind* method, Object* ptr, RID* arg1, int arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	MARSHALLED_IN(Transform2D, arg3, arg3_in);
@@ -4755,14 +4796,14 @@ void godot_icall_3_400(MethodBind* method, Object* ptr, RID* arg1, int arg2, rea
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_401(MethodBind* method, Object* ptr, RID* arg1, int arg2, bool arg3) {
+void godot_icall_3_405(MethodBind* method, Object* ptr, RID* arg1, int arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	const void* call_args[3] = { arg1, &arg2_in, &arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-RID* godot_icall_2_402(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+RID* godot_icall_2_406(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -4771,7 +4812,7 @@ RID* godot_icall_2_402(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	return memnew(RID(ret));
 }
 
-MonoObject* godot_icall_2_403(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+MonoObject* godot_icall_2_407(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	Transform2D ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -4781,13 +4822,13 @@ MonoObject* godot_icall_2_403(MethodBind* method, Object* ptr, RID* arg1, int ar
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform2D), ret_out);
 }
 
-void godot_icall_1_404(MethodBind* method, Object* ptr, RID* arg1) {
+void godot_icall_1_408(MethodBind* method, Object* ptr, RID* arg1) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[1] = { arg1 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_405(MethodBind* method, Object* ptr, RID* arg1, int arg2, MonoObject* arg3) {
+void godot_icall_3_409(MethodBind* method, Object* ptr, RID* arg1, int arg2, MonoObject* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	Variant arg3_in = GDMonoMarshal::mono_object_to_variant(arg3);
@@ -4795,14 +4836,14 @@ void godot_icall_3_405(MethodBind* method, Object* ptr, RID* arg1, int arg2, Mon
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_406(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
+void godot_icall_2_410(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Transform2D, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_407(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+MonoObject* godot_icall_2_411(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -4811,7 +4852,7 @@ MonoObject* godot_icall_2_407(MethodBind* method, Object* ptr, RID* arg1, int ar
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-MonoObject* godot_icall_1_408(MethodBind* method, Object* ptr, RID* arg1) {
+MonoObject* godot_icall_1_412(MethodBind* method, Object* ptr, RID* arg1) {
 	Transform2D ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4820,14 +4861,14 @@ MonoObject* godot_icall_1_408(MethodBind* method, Object* ptr, RID* arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform2D), ret_out);
 }
 
-void godot_icall_3_409(MethodBind* method, Object* ptr, RID* arg1, Object* arg2, MonoString* arg3) {
+void godot_icall_3_413(MethodBind* method, Object* ptr, RID* arg1, Object* arg2, MonoString* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
 	const void* call_args[3] = { arg1, arg2, &arg3_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_410(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3) {
+void godot_icall_3_414(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	MARSHALLED_IN(Vector2, arg3, arg3_in);
@@ -4835,14 +4876,14 @@ void godot_icall_3_410(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_411(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
+void godot_icall_2_415(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_412(MethodBind* method, Object* ptr, RID* arg1, Object* arg2, MonoString* arg3, MonoObject* arg4) {
+void godot_icall_4_416(MethodBind* method, Object* ptr, RID* arg1, Object* arg2, MonoString* arg3, MonoObject* arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
 	Variant arg4_in = GDMonoMarshal::mono_object_to_variant(arg4);
@@ -4850,7 +4891,7 @@ void godot_icall_4_412(MethodBind* method, Object* ptr, RID* arg1, Object* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_5_413(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, real_t arg4, Object* arg5) {
+bool godot_icall_5_417(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, real_t arg4, Object* arg5) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Transform2D, arg2, arg2_in);
@@ -4861,7 +4902,7 @@ bool godot_icall_5_413(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	return ret;
 }
 
-MonoObject* godot_icall_1_414(MethodBind* method, Object* ptr, RID* arg1) {
+MonoObject* godot_icall_1_418(MethodBind* method, Object* ptr, RID* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4869,7 +4910,7 @@ MonoObject* godot_icall_1_414(MethodBind* method, Object* ptr, RID* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-RID* godot_icall_3_415(MethodBind* method, Object* ptr, real_t* arg1, RID* arg2, RID* arg3) {
+RID* godot_icall_3_419(MethodBind* method, Object* ptr, real_t* arg1, RID* arg2, RID* arg3) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4878,7 +4919,7 @@ RID* godot_icall_3_415(MethodBind* method, Object* ptr, real_t* arg1, RID* arg2,
 	return memnew(RID(ret));
 }
 
-RID* godot_icall_5_416(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, RID* arg4, RID* arg5) {
+RID* godot_icall_5_420(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, RID* arg4, RID* arg5) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4889,7 +4930,7 @@ RID* godot_icall_5_416(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	return memnew(RID(ret));
 }
 
-RID* godot_icall_4_417(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, RID* arg3, RID* arg4) {
+RID* godot_icall_4_421(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, RID* arg3, RID* arg4) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -4903,7 +4944,7 @@ Object* godot_icall_Physics2DServer_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("Physics2DServer");
 }
 
-void godot_icall_1_418(MethodBind* method, Object* ptr, MonoArray* arg1) {
+void godot_icall_1_422(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	ERR_FAIL_NULL(ptr);
 	Array arg1_in = GDMonoMarshal::mono_array_to_Array(arg1);
 	const void* call_args[1] = { &arg1_in };
@@ -4922,7 +4963,7 @@ Object* godot_icall_Physics2DTestMotionResult_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_419(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
+void godot_icall_2_423(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
 	MARSHALLED_IN(Vector3, arg2, arg2_in);
@@ -4930,14 +4971,14 @@ void godot_icall_2_419(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_420(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_424(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_4_421(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, MonoArray* arg3, int arg4) {
+MonoObject* godot_icall_4_425(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, MonoArray* arg3, int arg4) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -4949,7 +4990,7 @@ MonoObject* godot_icall_4_421(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return GDMonoMarshal::Dictionary_to_mono_object(ret);
 }
 
-MonoArray* godot_icall_2_422(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
+MonoArray* godot_icall_2_426(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg2, arg2_in);
@@ -4958,7 +4999,7 @@ MonoArray* godot_icall_2_422(MethodBind* method, Object* ptr, Object* arg1, real
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_1_423(MethodBind* method, Object* ptr, RID* arg1) {
+MonoObject* godot_icall_1_427(MethodBind* method, Object* ptr, RID* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -4966,14 +5007,14 @@ MonoObject* godot_icall_1_423(MethodBind* method, Object* ptr, RID* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-void godot_icall_3_424(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, real_t* arg3) {
+void godot_icall_3_428(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Transform, arg3, arg3_in);
 	const void* call_args[3] = { arg1, arg2, &arg3_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_425(MethodBind* method, Object* ptr, RID* arg1, int arg2, real_t* arg3) {
+void godot_icall_3_429(MethodBind* method, Object* ptr, RID* arg1, int arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	MARSHALLED_IN(Transform, arg3, arg3_in);
@@ -4981,7 +5022,7 @@ void godot_icall_3_425(MethodBind* method, Object* ptr, RID* arg1, int arg2, rea
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_426(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+MonoObject* godot_icall_2_430(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	Transform ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -4991,14 +5032,14 @@ MonoObject* godot_icall_2_426(MethodBind* method, Object* ptr, RID* arg1, int ar
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform), ret_out);
 }
 
-void godot_icall_2_427(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
+void godot_icall_2_431(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Transform, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_428(MethodBind* method, Object* ptr, RID* arg1) {
+MonoObject* godot_icall_1_432(MethodBind* method, Object* ptr, RID* arg1) {
 	Transform ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -5007,7 +5048,7 @@ MonoObject* godot_icall_1_428(MethodBind* method, Object* ptr, RID* arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform), ret_out);
 }
 
-RID* godot_icall_2_429(MethodBind* method, Object* ptr, int arg1, bool arg2) {
+RID* godot_icall_2_433(MethodBind* method, Object* ptr, int arg1, bool arg2) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -5016,14 +5057,14 @@ RID* godot_icall_2_429(MethodBind* method, Object* ptr, int arg1, bool arg2) {
 	return memnew(RID(ret));
 }
 
-void godot_icall_2_430(MethodBind* method, Object* ptr, RID* arg1, real_t arg2) {
+void godot_icall_2_434(MethodBind* method, Object* ptr, RID* arg1, real_t arg2) {
 	ERR_FAIL_NULL(ptr);
 	double arg2_in = (double)arg2;
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-real_t godot_icall_1_431(MethodBind* method, Object* ptr, RID* arg1) {
+real_t godot_icall_1_435(MethodBind* method, Object* ptr, RID* arg1) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	const void* call_args[1] = { arg1 };
@@ -5031,7 +5072,7 @@ real_t godot_icall_1_431(MethodBind* method, Object* ptr, RID* arg1) {
 	return (real_t)ret;
 }
 
-void godot_icall_3_432(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3) {
+void godot_icall_3_436(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector3, arg2, arg2_in);
 	MARSHALLED_IN(Vector3, arg3, arg3_in);
@@ -5039,48 +5080,11 @@ void godot_icall_3_432(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_433(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
+void godot_icall_2_437(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector3, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
-}
-
-MonoObject* godot_icall_1_434(MethodBind* method, Object* ptr, RID* arg1) {
-	Object* ret = NULL;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	const void* call_args[1] = { arg1 };
-	method->ptrcall(ptr, call_args, &ret);
-	return GDMonoUtils::unmanaged_get_managed(ret);
-}
-
-RID* godot_icall_4_435(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, real_t* arg4) {
-	RID ret;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	MARSHALLED_IN(Vector3, arg2, arg2_in);
-	MARSHALLED_IN(Vector3, arg4, arg4_in);
-	const void* call_args[4] = { arg1, &arg2_in, arg3, &arg4_in };
-	method->ptrcall(ptr, call_args, &ret);
-	return memnew(RID(ret));
-}
-
-MonoObject* godot_icall_1_436(MethodBind* method, Object* ptr, RID* arg1) {
-	Vector3 ret;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	const void* call_args[1] = { arg1 };
-	method->ptrcall(ptr, call_args, &ret);
-	MARSHALLED_OUT(Vector3, ret, ret_out)
-	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
-}
-
-RID* godot_icall_4_437(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, real_t* arg4) {
-	RID ret;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	MARSHALLED_IN(Transform, arg2, arg2_in);
-	MARSHALLED_IN(Transform, arg4, arg4_in);
-	const void* call_args[4] = { arg1, &arg2_in, arg3, &arg4_in };
-	method->ptrcall(ptr, call_args, &ret);
-	return memnew(RID(ret));
 }
 
 bool godot_icall_2_438(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
@@ -5092,7 +5096,44 @@ bool godot_icall_2_438(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	return ret;
 }
 
-void godot_icall_4_439(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3, real_t arg4) {
+MonoObject* godot_icall_1_439(MethodBind* method, Object* ptr, RID* arg1) {
+	Object* ret = NULL;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	const void* call_args[1] = { arg1 };
+	method->ptrcall(ptr, call_args, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret);
+}
+
+RID* godot_icall_4_440(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, real_t* arg4) {
+	RID ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	MARSHALLED_IN(Vector3, arg2, arg2_in);
+	MARSHALLED_IN(Vector3, arg4, arg4_in);
+	const void* call_args[4] = { arg1, &arg2_in, arg3, &arg4_in };
+	method->ptrcall(ptr, call_args, &ret);
+	return memnew(RID(ret));
+}
+
+MonoObject* godot_icall_1_441(MethodBind* method, Object* ptr, RID* arg1) {
+	Vector3 ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	const void* call_args[1] = { arg1 };
+	method->ptrcall(ptr, call_args, &ret);
+	MARSHALLED_OUT(Vector3, ret, ret_out)
+	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
+}
+
+RID* godot_icall_4_442(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, real_t* arg4) {
+	RID ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	MARSHALLED_IN(Transform, arg2, arg2_in);
+	MARSHALLED_IN(Transform, arg4, arg4_in);
+	const void* call_args[4] = { arg1, &arg2_in, arg3, &arg4_in };
+	method->ptrcall(ptr, call_args, &ret);
+	return memnew(RID(ret));
+}
+
+void godot_icall_4_443(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3, real_t arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	int64_t arg3_in = (int64_t)arg3;
@@ -5101,7 +5142,7 @@ void godot_icall_4_439(MethodBind* method, Object* ptr, RID* arg1, int arg2, int
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-real_t godot_icall_3_440(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3) {
+real_t godot_icall_3_444(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	int64_t arg2_in = (int64_t)arg2;
@@ -5111,7 +5152,7 @@ real_t godot_icall_3_440(MethodBind* method, Object* ptr, RID* arg1, int arg2, i
 	return (real_t)ret;
 }
 
-void godot_icall_4_441(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3, bool arg4) {
+void godot_icall_4_445(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	int64_t arg3_in = (int64_t)arg3;
@@ -5119,7 +5160,7 @@ void godot_icall_4_441(MethodBind* method, Object* ptr, RID* arg1, int arg2, int
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_3_442(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3) {
+bool godot_icall_3_446(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	int64_t arg2_in = (int64_t)arg2;
@@ -5175,7 +5216,7 @@ Object* godot_icall_Polygon2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_443(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2) {
+void godot_icall_2_447(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
 	PoolIntArray arg2_in = GDMonoMarshal::mono_array_to_PoolIntArray(arg2);
@@ -5183,7 +5224,7 @@ void godot_icall_2_443(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArr
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_2_444(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
+MonoArray* godot_icall_2_448(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
 	PoolVector2Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -5211,7 +5252,7 @@ Object* godot_icall_PopupDialog_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_4_445(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, int arg3, int arg4) {
+void godot_icall_4_449(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, int arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	int64_t arg3_in = (int64_t)arg3;
@@ -5220,7 +5261,7 @@ void godot_icall_4_445(MethodBind* method, Object* ptr, Object* arg1, MonoString
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_446(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
+void godot_icall_3_450(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -5229,7 +5270,7 @@ void godot_icall_3_446(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_447(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, int arg3) {
+void godot_icall_3_451(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -5238,28 +5279,28 @@ void godot_icall_3_447(MethodBind* method, Object* ptr, MonoString* arg1, MonoSt
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_448(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, int arg3, bool arg4) {
+void godot_icall_4_452(MethodBind* method, Object* ptr, Object* arg1, Object* arg2, int arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg3_in = (int64_t)arg3;
 	const void* call_args[4] = { arg1, arg2, &arg3_in, &arg4 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_449(MethodBind* method, Object* ptr, Object* arg1, int arg2, bool arg3) {
+void godot_icall_3_453(MethodBind* method, Object* ptr, Object* arg1, int arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	const void* call_args[3] = { arg1, &arg2_in, &arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_450(MethodBind* method, Object* ptr, int arg1, Object* arg2, bool arg3) {
+void godot_icall_3_454(MethodBind* method, Object* ptr, int arg1, Object* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	const void* call_args[3] = { &arg1_in, arg2, &arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_451(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_455(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -5332,12 +5373,6 @@ Object* godot_icall_QuadMesh_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-Object* godot_icall_Range_Ctor(MonoObject* obj) {
-	GODOTSHARP_INSTANCE_OBJECT(instance, "Range");
-	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
-	return instance;
-}
-
 Object* godot_icall_RayCast_Ctor(MonoObject* obj) {
 	GODOTSHARP_INSTANCE_OBJECT(instance, "RayCast");
 	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
@@ -5386,7 +5421,7 @@ Object* godot_icall_ReflectionProbe_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_3_452(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
+MonoObject* godot_icall_3_456(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -5397,7 +5432,7 @@ MonoObject* godot_icall_3_452(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoArray* godot_icall_3_453(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
+MonoArray* godot_icall_3_457(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -5408,7 +5443,7 @@ MonoArray* godot_icall_3_453(MethodBind* method, Object* ptr, MonoString* arg1, 
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoString* godot_icall_5_454(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, bool arg3, int arg4, int arg5) {
+MonoString* godot_icall_5_458(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, bool arg3, int arg4, int arg5) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -5426,7 +5461,7 @@ Object* godot_icall_RegEx_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoString* godot_icall_1_455(MethodBind* method, Object* ptr, MonoObject* arg1) {
+MonoString* godot_icall_1_459(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Variant arg1_in = GDMonoMarshal::mono_object_to_variant(arg1);
@@ -5453,7 +5488,7 @@ Object* godot_icall_RemoteTransform2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_456(MethodBind* method, Object* ptr, bool arg1) {
+MonoObject* godot_icall_1_460(MethodBind* method, Object* ptr, bool arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { &arg1 };
@@ -5467,14 +5502,14 @@ Object* godot_icall_Resource_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_457(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_461(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_1_458(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoObject* godot_icall_1_462(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -5489,7 +5524,7 @@ Object* godot_icall_ResourcePreloader_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_459(MethodBind* method, Object* ptr, int arg1, bool arg2, int arg3) {
+void godot_icall_3_463(MethodBind* method, Object* ptr, int arg1, bool arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg3_in = (int64_t)arg3;
@@ -5509,7 +5544,7 @@ Object* godot_icall_RigidBody_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_2_460(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
+void godot_icall_2_464(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
@@ -5517,7 +5552,7 @@ void godot_icall_2_460(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_3_461(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, Object* arg3) {
+bool godot_icall_3_465(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2, Object* arg3) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -5533,7 +5568,7 @@ Object* godot_icall_RigidBody2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-NodePath* godot_icall_2_462(MethodBind* method, Object* ptr, int arg1, bool arg2) {
+NodePath* godot_icall_2_466(MethodBind* method, Object* ptr, int arg1, bool arg2) {
 	NodePath ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -5542,7 +5577,7 @@ NodePath* godot_icall_2_462(MethodBind* method, Object* ptr, int arg1, bool arg2
 	return memnew(NodePath(ret));
 }
 
-MonoObject* godot_icall_1_463(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_467(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -5551,7 +5586,7 @@ MonoObject* godot_icall_1_463(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoArray* godot_icall_1_464(MethodBind* method, Object* ptr, int arg1) {
+MonoArray* godot_icall_1_468(MethodBind* method, Object* ptr, int arg1) {
 	PoolStringArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -5560,7 +5595,7 @@ MonoArray* godot_icall_1_464(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoMarshal::PoolStringArray_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_2_465(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
+MonoObject* godot_icall_2_469(MethodBind* method, Object* ptr, real_t arg1, bool arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -5569,7 +5604,7 @@ MonoObject* godot_icall_2_465(MethodBind* method, Object* ptr, real_t arg1, bool
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_4_466(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3, real_t arg4) {
+void godot_icall_4_470(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3, real_t arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -5579,7 +5614,7 @@ void godot_icall_4_466(MethodBind* method, Object* ptr, int arg1, int arg2, real
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_4_467(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoString* arg3, MonoArray* arg4) {
+MonoObject* godot_icall_4_471(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoString* arg3, MonoArray* arg4) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Vector<Variant> varargs;
@@ -5604,7 +5639,7 @@ MonoObject* godot_icall_4_467(MethodBind* method, Object* ptr, int arg1, MonoStr
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-void godot_icall_3_468(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, int arg3) {
+void godot_icall_3_472(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -5613,7 +5648,7 @@ void godot_icall_3_468(MethodBind* method, Object* ptr, int arg1, MonoString* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_469(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoString* arg3, MonoObject* arg4) {
+void godot_icall_4_473(MethodBind* method, Object* ptr, int arg1, MonoString* arg2, MonoString* arg3, MonoObject* arg4) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -5623,7 +5658,7 @@ void godot_icall_4_469(MethodBind* method, Object* ptr, int arg1, MonoString* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_3_470(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoArray* arg3) {
+MonoObject* godot_icall_3_474(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, MonoArray* arg3) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Vector<Variant> varargs;
@@ -5652,8 +5687,15 @@ Object* godot_icall_SceneTree_Ctor(MonoObject* obj) {
 	return instance;
 }
 
+MonoObject* godot_icall_0_475(MethodBind* method, Object* ptr) {
+	Ref<Reference> ret;
+	ERR_FAIL_NULL_V(ptr, NULL);
+	method->ptrcall(ptr, NULL, &ret);
+	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
+}
+
 #ifdef TOOLS_ENABLED
-MonoObject* godot_icall_2_471(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2) {
+MonoObject* godot_icall_2_476(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -5664,7 +5706,7 @@ MonoObject* godot_icall_2_471(MethodBind* method, Object* ptr, real_t* arg1, Obj
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-bool godot_icall_3_472(MethodBind* method, Object* ptr, real_t* arg1, MonoObject* arg2, Object* arg3) {
+bool godot_icall_3_477(MethodBind* method, Object* ptr, real_t* arg1, MonoObject* arg2, Object* arg3) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -5676,7 +5718,7 @@ bool godot_icall_3_472(MethodBind* method, Object* ptr, real_t* arg1, MonoObject
 
 #endif // TOOLS_ENABLED
 #ifdef TOOLS_ENABLED
-void godot_icall_3_473(MethodBind* method, Object* ptr, real_t* arg1, MonoObject* arg2, Object* arg3) {
+void godot_icall_3_478(MethodBind* method, Object* ptr, real_t* arg1, MonoObject* arg2, Object* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	Variant arg2_in = GDMonoMarshal::mono_object_to_variant(arg2);
@@ -5685,21 +5727,6 @@ void godot_icall_3_473(MethodBind* method, Object* ptr, real_t* arg1, MonoObject
 }
 
 #endif // TOOLS_ENABLED
-#ifdef TOOLS_ENABLED
-MonoObject* godot_icall_0_474(MethodBind* method, Object* ptr) {
-	Ref<Reference> ret;
-	ERR_FAIL_NULL_V(ptr, NULL);
-	method->ptrcall(ptr, NULL, &ret);
-	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
-}
-
-#endif // TOOLS_ENABLED
-Object* godot_icall_ScrollBar_Ctor(MonoObject* obj) {
-	GODOTSHARP_INSTANCE_OBJECT(instance, "ScrollBar");
-	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
-	return instance;
-}
-
 Object* godot_icall_ScrollContainer_Ctor(MonoObject* obj) {
 	GODOTSHARP_INSTANCE_OBJECT(instance, "ScrollContainer");
 	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
@@ -5712,7 +5739,7 @@ Object* godot_icall_SegmentShape2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_475(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoObject* godot_icall_1_479(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -5727,7 +5754,7 @@ Object* godot_icall_Shader_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_476(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_480(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -5740,7 +5767,7 @@ Object* godot_icall_ShaderMaterial_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-bool godot_icall_3_477(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2, real_t* arg3) {
+bool godot_icall_3_481(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2, real_t* arg3) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Transform2D, arg1, arg1_in);
@@ -5750,7 +5777,7 @@ bool godot_icall_3_477(MethodBind* method, Object* ptr, real_t* arg1, Object* ar
 	return ret;
 }
 
-bool godot_icall_5_478(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, Object* arg3, real_t* arg4, real_t* arg5) {
+bool godot_icall_5_482(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, Object* arg3, real_t* arg4, real_t* arg5) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Transform2D, arg1, arg1_in);
@@ -5762,7 +5789,7 @@ bool godot_icall_5_478(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	return ret;
 }
 
-MonoObject* godot_icall_3_479(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2, real_t* arg3) {
+MonoObject* godot_icall_3_483(MethodBind* method, Object* ptr, real_t* arg1, Object* arg2, real_t* arg3) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Transform2D, arg1, arg1_in);
@@ -5772,7 +5799,7 @@ MonoObject* godot_icall_3_479(MethodBind* method, Object* ptr, real_t* arg1, Obj
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-MonoObject* godot_icall_5_480(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, Object* arg3, real_t* arg4, real_t* arg5) {
+MonoObject* godot_icall_5_484(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, Object* arg3, real_t* arg4, real_t* arg5) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Transform2D, arg1, arg1_in);
@@ -5784,7 +5811,7 @@ MonoObject* godot_icall_5_480(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-MonoObject* godot_icall_0_481(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_485(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -5803,40 +5830,34 @@ Object* godot_icall_Skeleton_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-Object* godot_icall_Slider_Ctor(MonoObject* obj) {
-	GODOTSHARP_INSTANCE_OBJECT(instance, "Slider");
-	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
-	return instance;
-}
-
 Object* godot_icall_SliderJoint_Ctor(MonoObject* obj) {
 	GODOTSHARP_INSTANCE_OBJECT(instance, "SliderJoint");
 	GDMonoInternals::tie_managed_to_unmanaged(obj, instance);
 	return instance;
 }
 
-MonoObject* godot_icall_0_482(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_486(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_0_483(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_487(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_0_484(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_488(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_2_485(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2) {
+void godot_icall_2_489(MethodBind* method, Object* ptr, real_t* arg1, real_t arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
 	double arg2_in = (double)arg2;
@@ -5844,7 +5865,7 @@ void godot_icall_2_485(MethodBind* method, Object* ptr, real_t* arg1, real_t arg
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_486(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3) {
+void godot_icall_3_490(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
 	MARSHALLED_IN(Vector3, arg2, arg2_in);
@@ -5883,7 +5904,7 @@ Object* godot_icall_SphereShape_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_487(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_491(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -5914,7 +5935,7 @@ Object* godot_icall_Sprite3D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_488(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, int arg3) {
+void godot_icall_3_492(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg3_in = (int64_t)arg3;
@@ -5922,7 +5943,7 @@ void godot_icall_3_488(MethodBind* method, Object* ptr, MonoString* arg1, Object
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_489(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
+MonoObject* godot_icall_2_493(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -5932,7 +5953,7 @@ MonoObject* godot_icall_2_489(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_3_490(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, Object* arg3) {
+void godot_icall_3_494(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, Object* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -5958,7 +5979,7 @@ Object* godot_icall_StaticBody2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoArray* godot_icall_1_491(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoArray* godot_icall_1_495(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	PoolByteArray arg1_in = GDMonoMarshal::mono_array_to_PoolByteArray(arg1);
@@ -5967,7 +5988,7 @@ MonoArray* godot_icall_1_491(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_0_492(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_496(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -5980,7 +6001,7 @@ Object* godot_icall_StreamPeerBuffer_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_3_493(MethodBind* method, Object* ptr, Object* arg1, bool arg2, MonoString* arg3) {
+int godot_icall_3_497(MethodBind* method, Object* ptr, Object* arg1, bool arg2, MonoString* arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
@@ -6007,7 +6028,7 @@ Object* godot_icall_StreamTexture_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-bool godot_icall_2_494(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
+bool godot_icall_2_498(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -6017,7 +6038,7 @@ bool godot_icall_2_494(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	return ret;
 }
 
-void godot_icall_2_495(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
+void godot_icall_2_499(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
@@ -6030,7 +6051,7 @@ Object* godot_icall_StyleBoxEmpty_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_4_496(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, real_t arg3, real_t arg4) {
+void godot_icall_4_500(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, real_t arg3, real_t arg4) {
 	ERR_FAIL_NULL(ptr);
 	double arg1_in = (double)arg1;
 	double arg2_in = (double)arg2;
@@ -6058,7 +6079,7 @@ Object* godot_icall_StyleBoxTexture_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_6_497(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, MonoArray* arg5, MonoArray* arg6) {
+void godot_icall_6_501(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, MonoArray* arg5, MonoArray* arg6) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector3Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector3Array(arg1);
 	PoolVector2Array arg2_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg2);
@@ -6070,7 +6091,7 @@ void godot_icall_6_497(MethodBind* method, Object* ptr, MonoArray* arg1, MonoArr
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_498(MethodBind* method, Object* ptr, Object* arg1, int arg2, real_t* arg3) {
+void godot_icall_3_502(MethodBind* method, Object* ptr, Object* arg1, int arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	MARSHALLED_IN(Transform, arg3, arg3_in);
@@ -6078,7 +6099,7 @@ void godot_icall_3_498(MethodBind* method, Object* ptr, Object* arg1, int arg2, 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_499(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
+MonoObject* godot_icall_2_503(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -6093,7 +6114,7 @@ Object* godot_icall_SurfaceTool_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_2_500(MethodBind* method, Object* ptr, int arg1, MonoString* arg2) {
+int godot_icall_2_504(MethodBind* method, Object* ptr, int arg1, MonoString* arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg1_in = (int64_t)arg1;
@@ -6103,7 +6124,7 @@ int godot_icall_2_500(MethodBind* method, Object* ptr, int arg1, MonoString* arg
 	return (int)ret;
 }
 
-MonoObject* godot_icall_0_501(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_505(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -6116,7 +6137,7 @@ Object* godot_icall_TCP_Server_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_502(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_506(MethodBind* method, Object* ptr, int arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -6125,7 +6146,7 @@ MonoObject* godot_icall_1_502(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_0_503(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_507(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -6144,14 +6165,14 @@ Object* godot_icall_Tabs_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_504(MethodBind* method, Object* ptr, int arg1, bool arg2, bool arg3) {
+void godot_icall_3_508(MethodBind* method, Object* ptr, int arg1, bool arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	const void* call_args[3] = { &arg1_in, &arg2, &arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_4_505(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
+MonoArray* godot_icall_4_509(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
 	PoolIntArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -6163,7 +6184,7 @@ MonoArray* godot_icall_4_505(MethodBind* method, Object* ptr, MonoString* arg1, 
 	return GDMonoMarshal::PoolIntArray_to_mono_array(ret);
 }
 
-void godot_icall_4_506(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, real_t* arg3, bool arg4) {
+void godot_icall_4_510(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, real_t* arg3, bool arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -6178,7 +6199,7 @@ Object* godot_icall_TextEdit_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_5_507(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, bool arg4, Object* arg5) {
+void godot_icall_5_511(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, bool arg4, Object* arg5) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	MARSHALLED_IN(Color, arg3, arg3_in);
@@ -6186,7 +6207,7 @@ void godot_icall_5_507(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_6_508(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, bool arg3, real_t* arg4, bool arg5, Object* arg6) {
+void godot_icall_6_512(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, bool arg3, real_t* arg4, bool arg5, Object* arg6) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Color, arg4, arg4_in);
@@ -6194,7 +6215,7 @@ void godot_icall_6_508(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_7_509(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, real_t* arg4, bool arg5, Object* arg6, bool arg7) {
+void godot_icall_7_513(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, real_t* arg4, bool arg5, Object* arg6, bool arg7) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Rect2, arg3, arg3_in);
@@ -6203,14 +6224,14 @@ void godot_icall_7_509(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_510(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_514(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_0_511(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_515(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -6235,7 +6256,7 @@ Object* godot_icall_TextureRect_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_512(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, Object* arg3) {
+void godot_icall_3_516(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, Object* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -6243,7 +6264,7 @@ void godot_icall_3_512(MethodBind* method, Object* ptr, MonoString* arg1, MonoSt
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_513(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, real_t* arg3) {
+void godot_icall_3_517(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -6252,7 +6273,7 @@ void godot_icall_3_513(MethodBind* method, Object* ptr, MonoString* arg1, MonoSt
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_514(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_518(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -6265,14 +6286,14 @@ Object* godot_icall_Theme_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_515(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_519(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_7_516(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, bool arg4, bool arg5, bool arg6, real_t* arg7) {
+void godot_icall_7_520(MethodBind* method, Object* ptr, int arg1, int arg2, int arg3, bool arg4, bool arg5, bool arg6, real_t* arg7) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -6282,7 +6303,7 @@ void godot_icall_7_516(MethodBind* method, Object* ptr, int arg1, int arg2, int 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_5_517(MethodBind* method, Object* ptr, real_t* arg1, int arg2, bool arg3, bool arg4, bool arg5) {
+void godot_icall_5_521(MethodBind* method, Object* ptr, real_t* arg1, int arg2, bool arg3, bool arg4, bool arg5) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
 	int64_t arg2_in = (int64_t)arg2;
@@ -6290,7 +6311,7 @@ void godot_icall_5_517(MethodBind* method, Object* ptr, real_t* arg1, int arg2, 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_518(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
+MonoObject* godot_icall_2_522(MethodBind* method, Object* ptr, real_t* arg1, bool arg2) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -6306,7 +6327,7 @@ Object* godot_icall_TileMap_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_1_519(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_523(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -6315,7 +6336,7 @@ MonoObject* godot_icall_1_519(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_3_520(MethodBind* method, Object* ptr, int arg1, int arg2, Object* arg3) {
+void godot_icall_3_524(MethodBind* method, Object* ptr, int arg1, int arg2, Object* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -6323,7 +6344,7 @@ void godot_icall_3_520(MethodBind* method, Object* ptr, int arg1, int arg2, Obje
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_521(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3) {
+void godot_icall_3_525(MethodBind* method, Object* ptr, int arg1, int arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg2_in = (int64_t)arg2;
@@ -6332,7 +6353,7 @@ void godot_icall_3_521(MethodBind* method, Object* ptr, int arg1, int arg2, real
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_522(MethodBind* method, Object* ptr, int arg1, int arg2) {
+MonoObject* godot_icall_2_526(MethodBind* method, Object* ptr, int arg1, int arg2) {
 	Transform2D ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -6343,7 +6364,7 @@ MonoObject* godot_icall_2_522(MethodBind* method, Object* ptr, int arg1, int arg
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Transform2D), ret_out);
 }
 
-void godot_icall_5_523(MethodBind* method, Object* ptr, int arg1, Object* arg2, real_t* arg3, bool arg4, real_t* arg5) {
+void godot_icall_5_527(MethodBind* method, Object* ptr, int arg1, Object* arg2, real_t* arg3, bool arg4, real_t* arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Transform2D, arg3, arg3_in);
@@ -6352,7 +6373,7 @@ void godot_icall_5_523(MethodBind* method, Object* ptr, int arg1, Object* arg2, 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_524(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_528(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -6361,7 +6382,7 @@ MonoObject* godot_icall_1_524(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_1_525(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_529(MethodBind* method, Object* ptr, int arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -6404,7 +6425,7 @@ Object* godot_icall_TranslationServer_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("TranslationServer");
 }
 
-MonoObject* godot_icall_1_526(MethodBind* method, Object* ptr, Object* arg1) {
+MonoObject* godot_icall_1_530(MethodBind* method, Object* ptr, Object* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -6412,14 +6433,14 @@ MonoObject* godot_icall_1_526(MethodBind* method, Object* ptr, Object* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_0_527(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_531(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_1_528(MethodBind* method, Object* ptr, Object* arg1) {
+MonoObject* godot_icall_1_532(MethodBind* method, Object* ptr, Object* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -6427,7 +6448,7 @@ MonoObject* godot_icall_1_528(MethodBind* method, Object* ptr, Object* arg1) {
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_2_529(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
+MonoObject* godot_icall_2_533(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	Rect2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -6437,7 +6458,7 @@ MonoObject* godot_icall_2_529(MethodBind* method, Object* ptr, Object* arg1, int
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Rect2), ret_out);
 }
 
-MonoObject* godot_icall_1_530(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoObject* godot_icall_1_534(MethodBind* method, Object* ptr, real_t* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -6452,7 +6473,7 @@ Object* godot_icall_Tree_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_5_531(MethodBind* method, Object* ptr, int arg1, real_t arg2, real_t arg3, real_t arg4, bool arg5) {
+void godot_icall_5_535(MethodBind* method, Object* ptr, int arg1, real_t arg2, real_t arg3, real_t arg4, bool arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	double arg2_in = (double)arg2;
@@ -6462,7 +6483,7 @@ void godot_icall_5_531(MethodBind* method, Object* ptr, int arg1, real_t arg2, r
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_532(MethodBind* method, Object* ptr, int arg1) {
+MonoObject* godot_icall_1_536(MethodBind* method, Object* ptr, int arg1) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -6471,7 +6492,7 @@ MonoObject* godot_icall_1_532(MethodBind* method, Object* ptr, int arg1) {
 	return GDMonoMarshal::Dictionary_to_mono_object(ret);
 }
 
-void godot_icall_3_533(MethodBind* method, Object* ptr, int arg1, Object* arg2, MonoString* arg3) {
+void godot_icall_3_537(MethodBind* method, Object* ptr, int arg1, Object* arg2, MonoString* arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	String arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
@@ -6479,7 +6500,7 @@ void godot_icall_3_533(MethodBind* method, Object* ptr, int arg1, Object* arg2, 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_534(MethodBind* method, Object* ptr, int arg1, real_t* arg2, bool arg3) {
+void godot_icall_3_538(MethodBind* method, Object* ptr, int arg1, real_t* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	MARSHALLED_IN(Color, arg2, arg2_in);
@@ -6487,7 +6508,7 @@ void godot_icall_3_534(MethodBind* method, Object* ptr, int arg1, real_t* arg2, 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_5_535(MethodBind* method, Object* ptr, int arg1, Object* arg2, int arg3, bool arg4, MonoString* arg5) {
+void godot_icall_5_539(MethodBind* method, Object* ptr, int arg1, Object* arg2, int arg3, bool arg4, MonoString* arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg1_in = (int64_t)arg1;
 	int64_t arg3_in = (int64_t)arg3;
@@ -6496,7 +6517,7 @@ void godot_icall_5_535(MethodBind* method, Object* ptr, int arg1, Object* arg2, 
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_536(MethodBind* method, Object* ptr, int arg1, int arg2) {
+MonoObject* godot_icall_2_540(MethodBind* method, Object* ptr, int arg1, int arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -6512,7 +6533,7 @@ Object* godot_icall_TriangleMesh_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-bool godot_icall_2_537(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
+bool godot_icall_2_541(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -6521,7 +6542,7 @@ bool godot_icall_2_537(MethodBind* method, Object* ptr, Object* arg1, MonoString
 	return ret;
 }
 
-bool godot_icall_8_538(MethodBind* method, Object* ptr, Object* arg1, NodePath* arg2, MonoObject* arg3, MonoObject* arg4, real_t arg5, int arg6, int arg7, real_t arg8) {
+bool godot_icall_8_542(MethodBind* method, Object* ptr, Object* arg1, NodePath* arg2, MonoObject* arg3, MonoObject* arg4, real_t arg5, int arg6, int arg7, real_t arg8) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	Variant arg3_in = GDMonoMarshal::mono_object_to_variant(arg3);
@@ -6535,7 +6556,7 @@ bool godot_icall_8_538(MethodBind* method, Object* ptr, Object* arg1, NodePath* 
 	return ret;
 }
 
-bool godot_icall_8_539(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3, MonoObject* arg4, real_t arg5, int arg6, int arg7, real_t arg8) {
+bool godot_icall_8_543(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3, MonoObject* arg4, real_t arg5, int arg6, int arg7, real_t arg8) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -6550,7 +6571,7 @@ bool godot_icall_8_539(MethodBind* method, Object* ptr, Object* arg1, MonoString
 	return ret;
 }
 
-bool godot_icall_8_540(MethodBind* method, Object* ptr, Object* arg1, real_t arg2, MonoString* arg3, MonoObject* arg4, MonoObject* arg5, MonoObject* arg6, MonoObject* arg7, MonoObject* arg8) {
+bool godot_icall_8_544(MethodBind* method, Object* ptr, Object* arg1, real_t arg2, MonoString* arg3, MonoObject* arg4, MonoObject* arg5, MonoObject* arg6, MonoObject* arg7, MonoObject* arg8) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	double arg2_in = (double)arg2;
@@ -6565,7 +6586,7 @@ bool godot_icall_8_540(MethodBind* method, Object* ptr, Object* arg1, real_t arg
 	return ret;
 }
 
-bool godot_icall_9_541(MethodBind* method, Object* ptr, Object* arg1, NodePath* arg2, MonoObject* arg3, Object* arg4, NodePath* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
+bool godot_icall_9_545(MethodBind* method, Object* ptr, Object* arg1, NodePath* arg2, MonoObject* arg3, Object* arg4, NodePath* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	Variant arg3_in = GDMonoMarshal::mono_object_to_variant(arg3);
@@ -6578,7 +6599,7 @@ bool godot_icall_9_541(MethodBind* method, Object* ptr, Object* arg1, NodePath* 
 	return ret;
 }
 
-bool godot_icall_9_542(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3, Object* arg4, MonoString* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
+bool godot_icall_9_546(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3, Object* arg4, MonoString* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -6593,7 +6614,7 @@ bool godot_icall_9_542(MethodBind* method, Object* ptr, Object* arg1, MonoString
 	return ret;
 }
 
-bool godot_icall_9_543(MethodBind* method, Object* ptr, Object* arg1, NodePath* arg2, Object* arg3, NodePath* arg4, MonoObject* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
+bool godot_icall_9_547(MethodBind* method, Object* ptr, Object* arg1, NodePath* arg2, Object* arg3, NodePath* arg4, MonoObject* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	Variant arg5_in = GDMonoMarshal::mono_object_to_variant(arg5);
@@ -6606,7 +6627,7 @@ bool godot_icall_9_543(MethodBind* method, Object* ptr, Object* arg1, NodePath* 
 	return ret;
 }
 
-bool godot_icall_9_544(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, Object* arg3, MonoString* arg4, MonoObject* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
+bool godot_icall_9_548(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, Object* arg3, MonoString* arg4, MonoObject* arg5, real_t arg6, int arg7, int arg8, real_t arg9) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -6627,7 +6648,7 @@ Object* godot_icall_Tween_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_3_545(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoArray* arg3) {
+MonoObject* godot_icall_3_549(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoArray* arg3) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Vector<Variant> varargs;
@@ -6650,7 +6671,7 @@ MonoObject* godot_icall_3_545(MethodBind* method, Object* ptr, Object* arg1, Mon
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-void godot_icall_3_546(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3) {
+void godot_icall_3_550(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	Variant arg3_in = GDMonoMarshal::mono_object_to_variant(arg3);
@@ -6706,7 +6727,7 @@ Object* godot_icall_VehicleWheel_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_547(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_551(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -6731,7 +6752,7 @@ Object* godot_icall_VideoStreamWebm_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_548(MethodBind* method, Object* ptr, bool arg1, real_t* arg2, real_t* arg3) {
+void godot_icall_3_552(MethodBind* method, Object* ptr, bool arg1, real_t* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	MARSHALLED_IN(Vector2, arg3, arg3_in);
@@ -6739,14 +6760,14 @@ void godot_icall_3_548(MethodBind* method, Object* ptr, bool arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_0_549(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_553(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_0_550(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_554(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -6795,7 +6816,7 @@ Object* godot_icall_VisibilityNotifier2D_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_4_551(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, Object* arg3, real_t* arg4) {
+void godot_icall_4_555(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, Object* arg3, real_t* arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -6804,7 +6825,7 @@ void godot_icall_4_551(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_552(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
+MonoObject* godot_icall_2_556(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -6814,7 +6835,7 @@ MonoObject* godot_icall_2_552(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_3_553(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, real_t* arg3) {
+void godot_icall_3_557(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -6823,7 +6844,7 @@ void godot_icall_3_553(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_554(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
+MonoObject* godot_icall_2_558(MethodBind* method, Object* ptr, MonoString* arg1, int arg2) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -6834,7 +6855,7 @@ MonoObject* godot_icall_2_554(MethodBind* method, Object* ptr, MonoString* arg1,
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-void godot_icall_4_555(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
+void godot_icall_4_559(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -6844,7 +6865,7 @@ void godot_icall_4_555(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_4_556(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
+bool godot_icall_4_560(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -6856,7 +6877,7 @@ bool godot_icall_4_556(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	return ret;
 }
 
-void godot_icall_5_557(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4, int arg5) {
+void godot_icall_5_561(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4, int arg5) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -6867,7 +6888,7 @@ void godot_icall_5_557(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-bool godot_icall_5_558(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4, int arg5) {
+bool godot_icall_5_562(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3, int arg4, int arg5) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -6880,7 +6901,7 @@ bool godot_icall_5_558(MethodBind* method, Object* ptr, MonoString* arg1, int ar
 	return ret;
 }
 
-void godot_icall_3_559(MethodBind* method, Object* ptr, MonoString* arg1, MonoObject* arg2, bool arg3) {
+void godot_icall_3_563(MethodBind* method, Object* ptr, MonoString* arg1, MonoObject* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	Variant arg2_in = GDMonoMarshal::mono_object_to_variant(arg2);
@@ -6888,7 +6909,7 @@ void godot_icall_3_559(MethodBind* method, Object* ptr, MonoString* arg1, MonoOb
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_560(MethodBind* method, Object* ptr, MonoString* arg1, MonoObject* arg2) {
+void godot_icall_2_564(MethodBind* method, Object* ptr, MonoString* arg1, MonoObject* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	Dictionary arg2_in = GDMonoMarshal::mono_object_to_Dictionary(arg2);
@@ -6896,7 +6917,7 @@ void godot_icall_2_560(MethodBind* method, Object* ptr, MonoString* arg1, MonoOb
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_561(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoObject* godot_icall_1_565(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -6905,7 +6926,7 @@ MonoObject* godot_icall_1_561(MethodBind* method, Object* ptr, MonoString* arg1)
 	return GDMonoMarshal::Dictionary_to_mono_object(ret);
 }
 
-void godot_icall_3_562(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3) {
+void godot_icall_3_566(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	int64_t arg2_in = (int64_t)arg2;
@@ -7004,7 +7025,7 @@ Object* godot_icall_VisualScriptFunctionCall_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-void godot_icall_3_563(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoArray* arg3) {
+void godot_icall_3_567(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoArray* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	Array arg3_in = GDMonoMarshal::mono_array_to_Array(arg3);
@@ -7012,7 +7033,7 @@ void godot_icall_3_563(MethodBind* method, Object* ptr, Object* arg1, MonoString
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_564(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoObject* godot_icall_1_568(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Array arg1_in = GDMonoMarshal::mono_array_to_Array(arg1);
@@ -7075,7 +7096,7 @@ Object* godot_icall_VisualScriptMathConstant_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_565(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_569(MethodBind* method, Object* ptr) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -7196,7 +7217,7 @@ Object* godot_icall_VisualScriptYieldSignal_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-RID* godot_icall_2_566(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
+RID* godot_icall_2_570(MethodBind* method, Object* ptr, Object* arg1, int arg2) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -7205,7 +7226,7 @@ RID* godot_icall_2_566(MethodBind* method, Object* ptr, Object* arg1, int arg2) 
 	return memnew(RID(ret));
 }
 
-void godot_icall_5_567(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3, int arg4, int arg5) {
+void godot_icall_5_571(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3, int arg4, int arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	int64_t arg3_in = (int64_t)arg3;
@@ -7215,14 +7236,14 @@ void godot_icall_5_567(MethodBind* method, Object* ptr, RID* arg1, int arg2, int
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_568(MethodBind* method, Object* ptr, RID* arg1, Object* arg2, int arg3) {
+void godot_icall_3_572(MethodBind* method, Object* ptr, RID* arg1, Object* arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg3_in = (int64_t)arg3;
 	const void* call_args[3] = { arg1, arg2, &arg3_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_569(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+MonoObject* godot_icall_2_573(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -7231,7 +7252,7 @@ MonoObject* godot_icall_2_569(MethodBind* method, Object* ptr, RID* arg1, int ar
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-void godot_icall_3_570(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3) {
+void godot_icall_3_574(MethodBind* method, Object* ptr, RID* arg1, int arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	int64_t arg3_in = (int64_t)arg3;
@@ -7239,14 +7260,14 @@ void godot_icall_3_570(MethodBind* method, Object* ptr, RID* arg1, int arg2, int
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_571(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2) {
+void godot_icall_2_575(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoString* godot_icall_1_572(MethodBind* method, Object* ptr, RID* arg1) {
+MonoString* godot_icall_1_576(MethodBind* method, Object* ptr, RID* arg1) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -7254,14 +7275,14 @@ MonoString* godot_icall_1_572(MethodBind* method, Object* ptr, RID* arg1) {
 	return GDMonoMarshal::mono_string_from_godot(ret);
 }
 
-void godot_icall_3_573(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, int arg3) {
+void godot_icall_3_577(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg3_in = (int64_t)arg3;
 	const void* call_args[3] = { arg1, arg2, &arg3_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoArray* godot_icall_1_574(MethodBind* method, Object* ptr, RID* arg1) {
+MonoArray* godot_icall_1_578(MethodBind* method, Object* ptr, RID* arg1) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -7269,14 +7290,14 @@ MonoArray* godot_icall_1_574(MethodBind* method, Object* ptr, RID* arg1) {
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-void godot_icall_3_575(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2, RID* arg3) {
+void godot_icall_3_579(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2, RID* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	const void* call_args[3] = { arg1, &arg2_in, arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-RID* godot_icall_2_576(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2) {
+RID* godot_icall_2_580(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -7285,7 +7306,7 @@ RID* godot_icall_2_576(MethodBind* method, Object* ptr, RID* arg1, MonoString* a
 	return memnew(RID(ret));
 }
 
-void godot_icall_3_577(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2, MonoObject* arg3) {
+void godot_icall_3_581(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2, MonoObject* arg3) {
 	ERR_FAIL_NULL(ptr);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
 	Variant arg3_in = GDMonoMarshal::mono_object_to_variant(arg3);
@@ -7293,7 +7314,7 @@ void godot_icall_3_577(MethodBind* method, Object* ptr, RID* arg1, MonoString* a
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_2_578(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_582(MethodBind* method, Object* ptr, RID* arg1, MonoString* arg2) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -7302,7 +7323,7 @@ MonoObject* godot_icall_2_578(MethodBind* method, Object* ptr, RID* arg1, MonoSt
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-void godot_icall_5_579(MethodBind* method, Object* ptr, RID* arg1, int arg2, MonoArray* arg3, MonoArray* arg4, int arg5) {
+void godot_icall_5_583(MethodBind* method, Object* ptr, RID* arg1, int arg2, MonoArray* arg3, MonoArray* arg4, int arg5) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg2_in = (int64_t)arg2;
 	Array arg3_in = GDMonoMarshal::mono_array_to_Array(arg3);
@@ -7312,7 +7333,7 @@ void godot_icall_5_579(MethodBind* method, Object* ptr, RID* arg1, int arg2, Mon
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-int godot_icall_2_580(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+int godot_icall_2_584(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	int64_t arg2_in = (int64_t)arg2;
@@ -7321,7 +7342,7 @@ int godot_icall_2_580(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	return (int)ret;
 }
 
-MonoArray* godot_icall_2_581(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+MonoArray* godot_icall_2_585(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	PoolByteArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -7330,7 +7351,7 @@ MonoArray* godot_icall_2_581(MethodBind* method, Object* ptr, RID* arg1, int arg
 	return GDMonoMarshal::PoolByteArray_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_2_582(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+MonoArray* godot_icall_2_586(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -7339,7 +7360,7 @@ MonoArray* godot_icall_2_582(MethodBind* method, Object* ptr, RID* arg1, int arg
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_2_583(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
+MonoObject* godot_icall_2_587(MethodBind* method, Object* ptr, RID* arg1, int arg2) {
 	AABB ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg2_in = (int64_t)arg2;
@@ -7349,14 +7370,14 @@ MonoObject* godot_icall_2_583(MethodBind* method, Object* ptr, RID* arg1, int ar
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(AABB), ret_out);
 }
 
-void godot_icall_2_584(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
+void godot_icall_2_588(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(AABB, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-MonoObject* godot_icall_1_585(MethodBind* method, Object* ptr, RID* arg1) {
+MonoObject* godot_icall_1_589(MethodBind* method, Object* ptr, RID* arg1) {
 	AABB ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -7365,7 +7386,7 @@ MonoObject* godot_icall_1_585(MethodBind* method, Object* ptr, RID* arg1) {
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(AABB), ret_out);
 }
 
-void godot_icall_3_586(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, int arg3) {
+void godot_icall_3_590(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, int arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	int64_t arg3_in = (int64_t)arg3;
@@ -7373,28 +7394,28 @@ void godot_icall_3_586(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_587(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, real_t* arg3) {
+void godot_icall_3_591(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg3, arg3_in);
 	const void* call_args[3] = { arg1, arg2, &arg3_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_588(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
+void godot_icall_2_592(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Color, arg2, arg2_in);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_589(MethodBind* method, Object* ptr, RID* arg1, bool arg2, real_t* arg3) {
+void godot_icall_3_593(MethodBind* method, Object* ptr, RID* arg1, bool arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg3, arg3_in);
 	const void* call_args[3] = { arg1, &arg2, &arg3_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_6_590(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, real_t* arg4, real_t arg5, bool arg6) {
+void godot_icall_6_594(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, real_t* arg4, real_t arg5, bool arg6) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	MARSHALLED_IN(Vector2, arg3, arg3_in);
@@ -7404,7 +7425,7 @@ void godot_icall_6_590(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_5_591(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, real_t arg4, bool arg5) {
+void godot_icall_5_595(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, real_t arg4, bool arg5) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg2_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg2);
 	PoolColorArray arg3_in = GDMonoMarshal::mono_array_to_PoolColorArray(arg3);
@@ -7413,7 +7434,7 @@ void godot_icall_5_591(MethodBind* method, Object* ptr, RID* arg1, MonoArray* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_592(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3) {
+void godot_icall_3_596(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Color, arg3, arg3_in);
@@ -7421,7 +7442,7 @@ void godot_icall_3_592(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_593(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t arg3, real_t* arg4) {
+void godot_icall_4_597(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t arg3, real_t* arg4) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Vector2, arg2, arg2_in);
 	double arg3_in = (double)arg3;
@@ -7430,7 +7451,7 @@ void godot_icall_4_593(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_7_594(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, bool arg4, real_t* arg5, bool arg6, RID* arg7) {
+void godot_icall_7_598(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, bool arg4, real_t* arg5, bool arg6, RID* arg7) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Color, arg5, arg5_in);
@@ -7438,7 +7459,7 @@ void godot_icall_7_594(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_8_595(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, real_t* arg4, real_t* arg5, bool arg6, RID* arg7, bool arg8) {
+void godot_icall_8_599(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, RID* arg3, real_t* arg4, real_t* arg5, bool arg6, RID* arg7, bool arg8) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Rect2, arg4, arg4_in);
@@ -7447,7 +7468,7 @@ void godot_icall_8_595(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2,
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_11_596(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, RID* arg4, real_t* arg5, real_t* arg6, int arg7, int arg8, bool arg9, real_t* arg10, RID* arg11) {
+void godot_icall_11_600(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2, real_t* arg3, RID* arg4, real_t* arg5, real_t* arg6, int arg7, int arg8, bool arg9, real_t* arg10, RID* arg11) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Rect2, arg2, arg2_in);
 	MARSHALLED_IN(Rect2, arg3, arg3_in);
@@ -7460,7 +7481,7 @@ void godot_icall_11_596(MethodBind* method, Object* ptr, RID* arg1, real_t* arg2
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_7_597(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, RID* arg5, real_t arg6, RID* arg7) {
+void godot_icall_7_601(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, RID* arg5, real_t arg6, RID* arg7) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg2_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg2);
 	PoolColorArray arg3_in = GDMonoMarshal::mono_array_to_PoolColorArray(arg3);
@@ -7470,7 +7491,7 @@ void godot_icall_7_597(MethodBind* method, Object* ptr, RID* arg1, MonoArray* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_7_598(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, RID* arg5, RID* arg6, bool arg7) {
+void godot_icall_7_602(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, RID* arg5, RID* arg6, bool arg7) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg2_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg2);
 	PoolColorArray arg3_in = GDMonoMarshal::mono_array_to_PoolColorArray(arg3);
@@ -7479,7 +7500,7 @@ void godot_icall_7_598(MethodBind* method, Object* ptr, RID* arg1, MonoArray* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_8_599(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, MonoArray* arg5, RID* arg6, int arg7, RID* arg8) {
+void godot_icall_8_603(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, MonoArray* arg3, MonoArray* arg4, MonoArray* arg5, RID* arg6, int arg7, RID* arg8) {
 	ERR_FAIL_NULL(ptr);
 	PoolIntArray arg2_in = GDMonoMarshal::mono_array_to_PoolIntArray(arg2);
 	PoolVector2Array arg3_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg3);
@@ -7490,13 +7511,13 @@ void godot_icall_8_599(MethodBind* method, Object* ptr, RID* arg1, MonoArray* ar
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_600(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, RID* arg3) {
+void godot_icall_3_604(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, RID* arg3) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[3] = { arg1, arg2, arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_6_601(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, RID* arg3, RID* arg4, int arg5, int arg6) {
+void godot_icall_6_605(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, RID* arg3, RID* arg4, int arg5, int arg6) {
 	ERR_FAIL_NULL(ptr);
 	int64_t arg5_in = (int64_t)arg5;
 	int64_t arg6_in = (int64_t)arg6;
@@ -7504,27 +7525,27 @@ void godot_icall_6_601(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, RI
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_3_602(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, bool arg3) {
+void godot_icall_3_606(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg2_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg2);
 	const void* call_args[3] = { arg1, &arg2_in, &arg3 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_2_603(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2) {
+void godot_icall_2_607(MethodBind* method, Object* ptr, RID* arg1, MonoArray* arg2) {
 	ERR_FAIL_NULL(ptr);
 	PoolVector2Array arg2_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg2);
 	const void* call_args[2] = { arg1, &arg2_in };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-void godot_icall_4_604(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, RID* arg3, RID* arg4) {
+void godot_icall_4_608(MethodBind* method, Object* ptr, RID* arg1, RID* arg2, RID* arg3, RID* arg4) {
 	ERR_FAIL_NULL(ptr);
 	const void* call_args[4] = { arg1, arg2, arg3, arg4 };
 	method->ptrcall(ptr, call_args, NULL);
 }
 
-RID* godot_icall_3_605(MethodBind* method, Object* ptr, int arg1, int arg2, real_t arg3) {
+RID* godot_icall_3_609(MethodBind* method, Object* ptr, int arg1, int arg2, real_t arg3) {
 	RID ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -7535,7 +7556,7 @@ RID* godot_icall_3_605(MethodBind* method, Object* ptr, int arg1, int arg2, real
 	return memnew(RID(ret));
 }
 
-void godot_icall_3_606(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, bool arg3) {
+void godot_icall_3_610(MethodBind* method, Object* ptr, Object* arg1, real_t* arg2, bool arg3) {
 	ERR_FAIL_NULL(ptr);
 	MARSHALLED_IN(Color, arg2, arg2_in);
 	const void* call_args[3] = { arg1, &arg2_in, &arg3 };
@@ -7552,7 +7573,7 @@ Object* godot_icall_WeakRef_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_607(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_611(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
@@ -7595,7 +7616,7 @@ Object* godot_icall_YSort_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_2_608(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_612(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7605,7 +7626,7 @@ MonoObject* godot_icall_2_608(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoMarshal::Dictionary_to_mono_object(ret);
 }
 
-MonoArray* godot_icall_2_609(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2) {
+MonoArray* godot_icall_2_613(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7614,7 +7635,7 @@ MonoArray* godot_icall_2_609(MethodBind* method, Object* ptr, MonoString* arg1, 
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_2_610(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_614(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -7623,7 +7644,7 @@ MonoObject* godot_icall_2_610(MethodBind* method, Object* ptr, Object* arg1, Mon
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-int godot_icall_3_611(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3) {
+int godot_icall_3_615(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -7633,7 +7654,7 @@ int godot_icall_3_611(MethodBind* method, Object* ptr, Object* arg1, MonoString*
 	return (int)ret;
 }
 
-bool godot_icall_3_612(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, bool arg3) {
+bool godot_icall_3_616(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, bool arg3) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7643,7 +7664,7 @@ bool godot_icall_3_612(MethodBind* method, Object* ptr, MonoString* arg1, MonoSt
 	return ret;
 }
 
-MonoArray* godot_icall_2_613(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2) {
+MonoArray* godot_icall_2_617(MethodBind* method, Object* ptr, MonoString* arg1, bool arg2) {
 	PoolStringArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7656,7 +7677,7 @@ Object* godot_icall__ClassDB_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("ClassDB");
 }
 
-int godot_icall_2_614(MethodBind* method, Object* ptr, bool arg1, bool arg2) {
+int godot_icall_2_618(MethodBind* method, Object* ptr, bool arg1, bool arg2) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	const void* call_args[2] = { &arg1, &arg2 };
@@ -7670,14 +7691,14 @@ Object* godot_icall_Directory_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoObject* godot_icall_0_615(MethodBind* method, Object* ptr) {
+MonoObject* godot_icall_0_619(MethodBind* method, Object* ptr) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	method->ptrcall(ptr, NULL, &ret);
 	return GDMonoUtils::unmanaged_get_managed(ret);
 }
 
-MonoObject* godot_icall_1_616(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoObject* godot_icall_1_620(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Object* ret = NULL;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7690,7 +7711,7 @@ Object* godot_icall__Engine_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("Engine");
 }
 
-int godot_icall_3_617(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoArray* arg3) {
+int godot_icall_3_621(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoArray* arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7701,7 +7722,7 @@ int godot_icall_3_617(MethodBind* method, Object* ptr, MonoString* arg1, int arg
 	return (int)ret;
 }
 
-int godot_icall_3_618(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3) {
+int godot_icall_3_622(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, MonoString* arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7712,7 +7733,7 @@ int godot_icall_3_618(MethodBind* method, Object* ptr, MonoString* arg1, int arg
 	return (int)ret;
 }
 
-int godot_icall_3_619(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
+int godot_icall_3_623(MethodBind* method, Object* ptr, MonoString* arg1, int arg2, int arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7723,7 +7744,7 @@ int godot_icall_3_619(MethodBind* method, Object* ptr, MonoString* arg1, int arg
 	return (int)ret;
 }
 
-MonoArray* godot_icall_1_620(MethodBind* method, Object* ptr, int arg1) {
+MonoArray* godot_icall_1_624(MethodBind* method, Object* ptr, int arg1) {
 	PoolByteArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	int64_t arg1_in = (int64_t)arg1;
@@ -7738,7 +7759,7 @@ Object* godot_icall_File_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-MonoArray* godot_icall_1_621(MethodBind* method, Object* ptr, real_t* arg1) {
+MonoArray* godot_icall_1_625(MethodBind* method, Object* ptr, real_t* arg1) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -7747,7 +7768,7 @@ MonoArray* godot_icall_1_621(MethodBind* method, Object* ptr, real_t* arg1) {
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_4_622(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, int arg3, int arg4) {
+MonoArray* godot_icall_4_626(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, int arg3, int arg4) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -7759,7 +7780,7 @@ MonoArray* godot_icall_4_622(MethodBind* method, Object* ptr, real_t arg1, real_
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_5_623(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, int arg3, int arg4, int arg5) {
+MonoArray* godot_icall_5_627(MethodBind* method, Object* ptr, real_t arg1, real_t arg2, int arg3, int arg4, int arg5) {
 	Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	double arg1_in = (double)arg1;
@@ -7772,7 +7793,7 @@ MonoArray* godot_icall_5_623(MethodBind* method, Object* ptr, real_t arg1, real_
 	return GDMonoMarshal::Array_to_mono_array(ret);
 }
 
-real_t godot_icall_4_624(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t arg4) {
+real_t godot_icall_4_628(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t arg4) {
 	double ret;
 	ERR_FAIL_NULL_V(ptr, real_t());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -7784,7 +7805,7 @@ real_t godot_icall_4_624(MethodBind* method, Object* ptr, real_t* arg1, real_t* 
 	return (real_t)ret;
 }
 
-MonoObject* godot_icall_4_625(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
+MonoObject* godot_icall_4_629(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -7796,7 +7817,7 @@ MonoObject* godot_icall_4_625(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-MonoArray* godot_icall_4_626(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
+MonoArray* godot_icall_4_630(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
 	PoolVector2Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -7808,7 +7829,7 @@ MonoArray* godot_icall_4_626(MethodBind* method, Object* ptr, real_t* arg1, real
 	return GDMonoMarshal::PoolVector2Array_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_4_627(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
+MonoArray* godot_icall_4_631(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -7820,7 +7841,7 @@ MonoArray* godot_icall_4_627(MethodBind* method, Object* ptr, real_t* arg1, real
 	return GDMonoMarshal::PoolVector3Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_3_628(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3) {
+MonoObject* godot_icall_3_632(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3) {
 	Vector2 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -7832,7 +7853,7 @@ MonoObject* godot_icall_3_628(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector2), ret_out);
 }
 
-MonoObject* godot_icall_3_629(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3) {
+MonoObject* godot_icall_3_633(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3) {
 	Vector3 ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -7844,7 +7865,7 @@ MonoObject* godot_icall_3_629(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return mono_value_box(mono_domain_get(), CACHED_CLASS_RAW(Vector3), ret_out);
 }
 
-MonoObject* godot_icall_5_630(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4, real_t* arg5) {
+MonoObject* godot_icall_5_634(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4, real_t* arg5) {
 	Variant ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -7857,7 +7878,7 @@ MonoObject* godot_icall_5_630(MethodBind* method, Object* ptr, real_t* arg1, rea
 	return GDMonoMarshal::variant_to_mono_object(ret);
 }
 
-MonoArray* godot_icall_4_631(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t arg4) {
+MonoArray* godot_icall_4_635(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t arg4) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -7869,7 +7890,7 @@ MonoArray* godot_icall_4_631(MethodBind* method, Object* ptr, real_t* arg1, real
 	return GDMonoMarshal::PoolVector3Array_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_4_632(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t arg3, real_t arg4) {
+MonoArray* godot_icall_4_636(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t arg3, real_t arg4) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -7881,7 +7902,7 @@ MonoArray* godot_icall_4_632(MethodBind* method, Object* ptr, real_t* arg1, real
 	return GDMonoMarshal::PoolVector3Array_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_3_633(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, MonoArray* arg3) {
+MonoArray* godot_icall_3_637(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, MonoArray* arg3) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	MARSHALLED_IN(Vector3, arg1, arg1_in);
@@ -7892,7 +7913,7 @@ MonoArray* godot_icall_3_633(MethodBind* method, Object* ptr, real_t* arg1, real
 	return GDMonoMarshal::PoolVector3Array_to_mono_array(ret);
 }
 
-bool godot_icall_4_634(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
+bool godot_icall_4_638(MethodBind* method, Object* ptr, real_t* arg1, real_t* arg2, real_t* arg3, real_t* arg4) {
 	bool ret;
 	ERR_FAIL_NULL_V(ptr, bool());
 	MARSHALLED_IN(Vector2, arg1, arg1_in);
@@ -7904,7 +7925,7 @@ bool godot_icall_4_634(MethodBind* method, Object* ptr, real_t* arg1, real_t* ar
 	return ret;
 }
 
-MonoArray* godot_icall_1_635(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoArray* godot_icall_1_639(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	PoolIntArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
@@ -7913,7 +7934,7 @@ MonoArray* godot_icall_1_635(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	return GDMonoMarshal::PoolIntArray_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_1_636(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoArray* godot_icall_1_640(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	PoolVector2Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
@@ -7922,7 +7943,7 @@ MonoArray* godot_icall_1_636(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	return GDMonoMarshal::PoolVector2Array_to_mono_array(ret);
 }
 
-MonoArray* godot_icall_2_637(MethodBind* method, Object* ptr, MonoArray* arg1, real_t* arg2) {
+MonoArray* godot_icall_2_641(MethodBind* method, Object* ptr, MonoArray* arg1, real_t* arg2) {
 	PoolVector3Array ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	PoolVector3Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector3Array(arg1);
@@ -7932,7 +7953,7 @@ MonoArray* godot_icall_2_637(MethodBind* method, Object* ptr, MonoArray* arg1, r
 	return GDMonoMarshal::PoolVector3Array_to_mono_array(ret);
 }
 
-MonoObject* godot_icall_1_638(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoObject* godot_icall_1_642(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	Dictionary ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	PoolVector2Array arg1_in = GDMonoMarshal::mono_array_to_PoolVector2Array(arg1);
@@ -7949,7 +7970,7 @@ Object* godot_icall__GodotSharp_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("GodotSharp");
 }
 
-MonoString* godot_icall_3_639(MethodBind* method, Object* ptr, MonoObject* arg1, MonoString* arg2, bool arg3) {
+MonoString* godot_icall_3_643(MethodBind* method, Object* ptr, MonoObject* arg1, MonoString* arg2, bool arg3) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	Variant arg1_in = GDMonoMarshal::mono_object_to_variant(arg1);
@@ -7959,7 +7980,7 @@ MonoString* godot_icall_3_639(MethodBind* method, Object* ptr, MonoObject* arg1,
 	return GDMonoMarshal::mono_string_from_godot(ret);
 }
 
-MonoObject* godot_icall_1_640(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoObject* godot_icall_1_644(MethodBind* method, Object* ptr, MonoString* arg1) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -7972,7 +7993,7 @@ Object* godot_icall__JSON_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("JSON");
 }
 
-MonoString* godot_icall_1_641(MethodBind* method, Object* ptr, MonoArray* arg1) {
+MonoString* godot_icall_1_645(MethodBind* method, Object* ptr, MonoArray* arg1) {
 	String ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	PoolByteArray arg1_in = GDMonoMarshal::mono_array_to_PoolByteArray(arg1);
@@ -7981,7 +8002,7 @@ MonoString* godot_icall_1_641(MethodBind* method, Object* ptr, MonoArray* arg1) 
 	return GDMonoMarshal::mono_string_from_godot(ret);
 }
 
-MonoArray* godot_icall_1_642(MethodBind* method, Object* ptr, MonoString* arg1) {
+MonoArray* godot_icall_1_646(MethodBind* method, Object* ptr, MonoString* arg1) {
 	PoolByteArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -8000,7 +8021,7 @@ Object* godot_icall_Mutex_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_4_643(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3, MonoArray* arg4) {
+int godot_icall_4_647(MethodBind* method, Object* ptr, MonoString* arg1, MonoArray* arg2, bool arg3, MonoArray* arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -8011,7 +8032,7 @@ int godot_icall_4_643(MethodBind* method, Object* ptr, MonoString* arg1, MonoArr
 	return (int)ret;
 }
 
-int godot_icall_1_644(MethodBind* method, Object* ptr, MonoObject* arg1) {
+int godot_icall_1_648(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	Dictionary arg1_in = GDMonoMarshal::mono_object_to_Dictionary(arg1);
@@ -8020,7 +8041,7 @@ int godot_icall_1_644(MethodBind* method, Object* ptr, MonoObject* arg1) {
 	return (int)ret;
 }
 
-int godot_icall_4_645(MethodBind* method, Object* ptr, MonoString* arg1, real_t arg2, MonoString* arg3, MonoString* arg4) {
+int godot_icall_4_649(MethodBind* method, Object* ptr, MonoString* arg1, real_t arg2, MonoString* arg3, MonoString* arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -8036,7 +8057,7 @@ Object* godot_icall__OS_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("OS");
 }
 
-MonoObject* godot_icall_2_646(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
+MonoObject* godot_icall_2_650(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -8046,7 +8067,7 @@ MonoObject* godot_icall_2_646(MethodBind* method, Object* ptr, MonoString* arg1,
 	return GDMonoUtils::unmanaged_get_managed(ret.ptr());
 }
 
-MonoObject* godot_icall_3_647(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, bool arg3) {
+MonoObject* godot_icall_3_651(MethodBind* method, Object* ptr, MonoString* arg1, MonoString* arg2, bool arg3) {
 	Ref<Reference> ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -8060,7 +8081,7 @@ Object* godot_icall__ResourceLoader_get_singleton() {
 	return Engine::get_singleton()->get_singleton_object("ResourceLoader");
 }
 
-int godot_icall_3_648(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, int arg3) {
+int godot_icall_3_652(MethodBind* method, Object* ptr, MonoString* arg1, Object* arg2, int arg3) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
@@ -8070,7 +8091,7 @@ int godot_icall_3_648(MethodBind* method, Object* ptr, MonoString* arg1, Object*
 	return (int)ret;
 }
 
-MonoArray* godot_icall_1_649(MethodBind* method, Object* ptr, Object* arg1) {
+MonoArray* godot_icall_1_653(MethodBind* method, Object* ptr, Object* arg1) {
 	PoolStringArray ret;
 	ERR_FAIL_NULL_V(ptr, NULL);
 	const void* call_args[1] = { arg1 };
@@ -8088,7 +8109,7 @@ Object* godot_icall_Semaphore_Ctor(MonoObject* obj) {
 	return instance;
 }
 
-int godot_icall_4_650(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3, int arg4) {
+int godot_icall_4_654(MethodBind* method, Object* ptr, Object* arg1, MonoString* arg2, MonoObject* arg3, int arg4) {
 	int64_t ret;
 	ERR_FAIL_NULL_V(ptr, int());
 	String arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
@@ -8111,9 +8132,9 @@ Object* godot_icall__VisualScriptEditor_get_singleton() {
 
 namespace GodotSharpBindings
 {
-uint64_t get_core_api_hash() { return -4370422502973955418; }
+uint64_t get_core_api_hash() { return -6559747208368649974; }
 #ifdef TOOLS_ENABLED
-uint64_t get_editor_api_hash() { return -7169016065735891295; }
+uint64_t get_editor_api_hash() { return 8028568280874114351; }
 #endif // TOOLS_ENABLED
 void register_generated_icalls() {
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_ClassDB_get_method", (void*)godot_icall_ClassDB_get_method);
@@ -8196,6 +8217,8 @@ void register_generated_icalls() {
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_AudioStreamRandomPitch_Ctor", (void*)godot_icall_AudioStreamRandomPitch_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_AudioStreamSample_Ctor", (void*)godot_icall_AudioStreamSample_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_BackBufferCopy_Ctor", (void*)godot_icall_BackBufferCopy_Ctor);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_BakedLightmap_Ctor", (void*)godot_icall_BakedLightmap_Ctor);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_BakedLightmapData_Ctor", (void*)godot_icall_BakedLightmapData_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_BitMap_Ctor", (void*)godot_icall_BitMap_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_BitmapFont_Ctor", (void*)godot_icall_BitmapFont_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_BoneAttachment_Ctor", (void*)godot_icall_BoneAttachment_Ctor);
@@ -8368,7 +8391,6 @@ void register_generated_icalls() {
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_ProximityGroup_Ctor", (void*)godot_icall_ProximityGroup_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_ProxyTexture_Ctor", (void*)godot_icall_ProxyTexture_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_QuadMesh_Ctor", (void*)godot_icall_QuadMesh_Ctor);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_Range_Ctor", (void*)godot_icall_Range_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_RayCast_Ctor", (void*)godot_icall_RayCast_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_RayCast2D_Ctor", (void*)godot_icall_RayCast2D_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_RayShape_Ctor", (void*)godot_icall_RayShape_Ctor);
@@ -8387,14 +8409,12 @@ void register_generated_icalls() {
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_RigidBody_Ctor", (void*)godot_icall_RigidBody_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_RigidBody2D_Ctor", (void*)godot_icall_RigidBody2D_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_SceneTree_Ctor", (void*)godot_icall_SceneTree_Ctor);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_ScrollBar_Ctor", (void*)godot_icall_ScrollBar_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_ScrollContainer_Ctor", (void*)godot_icall_ScrollContainer_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_SegmentShape2D_Ctor", (void*)godot_icall_SegmentShape2D_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_Shader_Ctor", (void*)godot_icall_Shader_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_ShaderMaterial_Ctor", (void*)godot_icall_ShaderMaterial_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_ShortCut_Ctor", (void*)godot_icall_ShortCut_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_Skeleton_Ctor", (void*)godot_icall_Skeleton_Ctor);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_Slider_Ctor", (void*)godot_icall_Slider_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_SliderJoint_Ctor", (void*)godot_icall_SliderJoint_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_Spatial_Ctor", (void*)godot_icall_Spatial_Ctor);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_SpatialMaterial_Ctor", (void*)godot_icall_SpatialMaterial_Ctor);
@@ -8605,8 +8625,8 @@ void register_generated_icalls() {
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_69", (void*)godot_icall_2_69);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_70", (void*)godot_icall_1_70);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_71", (void*)godot_icall_0_71);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_72", (void*)godot_icall_2_72);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_73", (void*)godot_icall_1_73);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_72", (void*)godot_icall_1_72);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_73", (void*)godot_icall_2_73);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_74", (void*)godot_icall_2_74);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_75", (void*)godot_icall_2_75);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_76", (void*)godot_icall_1_76);
@@ -8642,557 +8662,561 @@ void register_generated_icalls() {
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_106", (void*)godot_icall_0_106);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_107", (void*)godot_icall_0_107);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_108", (void*)godot_icall_0_108);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_109", (void*)godot_icall_0_109);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_110", (void*)godot_icall_2_110);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_111", (void*)godot_icall_1_111);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_112", (void*)godot_icall_2_112);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_113", (void*)godot_icall_5_113);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_114", (void*)godot_icall_1_114);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_109", (void*)godot_icall_2_109);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_110", (void*)godot_icall_1_110);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_111", (void*)godot_icall_3_111);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_112", (void*)godot_icall_1_112);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_113", (void*)godot_icall_0_113);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_114", (void*)godot_icall_0_114);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_115", (void*)godot_icall_2_115);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_116", (void*)godot_icall_0_116);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_117", (void*)godot_icall_0_117);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_118", (void*)godot_icall_1_118);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_119", (void*)godot_icall_1_119);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_120", (void*)godot_icall_1_120);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_121", (void*)godot_icall_1_121);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_122", (void*)godot_icall_3_122);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_123", (void*)godot_icall_0_123);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_124", (void*)godot_icall_0_124);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_125", (void*)godot_icall_0_125);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_126", (void*)godot_icall_1_126);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_116", (void*)godot_icall_1_116);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_117", (void*)godot_icall_2_117);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_118", (void*)godot_icall_5_118);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_119", (void*)godot_icall_2_119);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_120", (void*)godot_icall_0_120);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_121", (void*)godot_icall_0_121);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_122", (void*)godot_icall_1_122);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_123", (void*)godot_icall_1_123);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_124", (void*)godot_icall_1_124);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_125", (void*)godot_icall_1_125);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_126", (void*)godot_icall_3_126);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_127", (void*)godot_icall_0_127);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_128", (void*)godot_icall_5_128);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_129", (void*)godot_icall_4_129);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_130", (void*)godot_icall_4_130);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_131", (void*)godot_icall_3_131);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_132", (void*)godot_icall_3_132);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_128", (void*)godot_icall_0_128);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_129", (void*)godot_icall_0_129);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_130", (void*)godot_icall_1_130);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_131", (void*)godot_icall_0_131);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_132", (void*)godot_icall_5_132);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_133", (void*)godot_icall_4_133);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_134", (void*)godot_icall_6_134);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_135", (void*)godot_icall_7_135);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_136", (void*)godot_icall_2_136);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_137", (void*)godot_icall_6_137);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_134", (void*)godot_icall_4_134);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_135", (void*)godot_icall_3_135);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_136", (void*)godot_icall_3_136);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_137", (void*)godot_icall_4_137);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_138", (void*)godot_icall_6_138);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_139", (void*)godot_icall_6_139);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_140", (void*)godot_icall_5_140);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_141", (void*)godot_icall_5_141);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_142", (void*)godot_icall_3_142);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_143", (void*)godot_icall_1_143);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_144", (void*)godot_icall_0_144);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_145", (void*)godot_icall_0_145);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_146", (void*)godot_icall_0_146);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_139", (void*)godot_icall_7_139);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_140", (void*)godot_icall_2_140);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_141", (void*)godot_icall_6_141);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_142", (void*)godot_icall_6_142);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_143", (void*)godot_icall_6_143);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_144", (void*)godot_icall_5_144);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_145", (void*)godot_icall_5_145);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_146", (void*)godot_icall_3_146);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_147", (void*)godot_icall_1_147);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_148", (void*)godot_icall_1_148);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_149", (void*)godot_icall_1_149);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_150", (void*)godot_icall_2_150);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_148", (void*)godot_icall_0_148);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_149", (void*)godot_icall_0_149);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_150", (void*)godot_icall_0_150);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_151", (void*)godot_icall_1_151);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_152", (void*)godot_icall_1_152);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_153", (void*)godot_icall_2_153);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_153", (void*)godot_icall_1_153);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_154", (void*)godot_icall_2_154);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_155", (void*)godot_icall_1_155);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_156", (void*)godot_icall_2_156);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_157", (void*)godot_icall_1_157);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_158", (void*)godot_icall_0_158);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_159", (void*)godot_icall_0_159);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_160", (void*)godot_icall_0_160);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_161", (void*)godot_icall_0_161);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_156", (void*)godot_icall_1_156);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_157", (void*)godot_icall_2_157);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_158", (void*)godot_icall_2_158);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_159", (void*)godot_icall_1_159);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_160", (void*)godot_icall_2_160);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_161", (void*)godot_icall_1_161);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_162", (void*)godot_icall_0_162);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_163", (void*)godot_icall_1_163);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_163", (void*)godot_icall_0_163);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_164", (void*)godot_icall_0_164);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_165", (void*)godot_icall_3_165);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_166", (void*)godot_icall_3_166);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_167", (void*)godot_icall_2_167);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_168", (void*)godot_icall_1_168);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_169", (void*)godot_icall_2_169);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_170", (void*)godot_icall_4_170);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_171", (void*)godot_icall_4_171);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_172", (void*)godot_icall_0_172);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_173", (void*)godot_icall_0_173);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_174", (void*)godot_icall_2_174);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_175", (void*)godot_icall_2_175);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_176", (void*)godot_icall_2_176);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_177", (void*)godot_icall_2_177);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_165", (void*)godot_icall_0_165);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_166", (void*)godot_icall_0_166);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_167", (void*)godot_icall_1_167);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_168", (void*)godot_icall_0_168);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_169", (void*)godot_icall_3_169);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_170", (void*)godot_icall_3_170);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_171", (void*)godot_icall_2_171);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_172", (void*)godot_icall_1_172);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_173", (void*)godot_icall_2_173);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_174", (void*)godot_icall_4_174);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_175", (void*)godot_icall_4_175);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_176", (void*)godot_icall_0_176);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_177", (void*)godot_icall_0_177);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_178", (void*)godot_icall_2_178);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_179", (void*)godot_icall_1_179);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_180", (void*)godot_icall_1_180);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_179", (void*)godot_icall_2_179);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_180", (void*)godot_icall_2_180);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_181", (void*)godot_icall_2_181);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_182", (void*)godot_icall_1_182);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_183", (void*)godot_icall_5_183);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_182", (void*)godot_icall_2_182);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_183", (void*)godot_icall_1_183);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_184", (void*)godot_icall_1_184);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_185", (void*)godot_icall_2_185);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_186", (void*)godot_icall_1_186);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_187", (void*)godot_icall_4_187);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_188", (void*)godot_icall_2_188);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_187", (void*)godot_icall_5_187);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_188", (void*)godot_icall_1_188);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_189", (void*)godot_icall_2_189);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_190", (void*)godot_icall_1_190);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_191", (void*)godot_icall_2_191);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_191", (void*)godot_icall_4_191);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_192", (void*)godot_icall_2_192);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_193", (void*)godot_icall_4_193);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_194", (void*)godot_icall_2_194);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_195", (void*)godot_icall_1_195);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_193", (void*)godot_icall_2_193);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_194", (void*)godot_icall_1_194);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_195", (void*)godot_icall_2_195);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_196", (void*)godot_icall_2_196);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_197", (void*)godot_icall_0_197);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_197", (void*)godot_icall_4_197);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_198", (void*)godot_icall_2_198);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_199", (void*)godot_icall_0_199);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_200", (void*)godot_icall_0_200);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_201", (void*)godot_icall_1_201);
-#ifdef TOOLS_ENABLED
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_202", (void*)godot_icall_2_202);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_203", (void*)godot_icall_3_203);
-#endif
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_199", (void*)godot_icall_1_199);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_200", (void*)godot_icall_2_200);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_201", (void*)godot_icall_0_201);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_202", (void*)godot_icall_2_202);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_203", (void*)godot_icall_0_203);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_204", (void*)godot_icall_0_204);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_205", (void*)godot_icall_1_205);
 #ifdef TOOLS_ENABLED
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_205", (void*)godot_icall_0_205);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_1_206", (void*)godot_icall_1_206);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_1_207", (void*)godot_icall_1_207);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_208", (void*)godot_icall_2_208);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_206", (void*)godot_icall_2_206);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_207", (void*)godot_icall_3_207);
+#endif
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_208", (void*)godot_icall_0_208);
+#ifdef TOOLS_ENABLED
 	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_209", (void*)godot_icall_0_209);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_210", (void*)godot_icall_0_210);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_211", (void*)godot_icall_0_211);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_212", (void*)godot_icall_0_212);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_1_210", (void*)godot_icall_1_210);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_1_211", (void*)godot_icall_1_211);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_212", (void*)godot_icall_2_212);
 	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_213", (void*)godot_icall_0_213);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_214", (void*)godot_icall_2_214);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_214", (void*)godot_icall_0_214);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_215", (void*)godot_icall_0_215);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_216", (void*)godot_icall_0_216);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_217", (void*)godot_icall_0_217);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_218", (void*)godot_icall_2_218);
 #endif
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_215", (void*)godot_icall_2_215);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_219", (void*)godot_icall_2_219);
 #ifdef TOOLS_ENABLED
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_216", (void*)godot_icall_2_216);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_217", (void*)godot_icall_2_217);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_4_218", (void*)godot_icall_4_218);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_219", (void*)godot_icall_0_219);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_220", (void*)godot_icall_0_220);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_4_221", (void*)godot_icall_4_221);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_220", (void*)godot_icall_2_220);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_221", (void*)godot_icall_2_221);
 	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_4_222", (void*)godot_icall_4_222);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_223", (void*)godot_icall_3_223);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_224", (void*)godot_icall_3_224);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_223", (void*)godot_icall_0_223);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_224", (void*)godot_icall_0_224);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_4_225", (void*)godot_icall_4_225);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_4_226", (void*)godot_icall_4_226);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_227", (void*)godot_icall_3_227);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_228", (void*)godot_icall_3_228);
 #endif
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_225", (void*)godot_icall_2_225);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_226", (void*)godot_icall_1_226);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_227", (void*)godot_icall_1_227);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_228", (void*)godot_icall_1_228);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_229", (void*)godot_icall_2_229);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_230", (void*)godot_icall_1_230);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_231", (void*)godot_icall_1_231);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_232", (void*)godot_icall_1_232);
 #ifdef TOOLS_ENABLED
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_229", (void*)godot_icall_3_229);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_230", (void*)godot_icall_3_230);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_231", (void*)godot_icall_2_231);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_232", (void*)godot_icall_2_232);
 	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_233", (void*)godot_icall_3_233);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_234", (void*)godot_icall_3_234);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_235", (void*)godot_icall_2_235);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_236", (void*)godot_icall_2_236);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_237", (void*)godot_icall_3_237);
 #endif
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_234", (void*)godot_icall_0_234);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_235", (void*)godot_icall_5_235);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_236", (void*)godot_icall_5_236);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_237", (void*)godot_icall_1_237);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_238", (void*)godot_icall_0_238);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_239", (void*)godot_icall_3_239);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_240", (void*)godot_icall_0_240);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_239", (void*)godot_icall_5_239);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_240", (void*)godot_icall_5_240);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_241", (void*)godot_icall_1_241);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_242", (void*)godot_icall_1_242);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_243", (void*)godot_icall_0_243);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_244", (void*)godot_icall_2_244);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_242", (void*)godot_icall_0_242);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_243", (void*)godot_icall_3_243);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_244", (void*)godot_icall_0_244);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_245", (void*)godot_icall_1_245);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_246", (void*)godot_icall_1_246);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_247", (void*)godot_icall_0_247);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_248", (void*)godot_icall_2_248);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_249", (void*)godot_icall_2_249);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_250", (void*)godot_icall_1_250);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_251", (void*)godot_icall_1_251);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_252", (void*)godot_icall_1_252);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_249", (void*)godot_icall_1_249);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_250", (void*)godot_icall_0_250);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_251", (void*)godot_icall_2_251);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_252", (void*)godot_icall_2_252);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_253", (void*)godot_icall_1_253);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_254", (void*)godot_icall_0_254);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_255", (void*)godot_icall_0_255);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_256", (void*)godot_icall_4_256);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_257", (void*)godot_icall_4_257);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_258", (void*)godot_icall_4_258);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_259", (void*)godot_icall_9_259);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_260", (void*)godot_icall_0_260);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_261", (void*)godot_icall_5_261);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_262", (void*)godot_icall_3_262);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_263", (void*)godot_icall_3_263);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_264", (void*)godot_icall_4_264);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_265", (void*)godot_icall_4_265);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_266", (void*)godot_icall_0_266);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_254", (void*)godot_icall_1_254);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_255", (void*)godot_icall_1_255);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_256", (void*)godot_icall_1_256);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_257", (void*)godot_icall_0_257);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_258", (void*)godot_icall_0_258);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_259", (void*)godot_icall_4_259);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_260", (void*)godot_icall_4_260);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_261", (void*)godot_icall_4_261);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_262", (void*)godot_icall_9_262);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_263", (void*)godot_icall_0_263);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_264", (void*)godot_icall_5_264);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_265", (void*)godot_icall_3_265);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_266", (void*)godot_icall_3_266);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_267", (void*)godot_icall_4_267);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_268", (void*)godot_icall_4_268);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_269", (void*)godot_icall_0_269);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_270", (void*)godot_icall_1_270);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_271", (void*)godot_icall_5_271);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_272", (void*)godot_icall_2_272);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_268", (void*)godot_icall_1_268);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_269", (void*)godot_icall_2_269);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_270", (void*)godot_icall_4_270);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_271", (void*)godot_icall_0_271);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_272", (void*)godot_icall_4_272);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_273", (void*)godot_icall_4_273);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_274", (void*)godot_icall_5_274);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_275", (void*)godot_icall_3_275);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_276", (void*)godot_icall_3_276);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_277", (void*)godot_icall_4_277);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_278", (void*)godot_icall_1_278);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_279", (void*)godot_icall_3_279);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_280", (void*)godot_icall_2_280);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_281", (void*)godot_icall_4_281);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_282", (void*)godot_icall_2_282);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_274", (void*)godot_icall_0_274);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_275", (void*)godot_icall_1_275);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_276", (void*)godot_icall_5_276);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_277", (void*)godot_icall_2_277);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_278", (void*)godot_icall_4_278);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_279", (void*)godot_icall_5_279);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_280", (void*)godot_icall_3_280);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_281", (void*)godot_icall_3_281);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_282", (void*)godot_icall_4_282);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_283", (void*)godot_icall_1_283);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_284", (void*)godot_icall_4_284);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_285", (void*)godot_icall_4_285);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_286", (void*)godot_icall_4_286);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_287", (void*)godot_icall_2_287);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_288", (void*)godot_icall_1_288);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_289", (void*)godot_icall_2_289);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_290", (void*)godot_icall_2_290);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_291", (void*)godot_icall_1_291);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_292", (void*)godot_icall_2_292);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_293", (void*)godot_icall_1_293);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_294", (void*)godot_icall_3_294);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_284", (void*)godot_icall_3_284);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_285", (void*)godot_icall_2_285);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_286", (void*)godot_icall_1_286);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_287", (void*)godot_icall_4_287);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_288", (void*)godot_icall_2_288);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_289", (void*)godot_icall_1_289);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_290", (void*)godot_icall_4_290);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_291", (void*)godot_icall_4_291);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_292", (void*)godot_icall_4_292);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_293", (void*)godot_icall_2_293);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_294", (void*)godot_icall_1_294);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_295", (void*)godot_icall_2_295);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_296", (void*)godot_icall_2_296);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_297", (void*)godot_icall_1_297);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_298", (void*)godot_icall_2_298);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_299", (void*)godot_icall_1_299);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_300", (void*)godot_icall_2_300);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_301", (void*)godot_icall_0_301);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_302", (void*)godot_icall_0_302);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_300", (void*)godot_icall_3_300);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_301", (void*)godot_icall_2_301);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_302", (void*)godot_icall_2_302);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_303", (void*)godot_icall_1_303);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_304", (void*)godot_icall_2_304);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_305", (void*)godot_icall_1_305);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_306", (void*)godot_icall_5_306);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_307", (void*)godot_icall_2_307);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_308", (void*)godot_icall_1_308);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_306", (void*)godot_icall_2_306);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_307", (void*)godot_icall_0_307);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_308", (void*)godot_icall_0_308);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_309", (void*)godot_icall_1_309);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_310", (void*)godot_icall_5_310);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_311", (void*)godot_icall_2_311);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_312", (void*)godot_icall_1_312);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_313", (void*)godot_icall_0_313);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_314", (void*)godot_icall_2_314);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_315", (void*)godot_icall_0_315);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_316", (void*)godot_icall_0_316);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_317", (void*)godot_icall_1_317);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_310", (void*)godot_icall_2_310);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_311", (void*)godot_icall_1_311);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_312", (void*)godot_icall_5_312);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_313", (void*)godot_icall_2_313);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_314", (void*)godot_icall_1_314);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_315", (void*)godot_icall_1_315);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_316", (void*)godot_icall_5_316);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_317", (void*)godot_icall_2_317);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_318", (void*)godot_icall_1_318);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_319", (void*)godot_icall_0_319);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_320", (void*)godot_icall_2_320);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_321", (void*)godot_icall_1_321);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_322", (void*)godot_icall_2_322);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_321", (void*)godot_icall_0_321);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_322", (void*)godot_icall_0_322);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_323", (void*)godot_icall_1_323);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_324", (void*)godot_icall_2_324);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_325", (void*)godot_icall_2_325);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_326", (void*)godot_icall_1_326);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_327", (void*)godot_icall_0_327);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_324", (void*)godot_icall_1_324);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_325", (void*)godot_icall_0_325);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_326", (void*)godot_icall_2_326);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_327", (void*)godot_icall_1_327);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_328", (void*)godot_icall_2_328);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_329", (void*)godot_icall_1_329);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_330", (void*)godot_icall_1_330);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_331", (void*)godot_icall_0_331);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_332", (void*)godot_icall_3_332);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_333", (void*)godot_icall_3_333);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_334", (void*)godot_icall_3_334);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_330", (void*)godot_icall_2_330);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_331", (void*)godot_icall_2_331);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_332", (void*)godot_icall_1_332);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_333", (void*)godot_icall_0_333);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_334", (void*)godot_icall_2_334);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_335", (void*)godot_icall_1_335);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_336", (void*)godot_icall_3_336);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_337", (void*)godot_icall_3_337);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_338", (void*)godot_icall_1_338);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_339", (void*)godot_icall_0_339);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_340", (void*)godot_icall_2_340);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_341", (void*)godot_icall_2_341);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_342", (void*)godot_icall_1_342);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_343", (void*)godot_icall_0_343);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_344", (void*)godot_icall_4_344);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_345", (void*)godot_icall_4_345);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_346", (void*)godot_icall_3_346);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_347", (void*)godot_icall_1_347);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_336", (void*)godot_icall_1_336);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_337", (void*)godot_icall_0_337);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_338", (void*)godot_icall_3_338);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_339", (void*)godot_icall_3_339);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_340", (void*)godot_icall_3_340);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_341", (void*)godot_icall_1_341);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_342", (void*)godot_icall_3_342);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_343", (void*)godot_icall_3_343);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_344", (void*)godot_icall_1_344);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_345", (void*)godot_icall_0_345);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_346", (void*)godot_icall_2_346);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_347", (void*)godot_icall_2_347);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_348", (void*)godot_icall_1_348);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_349", (void*)godot_icall_1_349);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_350", (void*)godot_icall_3_350);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_351", (void*)godot_icall_1_351);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_352", (void*)godot_icall_1_352);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_353", (void*)godot_icall_2_353);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_354", (void*)godot_icall_3_354);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_355", (void*)godot_icall_0_355);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_356", (void*)godot_icall_0_356);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_357", (void*)godot_icall_2_357);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_358", (void*)godot_icall_3_358);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_359", (void*)godot_icall_3_359);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_360", (void*)godot_icall_1_360);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_361", (void*)godot_icall_1_361);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_362", (void*)godot_icall_2_362);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_363", (void*)godot_icall_1_363);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_364", (void*)godot_icall_0_364);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_365", (void*)godot_icall_2_365);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_366", (void*)godot_icall_2_366);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_367", (void*)godot_icall_5_367);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_368", (void*)godot_icall_3_368);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_369", (void*)godot_icall_3_369);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_370", (void*)godot_icall_3_370);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_371", (void*)godot_icall_1_371);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_372", (void*)godot_icall_1_372);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_373", (void*)godot_icall_0_373);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_374", (void*)godot_icall_1_374);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_349", (void*)godot_icall_0_349);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_350", (void*)godot_icall_4_350);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_351", (void*)godot_icall_4_351);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_352", (void*)godot_icall_3_352);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_353", (void*)godot_icall_1_353);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_354", (void*)godot_icall_1_354);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_355", (void*)godot_icall_1_355);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_356", (void*)godot_icall_3_356);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_357", (void*)godot_icall_1_357);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_358", (void*)godot_icall_1_358);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_359", (void*)godot_icall_2_359);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_360", (void*)godot_icall_3_360);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_361", (void*)godot_icall_0_361);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_362", (void*)godot_icall_0_362);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_363", (void*)godot_icall_2_363);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_364", (void*)godot_icall_3_364);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_365", (void*)godot_icall_3_365);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_366", (void*)godot_icall_1_366);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_367", (void*)godot_icall_1_367);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_368", (void*)godot_icall_2_368);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_369", (void*)godot_icall_1_369);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_370", (void*)godot_icall_0_370);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_371", (void*)godot_icall_2_371);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_372", (void*)godot_icall_2_372);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_373", (void*)godot_icall_5_373);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_374", (void*)godot_icall_3_374);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_375", (void*)godot_icall_3_375);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_376", (void*)godot_icall_0_376);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_377", (void*)godot_icall_0_377);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_378", (void*)godot_icall_0_378);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_376", (void*)godot_icall_3_376);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_377", (void*)godot_icall_1_377);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_378", (void*)godot_icall_1_378);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_379", (void*)godot_icall_0_379);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_380", (void*)godot_icall_1_380);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_380", (void*)godot_icall_3_380);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_381", (void*)godot_icall_0_381);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_382", (void*)godot_icall_4_382);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_383", (void*)godot_icall_4_383);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_384", (void*)godot_icall_2_384);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_385", (void*)godot_icall_1_385);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_386", (void*)godot_icall_1_386);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_387", (void*)godot_icall_2_387);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_388", (void*)godot_icall_1_388);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_382", (void*)godot_icall_0_382);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_383", (void*)godot_icall_0_383);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_384", (void*)godot_icall_0_384);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_385", (void*)godot_icall_0_385);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_386", (void*)godot_icall_4_386);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_387", (void*)godot_icall_4_387);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_388", (void*)godot_icall_2_388);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_389", (void*)godot_icall_1_389);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_390", (void*)godot_icall_2_390);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_391", (void*)godot_icall_1_391);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_392", (void*)godot_icall_3_392);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_393", (void*)godot_icall_2_393);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_394", (void*)godot_icall_1_394);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_395", (void*)godot_icall_2_395);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_396", (void*)godot_icall_1_396);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_390", (void*)godot_icall_1_390);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_391", (void*)godot_icall_2_391);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_392", (void*)godot_icall_1_392);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_393", (void*)godot_icall_1_393);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_394", (void*)godot_icall_2_394);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_395", (void*)godot_icall_1_395);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_396", (void*)godot_icall_3_396);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_397", (void*)godot_icall_2_397);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_398", (void*)godot_icall_3_398);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_399", (void*)godot_icall_3_399);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_400", (void*)godot_icall_3_400);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_401", (void*)godot_icall_3_401);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_402", (void*)godot_icall_2_402);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_403", (void*)godot_icall_2_403);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_404", (void*)godot_icall_1_404);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_398", (void*)godot_icall_1_398);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_399", (void*)godot_icall_2_399);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_400", (void*)godot_icall_1_400);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_401", (void*)godot_icall_2_401);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_402", (void*)godot_icall_3_402);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_403", (void*)godot_icall_3_403);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_404", (void*)godot_icall_3_404);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_405", (void*)godot_icall_3_405);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_406", (void*)godot_icall_2_406);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_407", (void*)godot_icall_2_407);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_408", (void*)godot_icall_1_408);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_409", (void*)godot_icall_3_409);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_410", (void*)godot_icall_3_410);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_410", (void*)godot_icall_2_410);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_411", (void*)godot_icall_2_411);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_412", (void*)godot_icall_4_412);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_413", (void*)godot_icall_5_413);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_414", (void*)godot_icall_1_414);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_415", (void*)godot_icall_3_415);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_416", (void*)godot_icall_5_416);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_417", (void*)godot_icall_4_417);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_412", (void*)godot_icall_1_412);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_413", (void*)godot_icall_3_413);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_414", (void*)godot_icall_3_414);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_415", (void*)godot_icall_2_415);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_416", (void*)godot_icall_4_416);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_417", (void*)godot_icall_5_417);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_418", (void*)godot_icall_1_418);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_419", (void*)godot_icall_2_419);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_420", (void*)godot_icall_0_420);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_419", (void*)godot_icall_3_419);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_420", (void*)godot_icall_5_420);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_421", (void*)godot_icall_4_421);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_422", (void*)godot_icall_2_422);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_423", (void*)godot_icall_1_423);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_424", (void*)godot_icall_3_424);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_425", (void*)godot_icall_3_425);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_422", (void*)godot_icall_1_422);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_423", (void*)godot_icall_2_423);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_424", (void*)godot_icall_0_424);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_425", (void*)godot_icall_4_425);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_426", (void*)godot_icall_2_426);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_427", (void*)godot_icall_2_427);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_428", (void*)godot_icall_1_428);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_429", (void*)godot_icall_2_429);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_427", (void*)godot_icall_1_427);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_428", (void*)godot_icall_3_428);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_429", (void*)godot_icall_3_429);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_430", (void*)godot_icall_2_430);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_431", (void*)godot_icall_1_431);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_432", (void*)godot_icall_3_432);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_431", (void*)godot_icall_2_431);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_432", (void*)godot_icall_1_432);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_433", (void*)godot_icall_2_433);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_434", (void*)godot_icall_1_434);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_435", (void*)godot_icall_4_435);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_436", (void*)godot_icall_1_436);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_437", (void*)godot_icall_4_437);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_434", (void*)godot_icall_2_434);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_435", (void*)godot_icall_1_435);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_436", (void*)godot_icall_3_436);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_437", (void*)godot_icall_2_437);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_438", (void*)godot_icall_2_438);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_439", (void*)godot_icall_4_439);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_440", (void*)godot_icall_3_440);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_441", (void*)godot_icall_4_441);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_442", (void*)godot_icall_3_442);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_443", (void*)godot_icall_2_443);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_444", (void*)godot_icall_2_444);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_439", (void*)godot_icall_1_439);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_440", (void*)godot_icall_4_440);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_441", (void*)godot_icall_1_441);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_442", (void*)godot_icall_4_442);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_443", (void*)godot_icall_4_443);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_444", (void*)godot_icall_3_444);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_445", (void*)godot_icall_4_445);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_446", (void*)godot_icall_3_446);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_447", (void*)godot_icall_3_447);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_448", (void*)godot_icall_4_448);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_449", (void*)godot_icall_3_449);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_447", (void*)godot_icall_2_447);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_448", (void*)godot_icall_2_448);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_449", (void*)godot_icall_4_449);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_450", (void*)godot_icall_3_450);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_451", (void*)godot_icall_1_451);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_452", (void*)godot_icall_3_452);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_451", (void*)godot_icall_3_451);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_452", (void*)godot_icall_4_452);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_453", (void*)godot_icall_3_453);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_454", (void*)godot_icall_5_454);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_454", (void*)godot_icall_3_454);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_455", (void*)godot_icall_1_455);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_456", (void*)godot_icall_1_456);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_457", (void*)godot_icall_0_457);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_458", (void*)godot_icall_1_458);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_459", (void*)godot_icall_3_459);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_460", (void*)godot_icall_2_460);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_461", (void*)godot_icall_3_461);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_462", (void*)godot_icall_2_462);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_463", (void*)godot_icall_1_463);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_464", (void*)godot_icall_1_464);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_465", (void*)godot_icall_2_465);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_466", (void*)godot_icall_4_466);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_467", (void*)godot_icall_4_467);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_468", (void*)godot_icall_3_468);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_469", (void*)godot_icall_4_469);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_470", (void*)godot_icall_3_470);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_456", (void*)godot_icall_3_456);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_457", (void*)godot_icall_3_457);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_458", (void*)godot_icall_5_458);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_459", (void*)godot_icall_1_459);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_460", (void*)godot_icall_1_460);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_461", (void*)godot_icall_0_461);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_462", (void*)godot_icall_1_462);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_463", (void*)godot_icall_3_463);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_464", (void*)godot_icall_2_464);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_465", (void*)godot_icall_3_465);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_466", (void*)godot_icall_2_466);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_467", (void*)godot_icall_1_467);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_468", (void*)godot_icall_1_468);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_469", (void*)godot_icall_2_469);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_470", (void*)godot_icall_4_470);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_471", (void*)godot_icall_4_471);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_472", (void*)godot_icall_3_472);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_473", (void*)godot_icall_4_473);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_474", (void*)godot_icall_3_474);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_475", (void*)godot_icall_0_475);
 #ifdef TOOLS_ENABLED
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_471", (void*)godot_icall_2_471);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_472", (void*)godot_icall_3_472);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_473", (void*)godot_icall_3_473);
-	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_0_474", (void*)godot_icall_0_474);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_2_476", (void*)godot_icall_2_476);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_477", (void*)godot_icall_3_477);
+	mono_add_internal_call("Godot.EditorNativeCalls::godot_icall_3_478", (void*)godot_icall_3_478);
 #endif
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_475", (void*)godot_icall_1_475);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_476", (void*)godot_icall_0_476);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_477", (void*)godot_icall_3_477);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_478", (void*)godot_icall_5_478);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_479", (void*)godot_icall_3_479);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_480", (void*)godot_icall_5_480);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_481", (void*)godot_icall_0_481);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_482", (void*)godot_icall_0_482);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_483", (void*)godot_icall_0_483);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_484", (void*)godot_icall_0_484);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_485", (void*)godot_icall_2_485);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_486", (void*)godot_icall_3_486);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_479", (void*)godot_icall_1_479);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_480", (void*)godot_icall_0_480);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_481", (void*)godot_icall_3_481);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_482", (void*)godot_icall_5_482);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_483", (void*)godot_icall_3_483);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_484", (void*)godot_icall_5_484);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_485", (void*)godot_icall_0_485);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_486", (void*)godot_icall_0_486);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_487", (void*)godot_icall_0_487);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_488", (void*)godot_icall_3_488);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_488", (void*)godot_icall_0_488);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_489", (void*)godot_icall_2_489);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_490", (void*)godot_icall_3_490);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_491", (void*)godot_icall_1_491);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_492", (void*)godot_icall_0_492);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_493", (void*)godot_icall_3_493);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_494", (void*)godot_icall_2_494);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_495", (void*)godot_icall_2_495);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_496", (void*)godot_icall_4_496);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_497", (void*)godot_icall_6_497);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_498", (void*)godot_icall_3_498);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_491", (void*)godot_icall_0_491);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_492", (void*)godot_icall_3_492);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_493", (void*)godot_icall_2_493);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_494", (void*)godot_icall_3_494);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_495", (void*)godot_icall_1_495);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_496", (void*)godot_icall_0_496);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_497", (void*)godot_icall_3_497);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_498", (void*)godot_icall_2_498);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_499", (void*)godot_icall_2_499);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_500", (void*)godot_icall_2_500);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_501", (void*)godot_icall_0_501);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_502", (void*)godot_icall_1_502);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_503", (void*)godot_icall_0_503);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_504", (void*)godot_icall_3_504);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_505", (void*)godot_icall_4_505);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_506", (void*)godot_icall_4_506);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_507", (void*)godot_icall_5_507);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_508", (void*)godot_icall_6_508);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_509", (void*)godot_icall_7_509);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_510", (void*)godot_icall_0_510);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_511", (void*)godot_icall_0_511);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_512", (void*)godot_icall_3_512);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_513", (void*)godot_icall_3_513);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_500", (void*)godot_icall_4_500);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_501", (void*)godot_icall_6_501);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_502", (void*)godot_icall_3_502);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_503", (void*)godot_icall_2_503);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_504", (void*)godot_icall_2_504);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_505", (void*)godot_icall_0_505);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_506", (void*)godot_icall_1_506);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_507", (void*)godot_icall_0_507);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_508", (void*)godot_icall_3_508);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_509", (void*)godot_icall_4_509);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_510", (void*)godot_icall_4_510);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_511", (void*)godot_icall_5_511);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_512", (void*)godot_icall_6_512);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_513", (void*)godot_icall_7_513);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_514", (void*)godot_icall_0_514);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_515", (void*)godot_icall_0_515);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_516", (void*)godot_icall_7_516);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_517", (void*)godot_icall_5_517);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_518", (void*)godot_icall_2_518);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_519", (void*)godot_icall_1_519);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_520", (void*)godot_icall_3_520);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_521", (void*)godot_icall_3_521);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_516", (void*)godot_icall_3_516);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_517", (void*)godot_icall_3_517);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_518", (void*)godot_icall_0_518);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_519", (void*)godot_icall_0_519);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_520", (void*)godot_icall_7_520);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_521", (void*)godot_icall_5_521);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_522", (void*)godot_icall_2_522);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_523", (void*)godot_icall_5_523);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_524", (void*)godot_icall_1_524);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_525", (void*)godot_icall_1_525);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_526", (void*)godot_icall_1_526);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_527", (void*)godot_icall_0_527);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_523", (void*)godot_icall_1_523);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_524", (void*)godot_icall_3_524);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_525", (void*)godot_icall_3_525);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_526", (void*)godot_icall_2_526);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_527", (void*)godot_icall_5_527);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_528", (void*)godot_icall_1_528);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_529", (void*)godot_icall_2_529);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_529", (void*)godot_icall_1_529);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_530", (void*)godot_icall_1_530);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_531", (void*)godot_icall_5_531);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_531", (void*)godot_icall_0_531);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_532", (void*)godot_icall_1_532);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_533", (void*)godot_icall_3_533);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_534", (void*)godot_icall_3_534);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_533", (void*)godot_icall_2_533);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_534", (void*)godot_icall_1_534);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_535", (void*)godot_icall_5_535);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_536", (void*)godot_icall_2_536);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_537", (void*)godot_icall_2_537);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_538", (void*)godot_icall_8_538);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_539", (void*)godot_icall_8_539);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_540", (void*)godot_icall_8_540);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_541", (void*)godot_icall_9_541);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_542", (void*)godot_icall_9_542);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_543", (void*)godot_icall_9_543);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_544", (void*)godot_icall_9_544);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_545", (void*)godot_icall_3_545);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_546", (void*)godot_icall_3_546);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_547", (void*)godot_icall_0_547);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_548", (void*)godot_icall_3_548);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_549", (void*)godot_icall_0_549);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_550", (void*)godot_icall_0_550);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_551", (void*)godot_icall_4_551);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_552", (void*)godot_icall_2_552);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_553", (void*)godot_icall_3_553);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_554", (void*)godot_icall_2_554);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_536", (void*)godot_icall_1_536);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_537", (void*)godot_icall_3_537);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_538", (void*)godot_icall_3_538);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_539", (void*)godot_icall_5_539);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_540", (void*)godot_icall_2_540);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_541", (void*)godot_icall_2_541);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_542", (void*)godot_icall_8_542);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_543", (void*)godot_icall_8_543);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_544", (void*)godot_icall_8_544);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_545", (void*)godot_icall_9_545);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_546", (void*)godot_icall_9_546);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_547", (void*)godot_icall_9_547);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_9_548", (void*)godot_icall_9_548);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_549", (void*)godot_icall_3_549);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_550", (void*)godot_icall_3_550);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_551", (void*)godot_icall_0_551);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_552", (void*)godot_icall_3_552);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_553", (void*)godot_icall_0_553);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_554", (void*)godot_icall_0_554);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_555", (void*)godot_icall_4_555);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_556", (void*)godot_icall_4_556);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_557", (void*)godot_icall_5_557);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_558", (void*)godot_icall_5_558);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_559", (void*)godot_icall_3_559);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_560", (void*)godot_icall_2_560);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_561", (void*)godot_icall_1_561);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_562", (void*)godot_icall_3_562);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_556", (void*)godot_icall_2_556);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_557", (void*)godot_icall_3_557);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_558", (void*)godot_icall_2_558);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_559", (void*)godot_icall_4_559);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_560", (void*)godot_icall_4_560);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_561", (void*)godot_icall_5_561);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_562", (void*)godot_icall_5_562);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_563", (void*)godot_icall_3_563);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_564", (void*)godot_icall_1_564);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_565", (void*)godot_icall_0_565);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_566", (void*)godot_icall_2_566);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_567", (void*)godot_icall_5_567);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_568", (void*)godot_icall_3_568);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_569", (void*)godot_icall_2_569);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_570", (void*)godot_icall_3_570);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_571", (void*)godot_icall_2_571);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_572", (void*)godot_icall_1_572);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_573", (void*)godot_icall_3_573);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_574", (void*)godot_icall_1_574);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_575", (void*)godot_icall_3_575);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_576", (void*)godot_icall_2_576);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_564", (void*)godot_icall_2_564);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_565", (void*)godot_icall_1_565);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_566", (void*)godot_icall_3_566);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_567", (void*)godot_icall_3_567);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_568", (void*)godot_icall_1_568);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_569", (void*)godot_icall_0_569);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_570", (void*)godot_icall_2_570);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_571", (void*)godot_icall_5_571);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_572", (void*)godot_icall_3_572);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_573", (void*)godot_icall_2_573);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_574", (void*)godot_icall_3_574);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_575", (void*)godot_icall_2_575);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_576", (void*)godot_icall_1_576);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_577", (void*)godot_icall_3_577);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_578", (void*)godot_icall_2_578);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_579", (void*)godot_icall_5_579);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_578", (void*)godot_icall_1_578);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_579", (void*)godot_icall_3_579);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_580", (void*)godot_icall_2_580);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_581", (void*)godot_icall_2_581);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_581", (void*)godot_icall_3_581);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_582", (void*)godot_icall_2_582);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_583", (void*)godot_icall_2_583);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_583", (void*)godot_icall_5_583);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_584", (void*)godot_icall_2_584);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_585", (void*)godot_icall_1_585);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_586", (void*)godot_icall_3_586);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_587", (void*)godot_icall_3_587);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_585", (void*)godot_icall_2_585);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_586", (void*)godot_icall_2_586);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_587", (void*)godot_icall_2_587);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_588", (void*)godot_icall_2_588);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_589", (void*)godot_icall_3_589);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_590", (void*)godot_icall_6_590);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_591", (void*)godot_icall_5_591);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_592", (void*)godot_icall_3_592);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_593", (void*)godot_icall_4_593);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_594", (void*)godot_icall_7_594);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_595", (void*)godot_icall_8_595);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_11_596", (void*)godot_icall_11_596);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_597", (void*)godot_icall_7_597);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_589", (void*)godot_icall_1_589);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_590", (void*)godot_icall_3_590);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_591", (void*)godot_icall_3_591);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_592", (void*)godot_icall_2_592);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_593", (void*)godot_icall_3_593);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_594", (void*)godot_icall_6_594);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_595", (void*)godot_icall_5_595);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_596", (void*)godot_icall_3_596);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_597", (void*)godot_icall_4_597);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_598", (void*)godot_icall_7_598);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_599", (void*)godot_icall_8_599);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_600", (void*)godot_icall_3_600);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_601", (void*)godot_icall_6_601);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_602", (void*)godot_icall_3_602);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_603", (void*)godot_icall_2_603);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_604", (void*)godot_icall_4_604);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_605", (void*)godot_icall_3_605);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_11_600", (void*)godot_icall_11_600);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_601", (void*)godot_icall_7_601);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_7_602", (void*)godot_icall_7_602);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_8_603", (void*)godot_icall_8_603);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_604", (void*)godot_icall_3_604);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_6_605", (void*)godot_icall_6_605);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_606", (void*)godot_icall_3_606);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_607", (void*)godot_icall_0_607);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_608", (void*)godot_icall_2_608);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_609", (void*)godot_icall_2_609);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_610", (void*)godot_icall_2_610);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_611", (void*)godot_icall_3_611);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_612", (void*)godot_icall_3_612);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_607", (void*)godot_icall_2_607);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_608", (void*)godot_icall_4_608);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_609", (void*)godot_icall_3_609);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_610", (void*)godot_icall_3_610);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_611", (void*)godot_icall_0_611);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_612", (void*)godot_icall_2_612);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_613", (void*)godot_icall_2_613);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_614", (void*)godot_icall_2_614);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_615", (void*)godot_icall_0_615);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_616", (void*)godot_icall_1_616);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_617", (void*)godot_icall_3_617);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_618", (void*)godot_icall_3_618);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_619", (void*)godot_icall_3_619);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_615", (void*)godot_icall_3_615);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_616", (void*)godot_icall_3_616);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_617", (void*)godot_icall_2_617);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_618", (void*)godot_icall_2_618);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_0_619", (void*)godot_icall_0_619);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_620", (void*)godot_icall_1_620);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_621", (void*)godot_icall_1_621);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_622", (void*)godot_icall_4_622);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_623", (void*)godot_icall_5_623);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_624", (void*)godot_icall_4_624);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_625", (void*)godot_icall_4_625);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_621", (void*)godot_icall_3_621);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_622", (void*)godot_icall_3_622);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_623", (void*)godot_icall_3_623);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_624", (void*)godot_icall_1_624);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_625", (void*)godot_icall_1_625);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_626", (void*)godot_icall_4_626);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_627", (void*)godot_icall_4_627);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_628", (void*)godot_icall_3_628);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_629", (void*)godot_icall_3_629);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_630", (void*)godot_icall_5_630);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_627", (void*)godot_icall_5_627);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_628", (void*)godot_icall_4_628);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_629", (void*)godot_icall_4_629);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_630", (void*)godot_icall_4_630);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_631", (void*)godot_icall_4_631);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_632", (void*)godot_icall_4_632);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_632", (void*)godot_icall_3_632);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_633", (void*)godot_icall_3_633);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_634", (void*)godot_icall_4_634);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_635", (void*)godot_icall_1_635);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_636", (void*)godot_icall_1_636);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_637", (void*)godot_icall_2_637);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_638", (void*)godot_icall_1_638);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_639", (void*)godot_icall_3_639);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_5_634", (void*)godot_icall_5_634);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_635", (void*)godot_icall_4_635);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_636", (void*)godot_icall_4_636);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_637", (void*)godot_icall_3_637);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_638", (void*)godot_icall_4_638);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_639", (void*)godot_icall_1_639);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_640", (void*)godot_icall_1_640);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_641", (void*)godot_icall_1_641);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_641", (void*)godot_icall_2_641);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_642", (void*)godot_icall_1_642);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_643", (void*)godot_icall_4_643);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_643", (void*)godot_icall_3_643);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_644", (void*)godot_icall_1_644);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_645", (void*)godot_icall_4_645);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_646", (void*)godot_icall_2_646);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_647", (void*)godot_icall_3_647);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_648", (void*)godot_icall_3_648);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_649", (void*)godot_icall_1_649);
-	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_650", (void*)godot_icall_4_650);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_645", (void*)godot_icall_1_645);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_646", (void*)godot_icall_1_646);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_647", (void*)godot_icall_4_647);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_648", (void*)godot_icall_1_648);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_649", (void*)godot_icall_4_649);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_2_650", (void*)godot_icall_2_650);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_651", (void*)godot_icall_3_651);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_3_652", (void*)godot_icall_3_652);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_1_653", (void*)godot_icall_1_653);
+	mono_add_internal_call("Godot.NativeCalls::godot_icall_4_654", (void*)godot_icall_4_654);
 }
 }
