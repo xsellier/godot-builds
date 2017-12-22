@@ -87,7 +87,7 @@ build_script:
   - cd godot
   - for /f %%p in ('dir /b ..\patches') do git apply ..\patches\%%p
   - git rev-parse HEAD
-  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% progress=no warnings=no verbose=no gdnative_wrapper=yes
+  - scons platform=%GD_PLATFORM% target=%TARGET% tools=%TOOLS% progress=no warnings=no verbose=no gdnative_wrapper=yes openmp=no
 
 deploy:
   description: 'Godot binaries deployed by Travis CI and AppVeyor'
