@@ -19,6 +19,9 @@ os:
   - linux
   - osx
 
+services:
+  - docker
+
 env:
   global:
     - BUILD_NAME=official
@@ -59,15 +62,15 @@ matrix:
     - os: linux
       env: PLATFORM=iphone TARGET=release_debug
     - os: linux
-      env: PLATFORM=javascript TARGET=release
-    - os: linux
-      env: PLATFORM=javascript TARGET=release_debug
-    - os: linux
       env: PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - os: linux
       env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release
     - os: linux
       env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
+    - os: osx
+      env: PLATFORM=javascript TARGET=release
+    - os: osx
+      env: PLATFORM=javascript TARGET=release_debug
     - os: osx
       env: PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
     - os: osx
@@ -142,15 +145,9 @@ before_script:
       fi;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      brew install llvm;
-      cd $HOME;
-      wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz;
-      tar -xzf emsdk-portable.tar.gz;
-      cd emsdk-portable; ./emsdk update; ./emsdk install latest; ./emsdk activate latest;
-      rm clang/e*/llvm-ar; ln -s /usr/local/opt/llvm/bin/llvm-ar clang/e*/;
-      source ./emsdk_env.sh;
-      cd $TRAVIS_BUILD_DIR;
-      export EMSCRIPTEN_ROOT=`em-config EMSCRIPTEN_ROOT`;
+      docker run -dit --name emscripten -v $(pwd)/godot:/src trzeci/emscripten-slim sh;
+      docker exec -it emscripten apt-get update -qq;
+      docker exec -it emscripten apt-get install -y scons;
     fi;
 
 
@@ -180,7 +177,7 @@ script:
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS arch=arm64 target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
-      $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
+      docker exec -it emscripten $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET;
     fi;
 
 
