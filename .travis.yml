@@ -23,7 +23,7 @@ env:
   global:
     - BUILD_REVISION=official
     - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
-    - SCONS="scons -j2 verbose=yes warnings=no progress=no"
+    - SCONS="scons -j2 verbose=no warnings=no progress=no"
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
@@ -32,11 +32,13 @@ env:
     - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
-    - PLATFORM=server BITS=64 TOOLS=yes
-    - PLATFORM=x11 BITS=32 TOOLS=yes
-    - PLATFORM=x11 BITS=32 TOOLS=no
-    - PLATFORM=x11 BITS=64 TOOLS=yes
-    - PLATFORM=x11 BITS=64 TOOLS=no
+    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
+    - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
+    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
+    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
+    - PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
+    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
     - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - PLATFORM=android TARGET=release ANDROID_ARCH=x86
     - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
@@ -67,15 +69,19 @@ matrix:
     - os: linux
       env: PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
     - os: osx
-      env: PLATFORM=server BITS=64 TOOLS=yes
+      env: PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
     - os: osx
-      env: PLATFORM=x11 BITS=32 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
     - os: osx
-      env: PLATFORM=x11 BITS=32 TOOLS=no
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
     - os: osx
-      env: PLATFORM=x11 BITS=64 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
     - os: osx
-      env: PLATFORM=x11 BITS=64 TOOLS=no
+      env: PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
+    - os: osx
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+    - os: osx
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
     - compiler: gcc
       env: PLATFORM=iphone TARGET=release
     - compiler: gcc
@@ -99,15 +105,19 @@ matrix:
     - compiler: clang
       env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - compiler: clang
-      env: PLATFORM=server BITS=64 TOOLS=yes
+      env: PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
     - compiler: clang
-      env: PLATFORM=x11 BITS=32 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
     - compiler: clang
-      env: PLATFORM=x11 BITS=32 TOOLS=no
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
     - compiler: clang
-      env: PLATFORM=x11 BITS=64 TOOLS=yes
+      env: PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
     - compiler: clang
-      env: PLATFORM=x11 BITS=64 TOOLS=no
+      env: PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
+    - compiler: clang
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
+    - compiler: clang
+      env: PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
 
 
 before_script:
@@ -120,20 +130,24 @@ before_script:
       unzip -d $HOME android-ndk-r14b-darwin-x86_64.zip | grep -v "inflating:" | grep -v "creating:";
       export ANDROID_NDK_ROOT="$HOME/android-ndk-r14b";
     fi;
-  - if [ "$PLATFORM" = "x11" ]; then
+  - if [ "$PLATFORM" = "x11" ] || [ "$PLATFORM" = "server" ]; then
       sudo rm -f /etc/apt/sources.list.d/*.list;
+      sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; sudo apt-get update -qq;
+      sudo apt-get install -y gcc-7 g++-7;
       if [ "$BITS" = "64" ]; then
-          sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxinerama-dev;
+          sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxi-dev libxinerama-dev;
       else
           sudo dpkg --add-architecture i386; sudo apt-get update -qq;
-          sudo apt-get install -y gcc-multilib g++-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxinerama-dev:i386;
+          sudo apt-get install -y gcc-7-multilib g++-7-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxi-dev:i386 libxinerama-dev:i386;
       fi;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
+      brew install llvm;
       cd $HOME;
       wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz;
       tar -xzf emsdk-portable.tar.gz;
       cd emsdk-portable; ./emsdk update; ./emsdk install latest; ./emsdk activate latest;
+      rm clang/e*/llvm-ar; ln -s /usr/local/opt/llvm/bin/llvm-ar clang/e*/;
       source ./emsdk_env.sh;
       cd $TRAVIS_BUILD_DIR;
       export EMSCRIPTEN_ROOT=`em-config EMSCRIPTEN_ROOT`;
@@ -142,14 +156,21 @@ before_script:
 
 script:
   - cd godot; for patch in $(find ../patches -type f); do git apply $patch; done;
+  - git rev-parse HEAD;
   - if [ "$PLATFORM" = "osx" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
-      if [ "$TOOLS" = "yes" ]; then $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=yes use_static_cpp=yes bits=$BITS target=release_debug;
-      else $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release;
-           $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=no use_static_cpp=yes bits=$BITS target=release_debug;
+      export CC="gcc-7"; export CXX="g++-7";
+      while true; do echo "Still building, don't timeout!"; sleep 60; done & export TIMEOUT_HACK_PID=$!;
+      if [ "$BITS" = "32" ] && [ "$TOOLS" = "no" ] && [ "$TARGET" = "release" ]; then
+        $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET use_static_cpp=yes;
+      else
+        $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET use_lto=yes use_static_cpp=yes;
       fi;
+    fi;
+  - if [ ! -z "$TIMEOUT_HACK_PID" ]; then
+      kill -9 $TIMEOUT_HACK_PID;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
