@@ -132,13 +132,11 @@ before_script:
     fi;
   - if [ "$PLATFORM" = "x11" ] || [ "$PLATFORM" = "server" ]; then
       sudo rm -f /etc/apt/sources.list.d/*.list;
-      sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; sudo apt-get update -qq;
-      sudo apt-get install -y gcc-7 g++-7;
       if [ "$BITS" = "64" ]; then
           sudo apt-get install -y libx11-dev libxcursor-dev libxrandr-dev libasound2-dev libpulse-dev libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libxi-dev libxinerama-dev;
       else
           sudo dpkg --add-architecture i386; sudo apt-get update -qq;
-          sudo apt-get install -y gcc-7-multilib g++-7-multilib pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxi-dev:i386 libxinerama-dev:i386;
+          sudo apt-get install -y pkg-config:i386 libx11-dev:i386 libxcursor-dev:i386 libxrandr-dev:i386 libglib2.0-dev:i386 libasound2-dev:i386 libpulse-dev:i386 libpng-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglu1-mesa-dev:i386 libxi-dev:i386 libxinerama-dev:i386;
       fi;
     fi;
   - if [ "$PLATFORM" = "javascript" ]; then
@@ -161,16 +159,7 @@ script:
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET;
     fi;
   - if [ "$PLATFORM" = "x11" -o "$PLATFORM" = "server" ]; then
-      export CC="gcc-7"; export CXX="g++-7";
-      while true; do echo "Still building, don't timeout!"; sleep 60; done & export TIMEOUT_HACK_PID=$!;
-      if [ "$BITS" = "32" ] && [ "$TOOLS" = "no" ] && [ "$TARGET" = "release" ]; then
-        $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET use_static_cpp=yes;
-      else
-        $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET use_lto=yes use_static_cpp=yes;
-      fi;
-    fi;
-  - if [ ! -z "$TIMEOUT_HACK_PID" ]; then
-      kill -9 $TIMEOUT_HACK_PID;
+      $SCONS platform=$PLATFORM CC=$CC CXX=$CXX $OPTIONS tools=$TOOLS bits=$BITS target=$TARGET use_static_cpp=yes;
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       $SCONS platform=$PLATFORM CXX=$CXX $OPTIONS target=$TARGET android_arch=$ANDROID_ARCH;
