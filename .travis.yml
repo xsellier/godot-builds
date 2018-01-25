@@ -129,8 +129,8 @@ before_script:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
       brew update;
       brew install scons;
-      wget https://download.mono-project.com/archive/5.4.1/macos-10-universal/MonoFramework-MDK-5.4.1.6.macos10.xamarin.universal.pkg;
-      sudo installer -verboseR -pkg MonoFramework-MDK-5.4.1.6.macos10.xamarin.universal.pkg -target /;
+      wget https://download.mono-project.com/archive/5.4.1/macos-10-universal/MonoFramework-MDK-5.4.1.7.macos10.xamarin.universal.pkg;
+      sudo installer -verboseR -pkg MonoFramework-MDK-5.4.1.7.macos10.xamarin.universal.pkg -target /;
       export PATH=$PATH:/Library/Frameworks/Mono.framework/Versions/Current/bin;
       export PKG_CONFIG_PATH=/Library/Frameworks/Mono.framework/External/pkgconfig:/Library/Frameworks/Mono.framework/Versions/Current/lib/pkgconfig:/Library/Frameworks/Mono.framework/Versions/Current/share/pkgconfig:$PKG_CONFIG_PATH;
       export MONO64_PREFIX=/Library/Frameworks/Mono.framework/Versions/Current;
