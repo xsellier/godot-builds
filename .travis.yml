@@ -25,7 +25,7 @@ services:
 env:
   global:
     - BUILD_NAME=official
-    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes gdnative_wrapper=yes separate_debug_symbols=yes"
+    - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes gdnative_wrapper=yes debug_symbols=no"
     - SCONS="scons -j2 verbose=no warnings=no progress=no"
   matrix:
     - PLATFORM=iphone TARGET=release
