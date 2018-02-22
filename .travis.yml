@@ -35,7 +35,7 @@ env:
     - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
-#    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
+    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
     - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
     - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
     - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
