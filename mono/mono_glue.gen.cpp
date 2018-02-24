@@ -11445,9 +11445,9 @@ Object* godot_icall__VisualScriptEditor_get_singleton() {
 
 namespace GodotSharpBindings
 {
-uint64_t get_core_api_hash() { return -1113644256614105847; }
+uint64_t get_core_api_hash() { return -8361006182839914624; }
 #ifdef TOOLS_ENABLED
-uint64_t get_editor_api_hash() { return -3973232604354652989; }
+uint64_t get_editor_api_hash() { return 5414294326510715898; }
 #endif // TOOLS_ENABLED
 void register_generated_icalls() {
 	godot_register_header_icalls();	mono_add_internal_call("Godot.NativeCalls::godot_icall_ClassDB_get_method", (void*)godot_icall_ClassDB_get_method);
