@@ -11445,7 +11445,7 @@ Object* godot_icall__VisualScriptEditor_get_singleton() {
 
 namespace GodotSharpBindings
 {
-uint64_t get_core_api_hash() { return 16892213601122680651; }
+uint64_t get_core_api_hash() { return 16601925897304840795; }
 #ifdef TOOLS_ENABLED
 uint64_t get_editor_api_hash() { return 4146382895289594032; }
 #endif // TOOLS_ENABLED
