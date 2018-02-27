@@ -5686,7 +5686,7 @@ MonoObject* godot_icall_3_557(MethodBind* method, Object* ptr, int32_t arg1, Mon
 	Variant arg1_in = (Variant)arg1;
 	call_args.set(0, &arg1_in);
 	Variant arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
-	call_args.set(0, &arg2_in);
+	call_args.set(1, &arg2_in);
 	for (int i = 0; i < vararg_length; i++) {
 		MonoObject* elem = mono_array_get(arg3, MonoObject*, i);
 		varargs.set(i, GDMonoMarshal::mono_object_to_variant(elem));
@@ -7622,9 +7622,9 @@ MonoObject* godot_icall_4_750(MethodBind* method, Object* ptr, int32_t arg1, Mon
 	Variant arg1_in = (Variant)arg1;
 	call_args.set(0, &arg1_in);
 	Variant arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
-	call_args.set(0, &arg2_in);
+	call_args.set(1, &arg2_in);
 	Variant arg3_in = GDMonoMarshal::mono_string_to_godot(arg3);
-	call_args.set(0, &arg3_in);
+	call_args.set(2, &arg3_in);
 	for (int i = 0; i < vararg_length; i++) {
 		MonoObject* elem = mono_array_get(arg4, MonoObject*, i);
 		varargs.set(i, GDMonoMarshal::mono_object_to_variant(elem));
@@ -7666,7 +7666,7 @@ MonoObject* godot_icall_3_753(MethodBind* method, Object* ptr, MonoString* arg1,
 	Variant arg1_in = GDMonoMarshal::mono_string_to_godot(arg1);
 	call_args.set(0, &arg1_in);
 	Variant arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
-	call_args.set(0, &arg2_in);
+	call_args.set(1, &arg2_in);
 	for (int i = 0; i < vararg_length; i++) {
 		MonoObject* elem = mono_array_get(arg3, MonoObject*, i);
 		varargs.set(i, GDMonoMarshal::mono_object_to_variant(elem));
@@ -9207,7 +9207,7 @@ MonoObject* godot_icall_3_907(MethodBind* method, Object* ptr, Object* arg1, Mon
 	Variant arg1_in = arg1;
 	call_args.set(0, &arg1_in);
 	Variant arg2_in = GDMonoMarshal::mono_string_to_godot(arg2);
-	call_args.set(0, &arg2_in);
+	call_args.set(1, &arg2_in);
 	for (int i = 0; i < vararg_length; i++) {
 		MonoObject* elem = mono_array_get(arg3, MonoObject*, i);
 		varargs.set(i, GDMonoMarshal::mono_object_to_variant(elem));
@@ -11445,10 +11445,12 @@ Object* godot_icall__VisualScriptEditor_get_singleton() {
 
 namespace GodotSharpBindings
 {
-uint64_t get_core_api_hash() { return -8361006182839914624; }
+uint64_t get_core_api_hash() { return 16892213601122680651; }
 #ifdef TOOLS_ENABLED
-uint64_t get_editor_api_hash() { return 5414294326510715898; }
+uint64_t get_editor_api_hash() { return 4146382895289594032; }
 #endif // TOOLS_ENABLED
+uint32_t get_bindings_version() { return 1; }
+uint32_t get_cs_glue_version() { return 1; }
 void register_generated_icalls() {
 	godot_register_header_icalls();	mono_add_internal_call("Godot.NativeCalls::godot_icall_ClassDB_get_method", (void*)godot_icall_ClassDB_get_method);
 	mono_add_internal_call("Godot.NativeCalls::godot_icall_Object_Dtor", (void*)godot_icall_Object_Dtor);
