@@ -39,7 +39,7 @@ env:
 #    - PLATFORM=osx BITS=64 TOOLS=no TARGET=release
 #    - PLATFORM=osx BITS=64 TOOLS=no TARGET=release_debug
 #    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
+#    - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
 #    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
 #    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
     - PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
@@ -220,6 +220,7 @@ before_deploy:
   - if [ "$PLATFORM" = "osx" ]; then
       rm -rf bin/godot.osx.*.dSYM;
     fi;
+  - zip -q -r -9 godot.$PLATFORM.$BITS.zip bin/*godot*.$PLATFORM.opt.* bin/*.dll
 
 
 deploy:
@@ -228,7 +229,7 @@ deploy:
     secure: tCFCHet6fgtf1+sgQEft4XTIfNH2JrqRx+YaatEfEEVNkHbY3SnRdtvcZeTeHc1LNpf6S0eU45RkBHeyN1Gna80Yiz8uep7rFuUTp5XtZsRfNecw/ebhPlyOEf3AhCVBJ3e3RxT2V1i/+8HyaWBisbXMZ1R+w07M3BxQrTpJflb7iSIXYTF//BxBtC1Atp7egDoU97OJfLSPEhPbjGhMoUuLTe7wmZqd7zK3DNTatL/pXefLN67N15dOra0LNgBHo1o6P4wcVBT2V+o9/TK5RAyUi5TqoudETgq2pBdAE558OuBbHh1dwDrs9b9ZbUC0mLautadiSbCkU0nLmYapaCKGr4+DpnZCxZYgzcYb5UPb6u6Rs3pY11JFtPYIXR2C1UJh4rpBIQa+F/eBKnw+QztnjfYWxJYq2T73CuFLgku89x99cVq7EiP0g/lZp64HxyENOcyL0FlWwjmq2vnr8BKNhDEVAXIUB1JsH8VshvndlgLhaRyRe+rkXnikLX8Nm6Z9V4pCjnRuCgiwZtYjxMTBhk30ZtXUg4uzCVmbvbUql8PPNrWDeq9yoUVe55kqU6DsxM1CEIou7Qcua2eeXcUkOGCgpXH4W0NXWBFo7Ze7FWHeKSHAcBeUrUpbiY75fcFdVjY/uUJaXQpem64Xm0O8GxK67CsBqAJahD1hxjc=
   file_glob: true
   file:
-    - bin/*godot*.$PLATFORM.opt.*
+    - godot.$PLATFORM.$BITS.zip
     - bin/*gdnative_wrapper_code*.$PLATFORM.opt.*
   skip_cleanup: true
   on:
