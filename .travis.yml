@@ -24,7 +24,7 @@ services:
 
 env:
   global:
-    - BUILD_REVISION=build1
+    - BUILD_REVISION=build2
     - OPTIONS="builtin_libpng=yes builtin_openssl=yes builtin_zlib=yes"
     - SCONS="scons -j2 verbose=no warnings=no progress=no"
   matrix:
