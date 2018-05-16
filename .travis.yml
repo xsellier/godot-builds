@@ -43,8 +43,10 @@ env:
     - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
     - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
     - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
+    - PLATFORM=android TARGET=release ANDROID_ARCH=arm64v8
     - PLATFORM=android TARGET=release ANDROID_ARCH=x86
     - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=arm64v8
     - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
 
 matrix:
@@ -52,9 +54,13 @@ matrix:
     - os: linux
       env: PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - os: linux
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=arm64v8
+    - os: linux
       env: PLATFORM=android TARGET=release ANDROID_ARCH=x86
     - os: linux
       env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - os: linux
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=arm64v8
     - os: linux
       env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - os: linux
@@ -102,9 +108,13 @@ matrix:
     - compiler: clang
       env: PLATFORM=android TARGET=release ANDROID_ARCH=armv7
     - compiler: clang
+      env: PLATFORM=android TARGET=release ANDROID_ARCH=arm64v8
+    - compiler: clang
       env: PLATFORM=android TARGET=release ANDROID_ARCH=x86
     - compiler: clang
       env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
+    - compiler: clang
+      env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=arm64v8
     - compiler: clang
       env: PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
     - compiler: clang
@@ -192,7 +202,13 @@ before_deploy:
     fi;
   - if [ "$PLATFORM" = "android" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="release"; else target_tag="debug"; fi;
-      if [ "$ANDROID_ARCH" = "armv7" ]; then android_arch="armeabi-v7a"; else android_arch="x86"; fi;
+      if [ "$ANDROID_ARCH" = "armv7" ]; then
+        android_arch="armeabi-v7a";
+      elif [ "$ANDROID_ARCH" = "arm64v8" ]; then
+        android_arch="arm64-v8a";
+      else
+        android_arch="x86";
+      fi;
       cp platform/android/java/libs/$target_tag/$android_arch/libgodot_android.so bin/libgodot.android.opt.$target_tag.$android_arch.so;
     fi;
   - if [ "$PLATFORM" = "osx" ]; then
