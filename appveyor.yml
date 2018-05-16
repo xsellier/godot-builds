@@ -64,7 +64,8 @@ environment:
 
 install:
   - set "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - pip install --egg scons  # it will fail on AppVeyor without --egg flag
+  - python.exe -m pip install -U pip setuptools wheel
+  - pip install scons
   - if defined VS call "%VS%" %ARCH%  # if defined - so we can also use mingw
   - git submodule update --init --recursive # download submodules
   - ps: >-
