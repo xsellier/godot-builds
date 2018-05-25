@@ -2,7 +2,7 @@ language: cpp
 
 sudo: required
 dist: trusty
-osx_image: xcode9.3
+osx_image: xcode9
 
 # Disable builds on normal pushes, we only want to build tags
 branches:
@@ -31,24 +31,9 @@ env:
   matrix:
     - PLATFORM=iphone TARGET=release
     - PLATFORM=iphone TARGET=release_debug
-    - PLATFORM=javascript TARGET=release
-    - PLATFORM=javascript TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=yes TARGET=release_debug
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release
     - PLATFORM=osx BITS=fat TOOLS=no TARGET=release_debug
-    - PLATFORM=server BITS=64 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=32 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release
-    - PLATFORM=x11 BITS=32 TOOLS=no TARGET=release_debug
-    - PLATFORM=x11 BITS=64 TOOLS=yes TARGET=release_debug
-    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release
-    - PLATFORM=x11 BITS=64 TOOLS=no TARGET=release_debug
-    - PLATFORM=android TARGET=release ANDROID_ARCH=armv7
-    - PLATFORM=android TARGET=release ANDROID_ARCH=arm64v8
-    - PLATFORM=android TARGET=release ANDROID_ARCH=x86
-    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=armv7
-    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=arm64v8
-    - PLATFORM=android TARGET=release_debug ANDROID_ARCH=x86
 
 matrix:
   exclude:
