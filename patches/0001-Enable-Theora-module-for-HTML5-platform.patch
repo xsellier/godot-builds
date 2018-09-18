@@ -1,0 +1,25 @@
+From 723c14cdfc1519e639d7927c72a25100fc606dc0 Mon Sep 17 00:00:00 2001
+From: Leon Krause <lk@leonkrause.com>
+Date: Tue, 28 Aug 2018 01:56:47 +0200
+Subject: [PATCH] Enable Theora module for HTML5 platform
+
+(cherry picked from commit b4b816c1226df7205c878b58e0a704102a149003)
+---
+ platform/javascript/detect.py | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/platform/javascript/detect.py b/platform/javascript/detect.py
+index 09f0cb032..bfdf068bd 100644
+--- a/platform/javascript/detect.py
++++ b/platform/javascript/detect.py
+@@ -30,7 +30,6 @@ def get_flags():
+         ('module_etc1_enabled', 'no'),
+         ('module_mpc_enabled', 'no'),
+         ('module_speex_enabled', 'no'),
+-        ('module_theora_enabled', 'no'),
+     ]
+ 
+ 
+-- 
+2.13.7
+
