@@ -193,6 +193,7 @@ script:
 
 
 before_deploy:
+  - openssl aes-256-cbc -K $encrypted_e5988d7a0c9d_key -iv $encrypted_e5988d7a0c9d_iv -in github_deploy_key.enc -out github_deploy_key -d
   - if [ "$PLATFORM" = "iphone" ]; then
       if [ "$TARGET" = "release" ]; then target_tag="opt"; else target_tag="opt.debug"; fi;
       lipo -create bin/libgodot.iphone.$target_tag.arm.a bin/libgodot.iphone.$target_tag.arm64.a -output bin/libgodot.iphone.$target_tag.fat;
@@ -227,5 +228,5 @@ deploy:
     - bin/*gdnative_wrapper_code*.$PLATFORM.opt.*
   skip_cleanup: true
   on:
-    repo: GodotBuilder/godot-builds
+    repo: xsellier/godot-builds
     tags: true
