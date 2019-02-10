@@ -208,5 +208,5 @@ deploy:
     - bin/*godot*.$PLATFORM.opt.*
   skip_cleanup: true
   on:
-    repo: GodotBuilder/godot-builds
+    repo: xsellier/godot-builds
     tags: true
